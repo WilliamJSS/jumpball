@@ -43,13 +43,13 @@ public class CoresFontes {
 		
 		try {
 			
-			Font fonte1 = Font.createFont(Font.TRUETYPE_FONT, new File("recursos/fonte/hemi head bd it.otf"));
+			Font fonte1 = Font.createFont(Font.TRUETYPE_FONT, new File("resources/font/hemi head bd it.otf"));
 			
-			Font fonte2 = Font.createFont(Font.TRUETYPE_FONT, new File("recursos/fonte/Baloo-Regular.ttf"));
+			Font fonte2 = Font.createFont(Font.TRUETYPE_FONT, new File("resources/font/Baloo-Regular.ttf"));
 			
-			Font fonte3 = Font.createFont(Font.TRUETYPE_FONT, new File("recursos/fonte/LuckiestGuy-Regular.ttf"));
+			Font fonte3 = Font.createFont(Font.TRUETYPE_FONT, new File("resources/font/LuckiestGuy-Regular.ttf"));
 			
-			Font fonte4 = Font.createFont(Font.TRUETYPE_FONT, new File("recursos/fonte/Kids Magazine.ttf"));
+			Font fonte4 = Font.createFont(Font.TRUETYPE_FONT, new File("resources/font/Kids Magazine.ttf"));
 			
 			GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
 			
