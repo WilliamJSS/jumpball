@@ -60,10 +60,6 @@ public class ControladorJumpBall {
 		tc.start();
 	}
 
-	public static void main(String[] args) {
-		new ControladorJumpBall();
-	}
-
 	public class ThreadControlador extends Thread {
 
 		public ThreadControlador() {
