@@ -4,9 +4,9 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
-import animations.ThreadPlataforma;
 import animations.ball.*;
 import animations.coin.*;
+import animations.platform.*;
 import modelo.Imagens;
 import objetosCenario.Bloco;
 import objetosCenario.Bola;
@@ -111,9 +111,10 @@ public class ControladorCenario implements KeyListener {
 		animationBallSpin.start();
 
 		// Movimenta as plataformas
-		ThreadPlataforma tp = new ThreadPlataforma(cenario, bola, gc, gs);
-		tp.getThreadPlataformaInferior().start();
-		tp.getThreadMovePlataformas().start();
+		AnimationPlatformMain animationPlatformMain = new AnimationPlatformMain(cenario, bola, gc, gs);
+		AnimationPlatformBottom animationPlatformBottom = new AnimationPlatformBottom(bola, gc);
+		animationPlatformMain.start();
+		animationPlatformBottom.start();
 
 		// Movimenta as moedas
 		AnimationCoinMove animationCoinMove = new AnimationCoinMove(cenario, bola, moedas, gs);
@@ -128,10 +129,6 @@ public class ControladorCenario implements KeyListener {
 		gs.playToqueSelecionarBotao();
 		gs.stopToqueDerrota();
 		gs.stopToqueVitoria();
-
-		// plataformas.removeAll(plataformas);
-		// plataformaInferior.removeAll(plataformaInferior);
-		// moedas.removeAll(moedas);
 
 		cenario.limparTelaFinal();
 
@@ -207,18 +204,6 @@ public class ControladorCenario implements KeyListener {
 		// Fim de jogo
 		if (cenario.isFimDeJogo()) {
 
-			// Volta para a escolha de cenarios
-			// if(e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-			//
-			// finalizarJogo();
-			//
-			// frame.setContentPane(fases);
-			// frame.repaint();
-			// frame.validate();
-			// }
-
-			// Move entre os botoes
-
 			// Tela de derrota
 			if ((e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_RIGHT) && bola.isDead()) {
 
@@ -242,7 +227,6 @@ public class ControladorCenario implements KeyListener {
 				} else {
 					cenario.setBotaoSelecionado(Cenario.BOTAO_AVANCAR);
 				}
-
 			}
 
 			// Tela de vitoria
