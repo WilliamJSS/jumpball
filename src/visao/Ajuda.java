@@ -95,20 +95,20 @@ public class Ajuda extends JPanel {
 		if (textoAjuda == null) {
 			textoAjuda = new String[]{
 
-					"O objetivo do jogo � levar a bola at� a "
-					+ "bandeira vermelha. Voc� deve ser �gil e r�pido "
+					"O objetivo do jogo é levar a bola até a "
+					+ "bandeira vermelha. Você deve ser ágil e rápido "
 					+ "para conseguir capturar todas as moedas. "
-					+ "Dessa forma, voc� conseguir� liberar muito "
-					+ "mais cen�rios de jogo e, consequentemente, "
-					+ "obter uma melhor pontua��o na partida.",
+					+ "Dessa forma, você conseguirá liberar muito "
+					+ "mais cenários de jogo e, consequentemente, "
+					+ "obter uma melhor pontuação na partida.",
 					
-					"Sua pontua��o ser� registrada de acordo com "
+					"Sua pontuação será registrada de acordo com "
 					+ "sua performance na partida, ou seja, "
 					+ "quanto mais moedas conseguir, maior sua "
-					+ "pontua��o.",
+					+ "pontuação.",
 					
-					"Se voc� precisa de tutorial pra isso, "
-					+ "eu tenho at� medo de explicar como � que faz.",
+					"Se você precisa de tutorial pra isso, "
+					+ "eu tenho até medo de explicar como é que faz.",
 					
 					"A seta para baixo faz a bola descer da plataforma.\n"
 					+ "A seta para cima faz a bola pular."};
@@ -130,7 +130,7 @@ public class Ajuda extends JPanel {
 			tituloAjuda.setText("OBJETIVO DO JOGO");
 		}
 		else if(codPin == 1) {
-			tituloAjuda.setText("PONTUA��O");
+			tituloAjuda.setText("PONTUAÇÃO");
 		}
 		else if(codPin == 2) {
 			tituloAjuda.setText("COMO PERDER");

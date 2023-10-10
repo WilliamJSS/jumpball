@@ -140,12 +140,12 @@ public class Cenario extends JPanel {
 			getTitulo().setText("QUE CARA BOM");
 			getBotaoAvancar().setIcon(Imagens.getImgBotaoAvancar());
 		} else {
-			getTitulo().setText("N�O CONSEGUE N�!?");
+			getTitulo().setText("NÃO CONSEGUE NÉ!?");
 			getBotaoAvancar().setIcon(Imagens.getImgBotaoAvancarBloqueado());
 		}
 		
 		getBotaoAvancar().setVisible(true);
-		getTitulo().setVisible(true); // coloquei o titulo pra ficar visivel dps, pq tem que alterar o texto antes dele aparecer
+		getTitulo().setVisible(true);
 	}
 
 	public void limparTelaFinal() {
