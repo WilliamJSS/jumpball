@@ -53,7 +53,7 @@ public class GerenciadorCenario {
 		setMoedas(moedas);
 	}
 
-	// TODO Deletar os objetos do cenario ao final do jogo
+	// Deletar os objetos do cenario ao final do jogo
 	public void removeObjetosCenario() {
 		setPosicaoMoedas(null);
 		setMoedas(null);
@@ -64,7 +64,7 @@ public class GerenciadorCenario {
 		cenario.removeAll();
 	}
 
-	//TODO  Padroes para gerar plataformas
+	//  Padroes para gerar plataformas
 	public ArrayList<int[]> getPadroes() {
 		if (padroes == null) {
 			padroes = new ArrayList<int[]>();
@@ -111,7 +111,7 @@ public class GerenciadorCenario {
 		return padroes;
 	}
 
-	//TODO  Define o cenario, o tipo da bola e o tipo das plataformas
+	//  Define o cenario, o tipo da bola e o tipo das plataformas
 	public void definirCenario(int tipoCenario, int fase) {
 
 		switch (tipoCenario) {
@@ -207,7 +207,7 @@ public class GerenciadorCenario {
 
 	}
 
-	//TODO  Gera uma plataforma com a quantidade de blocos e tipo especificado
+	//  Gera uma plataforma com a quantidade de blocos e tipo especificado
 	public ArrayList<Bloco> gerarPlataforma(int qntBlocos, int tipo) {
 
 		ArrayList<Bloco> plataforma = new ArrayList<Bloco>();
@@ -295,7 +295,7 @@ public class GerenciadorCenario {
 		return plataforma;
 	}
 
-	//TODO  Gera a plataforma inferior de acordo com o tipo especificado
+	//  Gera a plataforma inferior de acordo com o tipo especificado
 	public ArrayList<Bloco> gerarPlataformaInferior(int tipo) {
 		plataformaInferior = gerarPlataforma(35, tipo);
 
@@ -313,7 +313,7 @@ public class GerenciadorCenario {
 		return plataformaInferior;
 	}
 
-	//TODO  Gera uma plataforma com 4 blocos do tipo especificado na posicao determinada
+	//  Gera uma plataforma com 4 blocos do tipo especificado na posicao determinada
 	public ArrayList<Bloco> gerarPadraoPlataforma(int posicao, int tipo) {
 
 		int dx;
@@ -414,7 +414,7 @@ public class GerenciadorCenario {
 		return padraoPlataforma;
 	}
 
-	//TODO  Gera uma sequencia de plataformas para montar cada fase
+	//  Gera uma sequencia de plataformas para montar cada fase
 	public ArrayList<Bloco> gerarPlataformas(int codFase, int tipo){
 
 		ArrayList<Bloco> novasPlataformas = new ArrayList<Bloco>();

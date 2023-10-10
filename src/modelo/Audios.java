@@ -4,7 +4,7 @@ import java.io.File;
 
 public class Audios {
 
-	// TODO Musicas
+	// Musicas
 	
 	private static File musicaMenu = new File("resources/audio/On The Go.wav");
 
@@ -18,7 +18,7 @@ public class Audios {
 		return musicaCenario;
 	}
 	
-	// TODO Toques
+	// Toques
 	
 //	private static File toqueVitoria = new File("resources/audio/bolinha de golfe.wav");
 	private static File toqueVitoria = new File("resources/audio/toque-vitoria.wav");
@@ -47,7 +47,7 @@ public class Audios {
 		return selecionarBotao;
 	}
 	
-	// TODO Efeitos sonoros
+	// Efeitos sonoros
 	
 	private static File efeitoPulo = new File("resources/audio/pulo.wav");
 	

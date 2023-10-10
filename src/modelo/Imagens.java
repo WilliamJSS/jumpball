@@ -7,7 +7,7 @@ import javax.swing.ImageIcon;
 
 public class Imagens {
 
-	// TODO Blocos
+	// Blocos
 
 	private static ImageIcon blocoAgua = new ImageIcon("resources/img/bloco/bloco-agua.png");
 
@@ -75,7 +75,7 @@ public class Imagens {
 		return blocoAreia;
 	}
 
-	// TODO Bolas
+	// Bolas
 
 	private static ImageIcon bolaPadrao = new ImageIcon("resources/img/bola/bola-padrao.png");
 
@@ -171,7 +171,7 @@ public class Imagens {
 		return spriteBolaGolfe;
 	}
 
-	// TODO Botoes
+	// Botoes
 
 	private static ImageIcon imgBotao1 = new ImageIcon("resources/img/botao/botao-1.png");
 
@@ -252,7 +252,7 @@ public class Imagens {
 		return imgBotaoVoltar;
 	}
 
-	// TODO Cenarios
+	// Cenarios
 
 	private static ImageIcon cenarioMenu = new ImageIcon("resources/img/cenario/cenario-menu.png");
 
@@ -369,7 +369,7 @@ public class Imagens {
 		return fundoCenario;
 	}
 
-	// TODO Icones
+	// Icones
 
 	private static ImageIcon iconeJumpBall = new ImageIcon("resources/img/icone/icone-jump-ball.png");
 
@@ -460,7 +460,7 @@ public class Imagens {
 		return contagemRegressiva;
 	}
 
-	// TODO Objetos
+	// Objetos
 
 	private static ImageIcon imgBandeira = new ImageIcon("resources/img/objeto/bandeira.png");
 
