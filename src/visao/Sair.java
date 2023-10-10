@@ -11,7 +11,7 @@ import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 
-import modelo.CoresFontes;
+import modelo.Fontes;
 import modelo.Imagens;
 
 public class Sair extends JPanel {
@@ -101,7 +101,7 @@ public class Sair extends JPanel {
 			mensagemSair.setEditable(false);
 			mensagemSair.setOpaque(false);
 			mensagemSair.setForeground(Color.WHITE);
-			mensagemSair.setFont(CoresFontes.getFonteMensagemSair());
+			mensagemSair.setFont(Fontes.getMensagemSair());
 			mensagemSair.setSize(getFundoSair().getWidth() - 50, 100);
 			mensagemSair.setLocation(getWidth()/2 - mensagemSair.getWidth()/2, getFundoSair().getY() + 30);
 
@@ -123,7 +123,7 @@ public class Sair extends JPanel {
 				JLabel texto = new JLabel(txt[i]);
 				texto.setHorizontalAlignment(SwingConstants.CENTER);
 				texto.setForeground(Color.WHITE);
-				texto.setFont(CoresFontes.getFonteBotao());
+				texto.setFont(Fontes.getBotao());
 				texto.setBounds(getBotao(i).getBounds());
 				textoBotao.add(texto);
 			}

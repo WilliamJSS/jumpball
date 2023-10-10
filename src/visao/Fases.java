@@ -6,7 +6,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-import modelo.CoresFontes;
+import modelo.Cores;
+import modelo.Fontes;
 import modelo.Imagens;
 
 public class Fases extends JPanel {
@@ -252,8 +253,8 @@ public class Fases extends JPanel {
 	public JLabel getBotaoVoltar() {
 		if (botaoVoltar == null) {
 			botaoVoltar = new JLabel("ESC");
-			botaoVoltar.setFont(CoresFontes.getFonteBaloo());
-			botaoVoltar.setForeground(CoresFontes.getAzulEscuro());
+			botaoVoltar.setFont(Fontes.getBaloo());
+			botaoVoltar.setForeground(Cores.getAzulEscuro());
 			botaoVoltar.setIcon(Imagens.getImgBotaoVoltar());
 			botaoVoltar.setSize(Imagens.getImgBotaoVoltar().getIconWidth() + 200, Imagens.getImgBotaoVoltar().getIconHeight());
 			botaoVoltar.setLocation(20, 15);
@@ -273,8 +274,8 @@ public class Fases extends JPanel {
 	public JLabel getTitulo() {
 		if (titulo == null) {
 			titulo = new JLabel("LEVELS", SwingConstants.CENTER);
-			titulo.setFont(CoresFontes.getFonteTitulo());
-			titulo.setForeground(CoresFontes.getAzulEscuro());
+			titulo.setFont(Fontes.getTitulo());
+			titulo.setForeground(Cores.getAzulEscuro());
 			titulo.setSize(200, 100);
 			titulo.setLocation(getWidth()/2 - titulo.getWidth()/2, 10);
 		}

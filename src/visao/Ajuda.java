@@ -13,7 +13,7 @@ import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 
-import modelo.CoresFontes;
+import modelo.Fontes;
 import modelo.Imagens;
 
 public class Ajuda extends JPanel {
@@ -76,7 +76,7 @@ public class Ajuda extends JPanel {
 		getSelecao(codPin).setIcon(Imagens.getPinAzul());
 		getTituloAjuda(codPin);
 		getTextPaneAjuda().setText(getTextoAjuda(codPin).toUpperCase());
-		getTextPaneAjuda().setFont(CoresFontes.getFonteMensagemMoedas());
+		getTextPaneAjuda().setFont(Fontes.getMensagemMoedas());
 	}
 
 	public JLabel getSelecao(int codPin) {
@@ -95,20 +95,20 @@ public class Ajuda extends JPanel {
 		if (textoAjuda == null) {
 			textoAjuda = new String[]{
 
-					"O objetivo do jogo é levar a bola até a "
-					+ "bandeira vermelha. Você deve ser ágil e rápido "
+					"O objetivo do jogo ï¿½ levar a bola atï¿½ a "
+					+ "bandeira vermelha. Vocï¿½ deve ser ï¿½gil e rï¿½pido "
 					+ "para conseguir capturar todas as moedas. "
-					+ "Dessa forma, você conseguirá liberar muito "
-					+ "mais cenários de jogo e, consequentemente, "
-					+ "obter uma melhor pontuação na partida.",
+					+ "Dessa forma, vocï¿½ conseguirï¿½ liberar muito "
+					+ "mais cenï¿½rios de jogo e, consequentemente, "
+					+ "obter uma melhor pontuaï¿½ï¿½o na partida.",
 					
-					"Sua pontuação será registrada de acordo com "
+					"Sua pontuaï¿½ï¿½o serï¿½ registrada de acordo com "
 					+ "sua performance na partida, ou seja, "
 					+ "quanto mais moedas conseguir, maior sua "
-					+ "pontuação.",
+					+ "pontuaï¿½ï¿½o.",
 					
-					"Se você precisa de tutorial pra isso, "
-					+ "eu tenho até medo de explicar como é que faz.",
+					"Se vocï¿½ precisa de tutorial pra isso, "
+					+ "eu tenho atï¿½ medo de explicar como ï¿½ que faz.",
 					
 					"A seta para baixo faz a bola descer da plataforma.\n"
 					+ "A seta para cima faz a bola pular."};
@@ -130,7 +130,7 @@ public class Ajuda extends JPanel {
 			tituloAjuda.setText("OBJETIVO DO JOGO");
 		}
 		else if(codPin == 1) {
-			tituloAjuda.setText("PONTUAÇÃO");
+			tituloAjuda.setText("PONTUAï¿½ï¿½O");
 		}
 		else if(codPin == 2) {
 			tituloAjuda.setText("COMO PERDER");
@@ -204,7 +204,7 @@ public class Ajuda extends JPanel {
 	public JLabel getBotaoVoltar() {
 		if (botaoVoltar == null) {
 			botaoVoltar = new JLabel("ESC");
-			botaoVoltar.setFont(CoresFontes.getFonteBaloo());
+			botaoVoltar.setFont(Fontes.getBaloo());
 			botaoVoltar.setForeground(Color.WHITE);
 			botaoVoltar.setIcon(Imagens.getImgBotaoVoltar());
 			botaoVoltar.setSize(Imagens.getImgBotaoVoltar().getIconWidth() + 200, Imagens.getImgBotaoVoltar().getIconHeight());

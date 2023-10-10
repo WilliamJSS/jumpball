@@ -8,7 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-import modelo.CoresFontes;
+import modelo.Fontes;
 import modelo.Imagens;
 
 public class Menu extends JPanel {
@@ -99,7 +99,7 @@ public class Menu extends JPanel {
 				JLabel texto = new JLabel(txt[i]);
 				texto.setHorizontalAlignment(SwingConstants.CENTER);
 				texto.setForeground(Color.WHITE);
-				texto.setFont(CoresFontes.getFonteBotao());
+				texto.setFont(Fontes.getBotao());
 				texto.setBounds(getBotao(i).getBounds());
 				textoBotao.add(texto);
 			}

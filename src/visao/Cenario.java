@@ -9,7 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-import modelo.CoresFontes;
+import modelo.Fontes;
 import modelo.Imagens;
 
 public class Cenario extends JPanel {
@@ -140,7 +140,7 @@ public class Cenario extends JPanel {
 			getTitulo().setText("QUE CARA BOM");
 			getBotaoAvancar().setIcon(Imagens.getImgBotaoAvancar());
 		} else {
-			getTitulo().setText("NÃO CONSEGUE NÉ!?");
+			getTitulo().setText("Nï¿½O CONSEGUE Nï¿½!?");
 			getBotaoAvancar().setIcon(Imagens.getImgBotaoAvancarBloqueado());
 		}
 		
@@ -262,7 +262,7 @@ public class Cenario extends JPanel {
 			titulo = new JLabel();
 			titulo.setHorizontalAlignment(SwingConstants.CENTER);
 			titulo.setVerticalAlignment(SwingConstants.CENTER);
-			titulo.setFont(CoresFontes.getFonteTituloJogo());
+			titulo.setFont(Fontes.getTituloJogo());
 			titulo.setForeground(Color.WHITE);
 			titulo.setSize(getWidth() - 20, 60);
 			titulo.setLocation(getWidth()/2 - titulo.getWidth()/2, 30);
@@ -275,7 +275,7 @@ public class Cenario extends JPanel {
 		if (mensagem == null) {
 			mensagem = new JLabel("MOEDAS: ", SwingConstants.CENTER);
 			mensagem.setVerticalAlignment(SwingConstants.CENTER);
-			mensagem.setFont(CoresFontes.getFonteMensagemMoedas());
+			mensagem.setFont(Fontes.getMensagemMoedas());
 			mensagem.setForeground(Color.WHITE);
 			mensagem.setSize(300, 100);
 			mensagem.setLocation(getWidth()/2 - mensagem.getWidth()/2, getEstrelasGrandes().get(1).getY() + getEstrelasGrandes().get(1).getHeight() + 20);

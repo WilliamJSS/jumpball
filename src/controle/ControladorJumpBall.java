@@ -1,6 +1,6 @@
 package controle;
 
-import modelo.CoresFontes;
+import modelo.Fontes;
 import visao.Ajuda;
 import visao.Cenario;
 import visao.Fases;
@@ -32,7 +32,7 @@ public class ControladorJumpBall {
 
 	public ControladorJumpBall() {
 
-		CoresFontes.carregarFontes();
+		Fontes.carregarFontes();
 		
 		frame = new Frame();
 
