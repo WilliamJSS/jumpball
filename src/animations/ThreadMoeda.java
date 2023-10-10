@@ -1,4 +1,4 @@
-package thread;
+package animations;
 
 import java.util.ArrayList;
 

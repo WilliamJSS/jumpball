@@ -1,7 +1,8 @@
-package thread;
+package animations;
 
 import java.util.ArrayList;
 
+import animations.ball.AnimationBallDown;
 import controle.GerenciadorCenario;
 import controle.GerenciadorSom;
 import objetosCenario.Bloco;
@@ -106,8 +107,8 @@ public class ThreadPlataforma {
 					
 					// Caso a bola nao esteja em cima de nenhuma plataforma, ela cai
 					if (vaiCair && !bola.isCaindoDeProposito()) {
-						ThreadBola threadBola = new ThreadBola(cenario, bola, gc, gs);
-						threadBola.getThreadQueda().start();
+						AnimationBallDown animationBallDown = new AnimationBallDown(bola, gc, gs);
+						animationBallDown.start();
 						bola.setEmCimaPlataforma(false);
 						bola.setCaindo(true);
 					}	

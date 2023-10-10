@@ -4,13 +4,13 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
+import animations.ThreadMoeda;
+import animations.ThreadPlataforma;
+import animations.ball.*;
 import modelo.Imagens;
 import objetosCenario.Bloco;
 import objetosCenario.Bola;
 import objetosCenario.Moeda;
-import thread.ThreadBola;
-import thread.ThreadMoeda;
-import thread.ThreadPlataforma;
 import visao.Cenario;
 import visao.Fases;
 import visao.Frame;
@@ -57,10 +57,11 @@ public class ControladorCenario implements KeyListener {
 		this.tipoCenario = tipoCenario;
 		this.fase = fase;
 
-		//cenario.setInicioDeJogo(true);
+		// cenario.setInicioDeJogo(true);
 		cenario.setFimDeJogo(false);
 
-		// Definir o tipo de cenario, cada tipo possui um fundo, plataformas e bolas diferentes
+		// Definir o tipo de cenario, cada tipo possui um fundo, plataformas e bolas
+		// diferentes
 		gc.definirCenario(tipoCenario, fase);
 
 		// Adicionar a bola ao cenario
@@ -105,8 +106,9 @@ public class ControladorCenario implements KeyListener {
 
 		// Fazer a bola girar
 		bola.setRodando(true);
-		ThreadBola tb = new ThreadBola(cenario, bola, gc, gs);
-		tb.getThreadGirarBola().start();
+
+		AnimationBallSpin animationBallSpin = new AnimationBallSpin(bola, gs, cenario);
+		animationBallSpin.start();
 
 		// Movimenta as plataformas
 		ThreadPlataforma tp = new ThreadPlataforma(cenario, bola, gc, gs);
@@ -127,9 +129,9 @@ public class ControladorCenario implements KeyListener {
 		gs.stopToqueDerrota();
 		gs.stopToqueVitoria();
 
-		//		plataformas.removeAll(plataformas);
-		//		plataformaInferior.removeAll(plataformaInferior);
-		//		moedas.removeAll(moedas);
+		// plataformas.removeAll(plataformas);
+		// plataformaInferior.removeAll(plataformaInferior);
+		// moedas.removeAll(moedas);
 
 		cenario.limparTelaFinal();
 
@@ -177,8 +179,11 @@ public class ControladorCenario implements KeyListener {
 
 			// Acao de pulo
 			if (e.getKeyCode() == KeyEvent.VK_UP && !bola.isPulando() && !bola.isCaindo()) {
-				ThreadBola threadBola = new ThreadBola(cenario, bola, gc, gs);
-				threadBola.getThreadPulo().start();
+
+				AnimationBallDown animationBallDown = new AnimationBallDown(bola, gc, gs);
+				AnimationBallUp animationBallUp = new AnimationBallUp(bola, animationBallDown);
+
+				animationBallUp.start();
 
 				gs.playEfeitoPulo();
 
@@ -192,8 +197,9 @@ public class ControladorCenario implements KeyListener {
 					bola.setCaindo(true);
 					bola.setCaindoDeProposito(true);
 					bola.setEmCimaPlataforma(false);
-					ThreadBola threadBola = new ThreadBola(cenario, bola, gc, gs);
-					threadBola.getThreadQueda().start();
+					
+					AnimationBallDown animationBallDown = new AnimationBallDown(bola, gc, gs);
+					animationBallDown.start();
 				}
 			}
 		}
@@ -202,14 +208,14 @@ public class ControladorCenario implements KeyListener {
 		if (cenario.isFimDeJogo()) {
 
 			// Volta para a escolha de cenarios
-			//			if(e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+			// if(e.getKeyCode() == KeyEvent.VK_ESCAPE) {
 			//
-			//				finalizarJogo();
+			// finalizarJogo();
 			//
-			//				frame.setContentPane(fases);
-			//				frame.repaint();
-			//				frame.validate();
-			//			}
+			// frame.setContentPane(fases);
+			// frame.repaint();
+			// frame.validate();
+			// }
 
 			// Move entre os botoes
 
@@ -217,17 +223,17 @@ public class ControladorCenario implements KeyListener {
 			if ((e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_RIGHT) && bola.isDead()) {
 
 				gs.playToqueNavegarMenu();
-				
+
 				if (cenario.getBotaoSelecionado() == Cenario.BOTAO_REPETIR) {
 					cenario.setBotaoSelecionado(Cenario.BOTAO_MENU);
 				} else if (cenario.getBotaoSelecionado() == Cenario.BOTAO_MENU) {
 					cenario.setBotaoSelecionado(Cenario.BOTAO_REPETIR);
 				}
-				
+
 			}
 
 			// Tela de vitoria
-			if(e.getKeyCode() == KeyEvent.VK_LEFT && !bola.isDead()) {
+			if (e.getKeyCode() == KeyEvent.VK_LEFT && !bola.isDead()) {
 
 				gs.playToqueNavegarMenu();
 
@@ -238,9 +244,9 @@ public class ControladorCenario implements KeyListener {
 				}
 
 			}
-			
+
 			// Tela de vitoria
-			if(e.getKeyCode() == KeyEvent.VK_RIGHT && !bola.isDead()) {
+			if (e.getKeyCode() == KeyEvent.VK_RIGHT && !bola.isDead()) {
 
 				gs.playToqueNavegarMenu();
 
@@ -253,37 +259,37 @@ public class ControladorCenario implements KeyListener {
 			}
 
 			// Selecionar botao no menu de fim de jogo
-			if(e.getKeyCode() == KeyEvent.VK_SPACE || e.getKeyCode() == KeyEvent.VK_ENTER) {
+			if (e.getKeyCode() == KeyEvent.VK_SPACE || e.getKeyCode() == KeyEvent.VK_ENTER) {
 
 				int qntEstrelas = (bola.getQntMoedas() * 100 / 15) / 30;
 				boolean vitoria = !bola.isDead();
 
 				finalizarJogo();
 
-				switch(cenario.getBotaoSelecionado()) {
+				switch (cenario.getBotaoSelecionado()) {
 
-				case Cenario.BOTAO_AVANCAR:
+					case Cenario.BOTAO_AVANCAR:
 
-					gl.atualizarLog(tipoCenario, qntEstrelas);
-					gs.playMusicaMenu();
-					frame.setContentPane(fases);
-					break;
-
-				case Cenario.BOTAO_REPETIR:
-
-					gs.playMusicaCenario();
-					iniciarObjetosCenario(tipoCenario, fase);
-					break;
-
-				case Cenario.BOTAO_MENU:
-
-					if (vitoria) {
 						gl.atualizarLog(tipoCenario, qntEstrelas);
-					}
+						gs.playMusicaMenu();
+						frame.setContentPane(fases);
+						break;
 
-					gs.playMusicaMenu();
-					frame.setContentPane(menu);
-					break;
+					case Cenario.BOTAO_REPETIR:
+
+						gs.playMusicaCenario();
+						iniciarObjetosCenario(tipoCenario, fase);
+						break;
+
+					case Cenario.BOTAO_MENU:
+
+						if (vitoria) {
+							gl.atualizarLog(tipoCenario, qntEstrelas);
+						}
+
+						gs.playMusicaMenu();
+						frame.setContentPane(menu);
+						break;
 				}
 
 				frame.repaint();
@@ -295,7 +301,7 @@ public class ControladorCenario implements KeyListener {
 
 	// Metodos nao utilizados
 	@Override
-	public void keyTyped(KeyEvent e) {	
+	public void keyTyped(KeyEvent e) {
 	}
 
 	@Override
