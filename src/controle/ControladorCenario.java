@@ -4,9 +4,9 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
-import animations.ThreadMoeda;
 import animations.ThreadPlataforma;
 import animations.ball.*;
+import animations.coin.*;
 import modelo.Imagens;
 import objetosCenario.Bloco;
 import objetosCenario.Bola;
@@ -94,8 +94,8 @@ public class ControladorCenario implements KeyListener {
 		}
 
 		// Girar as moedas
-		ThreadMoeda tm = new ThreadMoeda(cenario, bola, moedas, gs);
-		tm.getThreadGirarMoeda().start();
+		AnimationCoinSpin animationCoinSpin = new AnimationCoinSpin(cenario, moedas);
+		animationCoinSpin.start();
 
 		cenario.setInicioDeJogo(true);
 		cenario.exibirTelaInicial();
@@ -116,8 +116,8 @@ public class ControladorCenario implements KeyListener {
 		tp.getThreadMovePlataformas().start();
 
 		// Movimenta as moedas
-		ThreadMoeda tm = new ThreadMoeda(cenario, bola, moedas, gs);
-		tm.getThreadMoverMoeda().start();
+		AnimationCoinMove animationCoinMove = new AnimationCoinMove(cenario, bola, moedas, gs);
+		animationCoinMove.start();
 
 		cenario.setInicioDeJogo(false);
 	}
