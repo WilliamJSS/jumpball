@@ -25,7 +25,7 @@ public class AnimationBallDown extends Thread {
 
         int delayQueda = 10;
         int posicaoInicial = bola.getY();
-        int dy = Block.NIVEL_MEDIO_ALTO - Block.NIVEL_SUPERIOR;
+        int dy = Block.NIVEL_MID - Block.NIVEL_TOP;
 
         while (!bola.isEmCimaPlataforma()) {
 
@@ -62,7 +62,7 @@ public class AnimationBallDown extends Thread {
             }
 
             // Verifica se a bola caiu na plataforma inferior
-            if (bola.getY() + bola.getHeight() > Block.NIVEL_INFERIOR) {
+            if (bola.getY() + bola.getHeight() > Block.NIVEL_FLOOR) {
                 bola.setEmCimaPlataforma(true);
                 bola.setDead(true);
                 bola.setRodando(false);

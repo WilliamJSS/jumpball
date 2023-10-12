@@ -25,7 +25,7 @@ public class Ball extends JLabel {
 	private boolean pulando, caindo, emCimaPlataforma, dead, caindoDeProposito, rodando;
 	private ArrayList<ImageIcon> sprite;
 
-	public Ball(){
+	public Ball() {
 		super();
 
 		// Distancia 'y' maxima que a bola percorre ao pular
@@ -62,77 +62,78 @@ public class Ball extends JLabel {
 
 		switch (tipo) {
 
-		case Ball.TIPO_FUTEBOL:
-			setSprite(Imagens.getSpriteBolaFutebol());
-			setIcon(getSprite().get(0));
-			break;
+			case Ball.TIPO_FUTEBOL:
+				setSprite(Imagens.getSpriteBolaFutebol());
+				setIcon(getSprite().get(0));
+				break;
 
-		case Ball.TIPO_PRAIA:
-			setSprite(Imagens.getSpriteBolaPraia());
-			setIcon(getSprite().get(0));
-			break;
+			case Ball.TIPO_PRAIA:
+				setSprite(Imagens.getSpriteBolaPraia());
+				setIcon(getSprite().get(0));
+				break;
 
-		case Ball.TIPO_PEDRA:
-			setSprite(Imagens.getSpriteBolaPedra());
-			setIcon(getSprite().get(0));
-			break;
+			case Ball.TIPO_PEDRA:
+				setSprite(Imagens.getSpriteBolaPedra());
+				setIcon(getSprite().get(0));
+				break;
 
-		case Ball.TIPO_ESPINHO:
-			setSprite(Imagens.getSpriteBolaEspinho());
-			setIcon(getSprite().get(0));
-			break;
+			case Ball.TIPO_ESPINHO:
+				setSprite(Imagens.getSpriteBolaEspinho());
+				setIcon(getSprite().get(0));
+				break;
 
-		case Ball.TIPO_VOLEI:
-			setSprite(Imagens.getSpriteBolaVolei());
-			setIcon(getSprite().get(0));
-			break;
+			case Ball.TIPO_VOLEI:
+				setSprite(Imagens.getSpriteBolaVolei());
+				setIcon(getSprite().get(0));
+				break;
 
-		case Ball.TIPO_GOLFE:
-			setSprite(Imagens.getSpriteBolaGolfe());
-			setIcon(getSprite().get(0));
-			break;
-			
-		case Ball.TIPO_BASQUETE:
-			setSprite(Imagens.getSpriteBolaBasquete());
-			setIcon(getSprite().get(0));
-			break;
-			
-		case Ball.TIPO_VULCAO:
-			setSprite(Imagens.getSpriteBolaVulcao());
-			setIcon(getSprite().get(0));
-			break;
+			case Ball.TIPO_GOLFE:
+				setSprite(Imagens.getSpriteBolaGolfe());
+				setIcon(getSprite().get(0));
+				break;
 
-		default:
-			System.out.println("Erro ao definir o tipo da bola: o tipo '" + tipo + "' nao existe");
+			case Ball.TIPO_BASQUETE:
+				setSprite(Imagens.getSpriteBolaBasquete());
+				setIcon(getSprite().get(0));
+				break;
+
+			case Ball.TIPO_VULCAO:
+				setSprite(Imagens.getSpriteBolaVulcao());
+				setIcon(getSprite().get(0));
+				break;
+
+			default:
+				System.out.println("Erro ao definir o tipo da bola: o tipo '" + tipo + "' nao existe");
 		}
 
 		setSize(getIcon().getIconWidth(), getIcon().getIconHeight());
 
 		// Posicao inicial da bola
 		xInicial = 30 * 4;
-		yInicial = Block.NIVEL_MEDIO_BAIXO - getHeight();
+		yInicial = Block.NIVEL_BOTTOM - getHeight();
 
 		setLocalizacaoInicial(xInicial, yInicial);
 		setLocation(xInicial, yInicial);
 	}
 
 	public double distancia2Pontos(Point a, Point b) {
-		return Math.sqrt((b.x - a.x)*(b.x - a.x) + (b.y - a.y)*(b.y - a.y));
+		return Math.sqrt((b.x - a.x) * (b.x - a.x) + (b.y - a.y) * (b.y - a.y));
 	}
 
 	public boolean verificaColisao(Coin moeda) {
 
 		// Pega o ponto central e raio da bola
-		int xCentroBola = getX() + getWidth()/2;
-		int yCentroBola = getY() + getHeight()/2;
+		int xCentroBola = getX() + getWidth() / 2;
+		int yCentroBola = getY() + getHeight() / 2;
 		int raioBola = xCentroBola - getX();
 
 		// Pega o ponto central e raio da moeda
-		int xCentroMoeda = moeda.getX() + moeda.getWidth()/2;
-		int yCentroMoeda = moeda.getY() + moeda.getHeight()/2;
+		int xCentroMoeda = moeda.getX() + moeda.getWidth() / 2;
+		int yCentroMoeda = moeda.getY() + moeda.getHeight() / 2;
 		int raioMoeda = xCentroMoeda - moeda.getX();
 
-		// Verifica se a distancia do centro da bola at� o centro da moeda � menor que a soma dos seus raios
+		// Verifica se a distancia do centro da bola ate o centro da moeda eh menor que
+		// a soma dos seus raios
 		double distancia = distancia2Pontos(new Point(xCentroBola, yCentroBola), new Point(xCentroMoeda, yCentroMoeda));
 
 		if (distancia <= raioBola + raioMoeda) {
@@ -146,15 +147,16 @@ public class Ball extends JLabel {
 	public boolean verificaColisao(Block bloco) {
 
 		// Pega o ponto central e raio da bola
-		int xCentro = getX() + getWidth()/2;
-		int yCentro = getY() + getHeight()/2;
+		int xCentro = getX() + getWidth() / 2;
+		int yCentro = getY() + getHeight() / 2;
 		int raio = xCentro - getX();
 
 		// Pega a posicao do bloco
 		int xBloco = bloco.getX();
 		int yBloco = bloco.getY();
 
-		// Verifica se a bola esta acima da plataforma (dentro de um limite especificado)
+		// Verifica se a bola esta acima da plataforma (dentro de um limite
+		// especificado)
 		boolean faixaLargura = false;
 		boolean faixaAltura = false;
 
@@ -173,7 +175,7 @@ public class Ball extends JLabel {
 			}
 		}
 
-		return false;	
+		return false;
 	}
 
 	public boolean isEmCimaPlataforma() {
