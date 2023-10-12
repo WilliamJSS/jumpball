@@ -1,4 +1,4 @@
-package animation.ball;
+package animations.ball;
 
 import java.util.ArrayList;
 

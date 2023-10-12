@@ -4,9 +4,9 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
-import animation.ball.*;
-import animation.coin.*;
-import animation.platform.*;
+import animations.ball.*;
+import animations.coin.*;
+import animations.platform.*;
 import components.Block;
 import components.Ball;
 import components.Coin;

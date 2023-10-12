@@ -1,8 +1,8 @@
-package animation.platform;
+package animations.platform;
 
 import java.util.ArrayList;
 
-import animation.ball.AnimationBallDown;
+import animations.ball.AnimationBallDown;
 import components.Block;
 import components.Ball;
 import controller.GerenciadorCenario;

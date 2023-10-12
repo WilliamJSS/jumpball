@@ -1,4 +1,4 @@
-package animation.platform;
+package animations.platform;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package animation.coin;
+package animations.coin;
 
 import java.util.ArrayList;
 
