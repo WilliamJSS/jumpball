@@ -19,7 +19,7 @@ public class ControladorFases implements KeyListener {
 
 	public ControladorFases(Frame frame, Fases fases, ControladorCenario controladorCenario,
 			Cenario cenario, Menu menu, GerenciadorSom gs) {
-		
+
 		this.frame = frame;
 		this.fases = fases;
 		this.menu = menu;
@@ -59,7 +59,7 @@ public class ControladorFases implements KeyListener {
 			} else {
 				fases.atualizarSelecao(fases.getCenarioSelecionado() + 1);
 			}
-			
+
 			gs.playToqueNavegarMenu();
 		}
 
@@ -71,15 +71,15 @@ public class ControladorFases implements KeyListener {
 			} else {
 				fases.atualizarSelecao(fases.getCenarioSelecionado() - 4);
 			}
-			
+
 			gs.playToqueNavegarMenu();
 		}
-		
+
 		// Voltar para o menu
 		if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
 
 			gs.playToqueNavegarMenu();
-			
+
 			frame.setContentPane(menu);
 			frame.repaint();
 			frame.validate();
@@ -113,7 +113,7 @@ public class ControladorFases implements KeyListener {
 			case Cenario.TIPO_VULCAO:
 				controladorCenario.iniciarObjetosCenario(Cenario.TIPO_VULCAO, GerenciadorCenario.FASE_2);
 				break;
-				
+
 			case Cenario.TIPO_VOLEI:
 				controladorCenario.iniciarObjetosCenario(Cenario.TIPO_VOLEI, GerenciadorCenario.FASE_5);
 				break;
@@ -131,17 +131,10 @@ public class ControladorFases implements KeyListener {
 			frame.repaint();
 			frame.validate();
 		}
-
-		// Trapaca ativada!
-		if (e.getKeyCode() == KeyEvent.VK_OPEN_BRACKET) {
-			for (int i = 1; i <= 8; i++)
-				fases.getMiniCenario(i).desbloquearCenario();
-			fases.repaint();
-		}
 	}
 
 	// Metodos nao utilizados
-	
+
 	@Override
 	public void keyTyped(KeyEvent e) {
 
