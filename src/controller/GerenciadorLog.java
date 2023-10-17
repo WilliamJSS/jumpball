@@ -1,312 +1,143 @@
 package controller;
 
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileReader;
 import java.io.FileWriter;
+import java.util.ArrayList;
 
-import model.Arquivo;
-import view.Cenario;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+
+import model.Config;
 import view.Fases;
 import view.MiniCenario;
 
 public class GerenciadorLog {
 
-	private Fases fases;
-
-	private MiniCenario miniCenarioCampo;
-	private MiniCenario miniCenarioMontanhas;
-	private MiniCenario miniCenarioNeve;
-	private MiniCenario miniCenarioPraia;
-	private MiniCenario miniCenarioVulcao;
-	private MiniCenario miniCenarioVolei;
-	private MiniCenario miniCenarioBasquete;
-	private MiniCenario miniCenarioGolfe;
-
-	private File arquivo;
-	private int totalEstrelas;
-
-	public GerenciadorLog(Fases fases) {
-		this.fases = fases;
-		this.miniCenarioCampo = fases.getMiniCenarioCampo();
-		this.miniCenarioMontanhas = fases.getMiniCenarioMontanhas();
-		this.miniCenarioNeve = fases.getMiniCenarioNeve();
-		this.miniCenarioPraia = fases.getMiniCenarioPraia();
-		this.miniCenarioVulcao = fases.getMiniCenarioVulcao();
-		this.miniCenarioVolei = fases.getMiniCenarioVolei();
-		this.miniCenarioBasquete = fases.getMiniCenarioBasquete();
-		this.miniCenarioGolfe = fases.getMiniCenarioGolfe();
-		this.arquivo = Arquivo.getArquivoLog();
-		
-		lerArquivoLog();
-		carregarConfig();
-	}
-
-	public void carregarConfig() {
-
-		miniCenarioCampo.setEstrelasRestantes(miniCenarioCampo.getEstrelasDesbloquear() - getTotalEstrelas());
-		miniCenarioCampo.atualizarMiniCenario();
-		if (miniCenarioCampo.getEstrelasRestantes() <= 0 && getTotalEstrelas() > 0 && miniCenarioCampo.isBloqueado()) {
-			miniCenarioCampo.desbloquearCenario();
-		}
-
-		miniCenarioMontanhas.setEstrelasRestantes(miniCenarioMontanhas.getEstrelasDesbloquear() - getTotalEstrelas());
-		miniCenarioMontanhas.atualizarMiniCenario();
-		if (miniCenarioMontanhas.getEstrelasRestantes() <= 0 && getTotalEstrelas() > 0 && miniCenarioMontanhas.isBloqueado()) {
-			miniCenarioMontanhas.desbloquearCenario();
-		}
-
-		miniCenarioNeve.setEstrelasRestantes(miniCenarioNeve.getEstrelasDesbloquear() - getTotalEstrelas());
-		miniCenarioNeve.atualizarMiniCenario();
-		if (miniCenarioNeve.getEstrelasRestantes() <= 0 && getTotalEstrelas() > 0 && miniCenarioNeve.isBloqueado()) {
-			miniCenarioNeve.desbloquearCenario();
-		}
-
-		miniCenarioPraia.setEstrelasRestantes(miniCenarioPraia.getEstrelasDesbloquear() - getTotalEstrelas());
-		miniCenarioPraia.atualizarMiniCenario();
-		if (miniCenarioPraia.getEstrelasRestantes() <= 0 && getTotalEstrelas() > 0 && miniCenarioPraia.isBloqueado()) {
-			miniCenarioPraia.desbloquearCenario();
-		}
-
-		miniCenarioVulcao.setEstrelasRestantes(miniCenarioVulcao.getEstrelasDesbloquear() - getTotalEstrelas());
-		miniCenarioVulcao.atualizarMiniCenario();
-		if (miniCenarioVulcao.getEstrelasRestantes() <= 0 && getTotalEstrelas() > 0 && miniCenarioVulcao.isBloqueado()) {
-			miniCenarioVulcao.desbloquearCenario();
-		}
-		
-		miniCenarioVolei.setEstrelasRestantes(miniCenarioVolei.getEstrelasDesbloquear() - getTotalEstrelas());
-		miniCenarioVolei.atualizarMiniCenario();
-		if (miniCenarioVolei.getEstrelasRestantes() <= 0 && getTotalEstrelas() > 0 && miniCenarioVolei.isBloqueado()) {
-			miniCenarioVolei.desbloquearCenario();
-		}
-
-		miniCenarioBasquete.setEstrelasRestantes(miniCenarioBasquete.getEstrelasDesbloquear() - getTotalEstrelas());
-		miniCenarioBasquete.atualizarMiniCenario();
-		if (miniCenarioBasquete.getEstrelasRestantes() <= 0 && getTotalEstrelas() > 0 && miniCenarioBasquete.isBloqueado()) {
-			miniCenarioBasquete.desbloquearCenario();
-		}
-
-		miniCenarioGolfe.setEstrelasRestantes(miniCenarioGolfe.getEstrelasDesbloquear() - getTotalEstrelas());
-		miniCenarioGolfe.atualizarMiniCenario();
-		if (miniCenarioGolfe.getEstrelasRestantes() <= 0 && getTotalEstrelas() > 0 && miniCenarioGolfe.isBloqueado()) {
-			miniCenarioGolfe.desbloquearCenario();
-		}
-
-	}
-
-	public void lerArquivoLog(){
-
-		String linha;
-		boolean bloqueado;
-		int qntEstrelas, tipo;
-
-		setTotalEstrelas(0);
-
-		try {
-
-			FileReader fr = new FileReader(arquivo);
-			BufferedReader br = new BufferedReader(fr);
-
-			while (br.ready()) {
-
-				linha = br.readLine();
-
-				if (linha.contains("Cenario")) {
-
-					linha = br.readLine();
-					bloqueado = Boolean.parseBoolean(linha.substring(linha.indexOf('=') + 1));
+    private ArrayList<MiniCenario> miniCenarios;
+    private JsonArray scenes;
+    private File scenesFile;
+    private int totalEstrelas;
 
-					linha = br.readLine();
-					qntEstrelas = Integer.parseInt(linha.substring(linha.indexOf('=') + 1));
+    public GerenciadorLog(Fases fases) {
+        this.miniCenarios = new ArrayList<MiniCenario>();
+        this.miniCenarios.add(fases.getMiniCenarioCampo());
+        this.miniCenarios.add(fases.getMiniCenarioMontanhas());
+        this.miniCenarios.add(fases.getMiniCenarioNeve());
+        this.miniCenarios.add(fases.getMiniCenarioPraia());
+        this.miniCenarios.add(fases.getMiniCenarioVulcao());
+        this.miniCenarios.add(fases.getMiniCenarioVolei());
+        this.miniCenarios.add(fases.getMiniCenarioBasquete());
+        this.miniCenarios.add(fases.getMiniCenarioGolfe());
 
-					linha = br.readLine();
-					tipo = Integer.parseInt(linha.substring(linha.indexOf('=') + 1));
+        this.scenes = Config.getScenes();
+        this.scenesFile = Config.getScenesFile();
 
-					setTotalEstrelas(getTotalEstrelas() + qntEstrelas);
+        loadMiniCenariosConfig();
+        updateMiniCenarios();
+    }
 
-					switch (tipo) {
+    public void updateMiniCenarios() {
 
-					case Cenario.TIPO_CAMPO:
-						miniCenarioCampo.setBloqueado(bloqueado);
-						miniCenarioCampo.setQntEstrelas(qntEstrelas);
-						break;
+        for (MiniCenario miniCenario : miniCenarios) {
+            miniCenario.setEstrelasRestantes(miniCenario.getEstrelasDesbloquear() - getTotalEstrelas());
+            miniCenario.atualizarMiniCenario();
+            if (miniCenario.getEstrelasRestantes() <= 0 && getTotalEstrelas() > 0 && miniCenario.isBloqueado()) {
+                miniCenario.desbloquearCenario();
+            }
+        }
+    }
 
-					case Cenario.TIPO_MONTANHAS:
-						miniCenarioMontanhas.setBloqueado(bloqueado);
-						miniCenarioMontanhas.setQntEstrelas(qntEstrelas);
-						break;
+    public void loadMiniCenariosConfig() {
 
-					case Cenario.TIPO_NEVE:
-						miniCenarioNeve.setBloqueado(bloqueado);
-						miniCenarioNeve.setQntEstrelas(qntEstrelas);
-						break;
+        boolean bloqueado;
+        int qntEstrelas, sceneId;
 
-					case Cenario.TIPO_PRAIA:
-						miniCenarioPraia.setBloqueado(bloqueado);
-						miniCenarioPraia.setQntEstrelas(qntEstrelas);
-						break;
+        setTotalEstrelas(0);
 
-					case Cenario.TIPO_VULCAO:
-						miniCenarioVulcao.setBloqueado(bloqueado);
-						miniCenarioVulcao.setQntEstrelas(qntEstrelas);
-						break;
-						
-					case Cenario.TIPO_VOLEI:
-						miniCenarioVolei.setBloqueado(bloqueado);
-						miniCenarioVolei.setQntEstrelas(qntEstrelas);
-						break;
+        for (JsonElement element : scenes) {
 
-					case Cenario.TIPO_BASQUETE:
-						miniCenarioBasquete.setBloqueado(bloqueado);
-						miniCenarioBasquete.setQntEstrelas(qntEstrelas);
-						break;
+            if (element.isJsonObject()) {
+                JsonObject scene = element.getAsJsonObject();
 
-					case Cenario.TIPO_GOLFE:
-						miniCenarioGolfe.setBloqueado(bloqueado);
-						miniCenarioGolfe.setQntEstrelas(qntEstrelas);
-						break;
-
-					default:
-						break;
-					}
-
-				}
-
-			}
-
-			br.close();
-			fr.close();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-	}
-
-	public void escreverArquivoLog() {
-
-		boolean bloqueado;
-		int qntEstrelas;
-
-		try {
-
-			FileWriter fw = new FileWriter(arquivo, false);
-			BufferedWriter bw = new BufferedWriter(fw);
-
-			for (int i = 1; i <= 8; i++) {
-
-				bloqueado = fases.getMiniCenario(i).isBloqueado();
-				qntEstrelas = fases.getMiniCenario(i).getQntEstrelas();
-
-				bw.write("Cenario\n"
-						+ "bloqueado=" + bloqueado + "\n"
-						+ "qntEstrelas=" + qntEstrelas + "\n"
-						+ "tipoCenario=" + i + "\n");
-
-				bw.newLine();
-			}
-
-			bw.close();
-			fw.close();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-	}
-
-	public void atualizarLog(int cenario, int qntEstrelas) {
-
-		boolean atualizar = false;
-
-		switch (cenario) {
-
-		case Cenario.TIPO_CAMPO:
-			if (miniCenarioCampo.getQntEstrelas() < qntEstrelas) {
-				miniCenarioCampo.setQntEstrelas(qntEstrelas);
-				atualizar = true;
-			}
-			break;
-
-		case Cenario.TIPO_MONTANHAS:
-			if (miniCenarioMontanhas.getQntEstrelas() < qntEstrelas) {
-				miniCenarioMontanhas.setQntEstrelas(qntEstrelas);
-				atualizar = true;
-			}
-			break;
-
-		case Cenario.TIPO_NEVE:
-			if (miniCenarioNeve.getQntEstrelas() < qntEstrelas) {
-				miniCenarioNeve.setQntEstrelas(qntEstrelas);
-				atualizar = true;
-			}
-			break;
-
-		case Cenario.TIPO_PRAIA:
-			if (miniCenarioPraia.getQntEstrelas() < qntEstrelas) {
-				miniCenarioPraia.setQntEstrelas(qntEstrelas);
-				atualizar = true;
-			}
-			break;
-
-		case Cenario.TIPO_VULCAO:
-			if (miniCenarioVulcao.getQntEstrelas() < qntEstrelas) {
-				miniCenarioVulcao.setQntEstrelas(qntEstrelas);
-				atualizar = true;
-			}
-			break;
-			
-		case Cenario.TIPO_VOLEI:
-			if (miniCenarioVolei.getQntEstrelas() < qntEstrelas) {
-				miniCenarioVolei.setQntEstrelas(qntEstrelas);
-				atualizar = true;
-			}
-			break;
-
-		case Cenario.TIPO_BASQUETE:
-			if (miniCenarioBasquete.getQntEstrelas() < qntEstrelas) {
-				miniCenarioBasquete.setQntEstrelas(qntEstrelas);
-				atualizar = true;
-			}
-			break;
-
-		case Cenario.TIPO_GOLFE:
-			if (miniCenarioGolfe.getQntEstrelas() < qntEstrelas) {
-				miniCenarioGolfe.setQntEstrelas(qntEstrelas);
-				atualizar = true;
-			}
-			break;
-
-		default:
-			break;
-		}
-
-		if (atualizar) {
-
-			setTotalEstrelas(0);
-			setTotalEstrelas(getTotalEstrelas() + miniCenarioCampo.getQntEstrelas());
-			setTotalEstrelas(getTotalEstrelas() + miniCenarioMontanhas.getQntEstrelas());
-			setTotalEstrelas(getTotalEstrelas() + miniCenarioNeve.getQntEstrelas());
-			setTotalEstrelas(getTotalEstrelas() + miniCenarioPraia.getQntEstrelas());
-			setTotalEstrelas(getTotalEstrelas() + miniCenarioVulcao.getQntEstrelas());
-			setTotalEstrelas(getTotalEstrelas() + miniCenarioVolei.getQntEstrelas());
-			setTotalEstrelas(getTotalEstrelas() + miniCenarioBasquete.getQntEstrelas());
-			setTotalEstrelas(getTotalEstrelas() + miniCenarioGolfe.getQntEstrelas());
-
-			carregarConfig();
-
-			escreverArquivoLog();
-		}
-
-	}
-
-	public int getTotalEstrelas() {
-		return totalEstrelas;
-	}
-
-	public void setTotalEstrelas(int totalEstrelas) {
-		this.totalEstrelas = totalEstrelas;
-	}
+                bloqueado = scene.get("lock").getAsBoolean();
+                qntEstrelas = scene.get("stars").getAsInt();
+                sceneId = scene.get("id").getAsInt();
+
+                miniCenarios.get(sceneId).setBloqueado(bloqueado);
+                miniCenarios.get(sceneId).setQntEstrelas(qntEstrelas);
+            }
+        }
+    }
+
+    public void updateMiniCenariosConfig() {
+
+        boolean bloqueado;
+        int qntEstrelas, sceneId;
+
+        try {
+
+            FileWriter fw = new FileWriter(scenesFile, false);
+            BufferedWriter bw = new BufferedWriter(fw);
+
+            for (JsonElement element : scenes) {
+                JsonObject scene = element.getAsJsonObject();
+
+                sceneId = scene.get("id").getAsInt();
+                bloqueado = miniCenarios.get(sceneId).isBloqueado();
+                qntEstrelas = miniCenarios.get(sceneId).getQntEstrelas();
+
+                scene.addProperty("lock", bloqueado);
+                scene.addProperty("stars", qntEstrelas);
+
+                scenes.set(sceneId, scene);
+            }
+
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            gson.toJson(scenes, bw);
+
+            bw.close();
+            fw.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void update(int cenario, int qntEstrelas) {
+
+        boolean update = false;
+
+        if (miniCenarios.get(cenario).getQntEstrelas() < qntEstrelas) {
+            miniCenarios.get(cenario).setQntEstrelas(qntEstrelas);
+            update = true;
+        }
+
+        if (update) {
+
+            int totalEstrelas = miniCenarios.stream()
+                    .mapToInt(miniCenario -> miniCenario.getQntEstrelas())
+                    .reduce(Integer::sum)
+                    .getAsInt();
+
+            setTotalEstrelas(totalEstrelas);
+
+            updateMiniCenarios();
+            updateMiniCenariosConfig();
+        }
+
+    }
+
+    public int getTotalEstrelas() {
+        return totalEstrelas;
+    }
+
+    public void setTotalEstrelas(int totalEstrelas) {
+        this.totalEstrelas = totalEstrelas;
+    }
 
 }

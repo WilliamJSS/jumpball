@@ -29,8 +29,6 @@ public class AnimationBallDown extends Thread {
 
         while (!bola.isEmCimaPlataforma()) {
 
-            System.out.println("Caindo... " + bola.getY());
-
             // Diminui o delay de queda da bola, depois de percorrida determinadas
             // distancias
             if (bola.getY() > posicaoInicial + 2 * dy) {

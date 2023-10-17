@@ -33,6 +33,4 @@ replay_pid*
 .vscode/
 
 # Build files
-*.exe
-*.xml
-*.iss
+build/

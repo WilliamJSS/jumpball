@@ -16,15 +16,15 @@ public class Cenario extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 
-	public static final int TIPO_CAMPO = 1;
-	public static final int TIPO_MONTANHAS = 2;
-	public static final int TIPO_NEVE = 3;
-	public static final int TIPO_BASQUETE = 4;
-	public static final int TIPO_PRAIA = 5;
-	public static final int TIPO_VULCAO = 6;
-	public static final int TIPO_VOLEI = 7;
-	public static final int TIPO_GOLFE = 8;
-	
+	public static final int TIPO_CAMPO = 0;
+	public static final int TIPO_MONTANHAS = 1;
+	public static final int TIPO_NEVE = 2;
+	public static final int TIPO_BASQUETE = 3;
+	public static final int TIPO_PRAIA = 4;
+	public static final int TIPO_VULCAO = 5;
+	public static final int TIPO_VOLEI = 6;
+	public static final int TIPO_GOLFE = 7;
+
 	public static final int BOTAO_REPETIR = 10;
 	public static final int BOTAO_MENU = 11;
 	public static final int BOTAO_AVANCAR = 12;
@@ -61,7 +61,7 @@ public class Cenario extends JPanel {
 
 		case BOTAO_MENU:
 			return getBotaoMenu();
-			
+
 		case BOTAO_AVANCAR:
 			return getBotaoAvancar();
 
@@ -93,14 +93,14 @@ public class Cenario extends JPanel {
 
 	public void setBotaoSelecionado(int botaoSelecionado) {
 		this.botaoSelecionado = botaoSelecionado;
-		
+
 		getBotaoRepetir().setIcon(Imagens.getImgBotaoRepetir());
 		getBotaoMenu().setIcon(Imagens.getImgBotaoMenu());
-		
+
 		if (!isBotaoAvancarBloqueado()) {
 			getBotaoAvancar().setIcon(Imagens.getImgBotaoAvancar());
 		}
-		
+
 		if (botaoSelecionado == Cenario.BOTAO_REPETIR) {
 			getBotaoRepetir().setIcon(Imagens.getImgBotaoRepetirSelecionado());
 		} else if (botaoSelecionado == Cenario.BOTAO_MENU) {
@@ -108,12 +108,12 @@ public class Cenario extends JPanel {
 		} else if (botaoSelecionado == Cenario.BOTAO_AVANCAR) {
 			getBotaoAvancar().setIcon(Imagens.getImgBotaoAvancarSelecionado());
 		}
-		
+
 	}
-	
+
 	public void exibirTelaFinal(boolean vitoria, int qntMoedas) {
 		setBotaoAvancarBloqueado(!vitoria);
-		
+
 		getFundoTransparente().setVisible(true);
 		getMensagem().setText("MOEDAS: " + qntMoedas + "/15");
 		getMensagem().setVisible(true);
@@ -135,7 +135,7 @@ public class Cenario extends JPanel {
 
 		getBotaoRepetir().setVisible(true);
 		getBotaoMenu().setVisible(true);
-		
+
 		if (vitoria) {
 			getTitulo().setText("QUE CARA BOM");
 			getBotaoAvancar().setIcon(Imagens.getImgBotaoAvancar());
@@ -143,7 +143,7 @@ public class Cenario extends JPanel {
 			getTitulo().setText("NÃO CONSEGUE NÉ!?");
 			getBotaoAvancar().setIcon(Imagens.getImgBotaoAvancarBloqueado());
 		}
-		
+
 		getBotaoAvancar().setVisible(true);
 		getTitulo().setVisible(true);
 	}
@@ -169,7 +169,7 @@ public class Cenario extends JPanel {
 		getTitulo().setText("PRESS SPACE BUTTON TO START!");
 		getTitulo().setVisible(true);
 	}
-	
+
 	public void limparTelaInicial() {
 		getContagem().setVisible(false);
 		getFundoTransparente().setVisible(false);
@@ -184,7 +184,7 @@ public class Cenario extends JPanel {
 			botaoAvancar.setLocation(getBotaoMenu().getX() + botaoAvancar.getWidth() + 25, getBotaoMenu().getY());
 			botaoAvancar.setVisible(false);
 		}
-		return botaoAvancar;	
+		return botaoAvancar;
 	}
 
 	public JLabel getBotaoRepetir() {
@@ -195,7 +195,7 @@ public class Cenario extends JPanel {
 			botaoRepetir.setLocation(getBotaoMenu().getX() - botaoRepetir.getWidth() - 25, getBotaoMenu().getY());
 			botaoRepetir.setVisible(false);
 		}
-		return botaoRepetir;	
+		return botaoRepetir;
 	}
 
 	public JLabel getBotaoMenu() {
@@ -206,7 +206,7 @@ public class Cenario extends JPanel {
 			botaoMenu.setLocation(getWidth()/2 - botaoMenu.getWidth()/2, 400);
 			botaoMenu.setVisible(false);
 		}
-		return botaoMenu;	
+		return botaoMenu;
 	}
 
 	public ArrayList<JLabel> getEstrelasGrandes(){
@@ -299,11 +299,11 @@ public class Cenario extends JPanel {
 	public void setFimDeJogo(boolean fimDeJogo) {
 		this.fimDeJogo = fimDeJogo;
 	}
-	
+
 	public int getBotaoSelecionado() {
 		return botaoSelecionado;
 	}
-	
+
 	public boolean isInicioDeJogo() {
 		return inicioDeJogo;
 	}

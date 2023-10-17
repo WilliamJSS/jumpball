@@ -15,12 +15,10 @@ public class AnimationBallUp extends Thread {
 
     @Override
     public void run() {
-        
-        int alturaPulo = bola.getAlturaPulo();
-        
-        while (alturaPulo > 0) {
 
-            System.out.println("Pulando.. " + bola.getY());
+        int alturaPulo = bola.getAlturaPulo();
+
+        while (alturaPulo > 0) {
 
             // Delay de pulo
             try {

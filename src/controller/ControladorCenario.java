@@ -194,7 +194,7 @@ public class ControladorCenario implements KeyListener {
 					bola.setCaindo(true);
 					bola.setCaindoDeProposito(true);
 					bola.setEmCimaPlataforma(false);
-					
+
 					AnimationBallDown animationBallDown = new AnimationBallDown(bola, gc, gs);
 					animationBallDown.start();
 				}
@@ -254,7 +254,7 @@ public class ControladorCenario implements KeyListener {
 
 					case Cenario.BOTAO_AVANCAR:
 
-						gl.atualizarLog(tipoCenario, qntEstrelas);
+						gl.update(tipoCenario, qntEstrelas);
 						gs.playMusicaMenu();
 						frame.setContentPane(fases);
 						break;
@@ -268,7 +268,7 @@ public class ControladorCenario implements KeyListener {
 					case Cenario.BOTAO_MENU:
 
 						if (vitoria) {
-							gl.atualizarLog(tipoCenario, qntEstrelas);
+							gl.update(tipoCenario, qntEstrelas);
 						}
 
 						gs.playMusicaMenu();
