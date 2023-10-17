@@ -23,26 +23,26 @@ public class GerenciadorSom {
 	// Volumes
 	public float[] getVolume() {
 		if (volume == null) {
-			// volume = new float[] {
-			// 		-10, // 0 - Musica do menu
-			// 		+05, // 1 - Musica durante a partida
-			// 		-20, // 2 - Toque de vitoria // -20
-			// 		-20, // 3 - Toque de derrota
-			// 		-20, // 4 - Navegar menu
-			// 		-10, // 5 - Selecionar botao
-			// 		-15, // 6 - Efeito pulo
-			// 		-20 // 7 - Efeito pegar moeda
-			// };
 			volume = new float[] {
-					-50, // 0 - Musica do menu
-					-50, // 1 - Musica durante a partida
-					-50, // 2 - Toque de vitoria // -20
-					-50, // 3 - Toque de derrota
-					-50, // 4 - Navegar menu
-					-50, // 5 - Selecionar botao
-					-50, // 6 - Efeito pulo
-					-50 // 7 - Efeito pegar moeda
+					-10, // 0 - Musica do menu
+					+05, // 1 - Musica durante a partida
+					-20, // 2 - Toque de vitoria // -20
+					-20, // 3 - Toque de derrota
+					-20, // 4 - Navegar menu
+					-10, // 5 - Selecionar botao
+					-15, // 6 - Efeito pulo
+					-20 // 7 - Efeito pegar moeda
 			};
+			// volume = new float[] {
+			// 		-50, // 0 - Musica do menu
+			// 		-50, // 1 - Musica durante a partida
+			// 		-50, // 2 - Toque de vitoria // -20
+			// 		-50, // 3 - Toque de derrota
+			// 		-50, // 4 - Navegar menu
+			// 		-50, // 5 - Selecionar botao
+			// 		-50, // 6 - Efeito pulo
+			// 		-50 // 7 - Efeito pegar moeda
+			// };
 		}
 		return volume;
 	}
