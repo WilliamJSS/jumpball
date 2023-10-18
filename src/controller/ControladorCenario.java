@@ -28,11 +28,11 @@ public class ControladorCenario implements KeyListener {
 	private Menu menu;
 	private Fases fases;
 	private GerenciadorSom gs;
-	private GerenciadorLog gl;
+	private ControladorMiniCenario gl;
 	private int tipoCenario, fase;
 
 	public ControladorCenario(Frame frame, Menu menu, Fases fases, Cenario cenario,
-			GerenciadorCenario gc, GerenciadorSom gs, GerenciadorLog gl) {
+			GerenciadorCenario gc, GerenciadorSom gs, ControladorMiniCenario gl) {
 		this.frame = frame;
 		this.cenario = cenario;
 		this.gc = gc;

@@ -15,24 +15,16 @@ import model.Config;
 import view.Fases;
 import view.MiniCenario;
 
-public class GerenciadorLog {
+public class ControladorMiniCenario {
 
     private ArrayList<MiniCenario> miniCenarios;
+    private Fases fases;
     private JsonArray scenes;
     private File scenesFile;
     private int totalEstrelas;
 
-    public GerenciadorLog(Fases fases) {
-        this.miniCenarios = new ArrayList<MiniCenario>();
-        this.miniCenarios.add(fases.getMiniCenarioCampo());
-        this.miniCenarios.add(fases.getMiniCenarioMontanhas());
-        this.miniCenarios.add(fases.getMiniCenarioNeve());
-        this.miniCenarios.add(fases.getMiniCenarioPraia());
-        this.miniCenarios.add(fases.getMiniCenarioVulcao());
-        this.miniCenarios.add(fases.getMiniCenarioVolei());
-        this.miniCenarios.add(fases.getMiniCenarioBasquete());
-        this.miniCenarios.add(fases.getMiniCenarioGolfe());
-
+    public ControladorMiniCenario(Fases fases) {
+        this.fases = fases;
         this.scenes = Config.getScenes();
         this.scenesFile = Config.getScenesFile();
 
@@ -42,7 +34,7 @@ public class GerenciadorLog {
 
     public void updateMiniCenarios() {
 
-        for (MiniCenario miniCenario : miniCenarios) {
+        for (MiniCenario miniCenario : getMiniCenarios()) {
             miniCenario.setEstrelasRestantes(miniCenario.getEstrelasDesbloquear() - getTotalEstrelas());
             miniCenario.atualizarMiniCenario();
             if (miniCenario.getEstrelasRestantes() <= 0 && getTotalEstrelas() > 0 && miniCenario.isBloqueado()) {
@@ -67,8 +59,8 @@ public class GerenciadorLog {
                 qntEstrelas = scene.get("stars").getAsInt();
                 sceneId = scene.get("id").getAsInt();
 
-                miniCenarios.get(sceneId).setBloqueado(bloqueado);
-                miniCenarios.get(sceneId).setQntEstrelas(qntEstrelas);
+                getMiniCenarios().get(sceneId).setBloqueado(bloqueado);
+                getMiniCenarios().get(sceneId).setQntEstrelas(qntEstrelas);
             }
         }
     }
@@ -87,8 +79,8 @@ public class GerenciadorLog {
                 JsonObject scene = element.getAsJsonObject();
 
                 sceneId = scene.get("id").getAsInt();
-                bloqueado = miniCenarios.get(sceneId).isBloqueado();
-                qntEstrelas = miniCenarios.get(sceneId).getQntEstrelas();
+                bloqueado = getMiniCenarios().get(sceneId).isBloqueado();
+                qntEstrelas = getMiniCenarios().get(sceneId).getQntEstrelas();
 
                 scene.addProperty("lock", bloqueado);
                 scene.addProperty("stars", qntEstrelas);
@@ -112,14 +104,14 @@ public class GerenciadorLog {
 
         boolean update = false;
 
-        if (miniCenarios.get(cenario).getQntEstrelas() < qntEstrelas) {
-            miniCenarios.get(cenario).setQntEstrelas(qntEstrelas);
+        if (getMiniCenarios().get(cenario).getQntEstrelas() < qntEstrelas) {
+            getMiniCenarios().get(cenario).setQntEstrelas(qntEstrelas);
             update = true;
         }
 
         if (update) {
 
-            int totalEstrelas = miniCenarios.stream()
+            int totalEstrelas = getMiniCenarios().stream()
                     .mapToInt(miniCenario -> miniCenario.getQntEstrelas())
                     .reduce(Integer::sum)
                     .getAsInt();
@@ -138,6 +130,14 @@ public class GerenciadorLog {
 
     public void setTotalEstrelas(int totalEstrelas) {
         this.totalEstrelas = totalEstrelas;
+    }
+
+    public ArrayList<MiniCenario> getMiniCenarios() {
+        miniCenarios = new ArrayList<MiniCenario>();
+        for (int i = 0; i < 8; i++) {
+            this.miniCenarios.add(fases.getMiniCenario(i));
+        }
+        return miniCenarios;
     }
 
 }

@@ -2,26 +2,26 @@
   {
     "id": 0,
     "lock": false,
-    "stars": 0
+    "stars": 3
   },
   {
     "id": 1,
-    "lock": true,
-    "stars": 0
+    "lock": false,
+    "stars": 2
   },
   {
     "id": 2,
-    "lock": true,
-    "stars": 0
+    "lock": false,
+    "stars": 3
   },
   {
     "id": 3,
-    "lock": true,
-    "stars": 0
+    "lock": false,
+    "stars": 3
   },
   {
     "id": 4,
-    "lock": true,
+    "lock": false,
     "stars": 0
   },
   {

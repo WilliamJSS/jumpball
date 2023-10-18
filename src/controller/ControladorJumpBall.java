@@ -20,20 +20,20 @@ public class ControladorJumpBall {
 
 	private GerenciadorCenario gc;
 	private GerenciadorSom gs;
-	private GerenciadorLog gl;
+	private ControladorMiniCenario gl;
 
 	private ControladorMenu controladorMenu;
 	private ControladorCenario controladorCenario;
 	private ControladorSair controladorSair;
 	private ControladorFases controladorFases;
 	private ControladorAjuda controladorAjuda;
-	
+
 	private ThreadControlador tc;
 
 	public ControladorJumpBall() {
 
 		Fontes.carregarFontes();
-		
+
 		frame = new Frame();
 
 		menu = new Menu();
@@ -41,10 +41,10 @@ public class ControladorJumpBall {
 		fases = new Fases();
 		sair = new Sair();
 		ajuda = new Ajuda();
-		
+
 		gc = new GerenciadorCenario(cenario);
 		gs = new GerenciadorSom();
-		gl = new GerenciadorLog(fases);
+		gl = new ControladorMiniCenario(fases);
 
 		frame.setContentPane(menu);
 		frame.repaint();
@@ -73,19 +73,19 @@ public class ControladorJumpBall {
 
 				if (frame.getContentPane().equals(menu)) {
 					controladorMenu.addEventos();
-					
+
 					while (frame.getContentPane().equals(menu))
 						System.out.print("");
-					
+
 					controladorMenu.removeEventos();
 				}
 
 				else if (frame.getContentPane().equals(cenario)) {
 					controladorCenario.addEventos();
-					
+
 					while (frame.getContentPane().equals(cenario))
 						System.out.print("");
-					
+
 					controladorCenario.removeEventos();
 				}
 
@@ -94,29 +94,29 @@ public class ControladorJumpBall {
 
 					while (frame.getContentPane().equals(sair))
 						System.out.print("");
-					
+
 					controladorSair.removeEventos();
 				}
-				
+
 				else if (frame.getContentPane().equals(fases)) {
 					controladorFases.addEventos();
 
 					while (frame.getContentPane().equals(fases))
 						System.out.print("");
-					
+
 					controladorFases.removeEventos();
 				}
-				
+
 				else if (frame.getContentPane().equals(ajuda)) {
 					controladorAjuda.addEventos();
 
 					while (frame.getContentPane().equals(ajuda))
 						System.out.print("");
-					
+
 					controladorAjuda.removeEventos();
 				}
 			}
 		}
 	}
-	
+
 }
