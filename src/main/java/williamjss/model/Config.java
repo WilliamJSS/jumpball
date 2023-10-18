@@ -3,7 +3,6 @@ package williamjss.model;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.net.URISyntaxException;
 import java.net.URL;
 
 import com.google.gson.JsonArray;
@@ -17,13 +16,8 @@ public class Config {
     private static JsonArray defaultScenes;
 
     private static File getFile(String name) {
-        URL resource = Config.class.getClassLoader().getResource("config/" + name);
-        try {
-            return new File(resource.toURI());
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-            return null;
-        }
+        URL resource = Config.class.getResource("/config/" + name);
+        return new File(resource.getFile());
     }
 
     public static File getScenesFile() {

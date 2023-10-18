@@ -19,7 +19,7 @@ public class ImageBlock {
     private static ImageIcon blocoPedra;
 
     private static URL getResource(String name) {
-        return ImageBlock.class.getClassLoader().getResource("img/bloco/bloco-" + name + ".png");
+        return ImageBlock.class.getResource("/img/bloco/bloco-" + name + ".png");
     }
 
     public static ImageIcon getBlocoAgua() {

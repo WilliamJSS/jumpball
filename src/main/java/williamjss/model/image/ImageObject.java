@@ -24,7 +24,7 @@ public class ImageObject {
     private static ImageIcon setasTeclado;
 
     private static URL getResource(String name) {
-        return ImageObject.class.getClassLoader().getResource("img/icone/" + name + ".png");
+        return ImageObject.class.getResource("/img/icone/" + name + ".png");
     }
 
     public static ImageIcon getImgBandeira() {

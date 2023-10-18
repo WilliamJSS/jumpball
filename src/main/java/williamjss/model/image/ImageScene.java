@@ -30,7 +30,7 @@ public class ImageScene {
     private static ImageIcon miniCenarioVulcao;
 
     private static URL getResource(String name) {
-        return ImageScene.class.getClassLoader().getResource("img/cenario/" + name + ".png");
+        return ImageScene.class.getResource("/img/cenario/" + name + ".png");
     }
 
     public static Image getCenarioBasquete() {

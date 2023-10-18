@@ -11,7 +11,7 @@ public class Effect {
 
     public static File getEfeitoPulo() {
         if (efeitoPulo == null) {
-            URL resource = Effect.class.getClassLoader().getResource("audio/pulo.wav");
+            URL resource = Effect.class.getResource("/audio/pulo.wav");
             try {
                 efeitoPulo = new File(resource.toURI());
             } catch (URISyntaxException e) {
@@ -24,7 +24,7 @@ public class Effect {
 
     public static File getEfeitoPegarMoeda() {
         if (efeitoPegarMoeda == null) {
-            URL resource = Effect.class.getClassLoader().getResource("audio/pegar-moeda.wav");
+            URL resource = Effect.class.getResource("/audio/pegar-moeda.wav");
             try {
                 efeitoPegarMoeda = new File(resource.toURI());
             } catch (URISyntaxException e) {

@@ -13,7 +13,7 @@ public class Ringtone {
 
     public static File getToqueDerrota() {
         if (toqueDerrota == null) {
-            URL resource = Ringtone.class.getClassLoader().getResource("audio/toque-derrota.wav");
+            URL resource = Ringtone.class.getResource("/audio/toque-derrota.wav");
             try {
                 toqueDerrota = new File(resource.toURI());
             } catch (URISyntaxException e) {
@@ -26,7 +26,7 @@ public class Ringtone {
 
     public static File getToqueVitoria() {
         if (toqueVitoria == null) {
-            URL resource = Ringtone.class.getClassLoader().getResource("audio/toque-vitoria.wav");
+            URL resource = Ringtone.class.getResource("/audio/toque-vitoria.wav");
             try {
                 toqueVitoria = new File(resource.toURI());
             } catch (URISyntaxException e) {
@@ -39,7 +39,7 @@ public class Ringtone {
 
     public static File getToqueNavegarMenu() {
         if (navegarMenu == null) {
-            URL resource = Ringtone.class.getClassLoader().getResource("audio/navegar-menu.wav");
+            URL resource = Ringtone.class.getResource("/audio/navegar-menu.wav");
             try {
                 navegarMenu = new File(resource.toURI());
             } catch (URISyntaxException e) {
@@ -52,7 +52,7 @@ public class Ringtone {
 
     public static File getToqueSelecionarBotao() {
         if (selecionarBotao == null) {
-            URL resource = Ringtone.class.getClassLoader().getResource("audio/selecionar-botao.wav");
+            URL resource = Ringtone.class.getResource("/audio/selecionar-botao.wav");
             try {
                 selecionarBotao = new File(resource.toURI());
             } catch (URISyntaxException e) {

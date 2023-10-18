@@ -18,12 +18,12 @@ public class ImageBall {
     private static ArrayList<ImageIcon> spriteBolaVulcao;
 
     private static URL getResource(String name) {
-        return ImageBall.class.getClassLoader().getResource("img/bola/" + name + ".png");
+        return ImageBall.class.getResource("/img/bola/" + name + ".png");
     }
 
     public static ImageIcon getBolaPadrao() {
         if (bolaPadrao == null) {
-            bolaPadrao = new ImageIcon("src/resources/img/bola/bola-padrao.png");
+            bolaPadrao = new ImageIcon(getResource("bola-padrao"));
         }
         return bolaPadrao;
     }

@@ -21,96 +21,96 @@ public class ImageButton {
     private static ImageIcon imgBotaoAvancarBloqueado;
 
     private static URL getResource(String name) {
-        return ImageButton.class.getClassLoader().getResource("img/botao/botao-" + name + ".png");
+        return ImageButton.class.getResource("/img/botao/botao-" + name + ".png");
     }
 
     public static ImageIcon getImgBotao1() {
         if (imgBotao1 == null) {
-            imgBotao1 = new ImageIcon(getResource("1.png"));
+            imgBotao1 = new ImageIcon(getResource("1"));
         }
         return imgBotao1;
     }
 
     public static ImageIcon getImgBotao2() {
         if (imgBotao2 == null) {
-            imgBotao2 = new ImageIcon(getResource("2.png"));
+            imgBotao2 = new ImageIcon(getResource("2"));
         }
         return imgBotao2;
     }
 
     public static ImageIcon getImgBotao1Selecionado() {
         if (imgBotao1Selecionado == null) {
-            imgBotao1Selecionado = new ImageIcon(getResource("1-selecionado.png"));
+            imgBotao1Selecionado = new ImageIcon(getResource("1-selecionado"));
         }
         return imgBotao1Selecionado;
     }
 
     public static ImageIcon getImgBotao2Selecionado() {
         if (imgBotao2Selecionado == null) {
-            imgBotao2Selecionado = new ImageIcon(getResource("2-selecionado.png"));
+            imgBotao2Selecionado = new ImageIcon(getResource("2-selecionado"));
         }
         return imgBotao2Selecionado;
     }
 
     public static ImageIcon getImgBotaoVoltar() {
         if (imgBotaoVoltar == null) {
-            imgBotaoVoltar = new ImageIcon(getResource("voltar.png"));
+            imgBotaoVoltar = new ImageIcon(getResource("voltar"));
         }
         return imgBotaoVoltar;
     }
 
     public static ImageIcon getImgBotaoRepetir() {
         if (imgBotaoRepetir == null) {
-            imgBotaoRepetir = new ImageIcon(getResource("repetir.png"));
+            imgBotaoRepetir = new ImageIcon(getResource("repetir"));
         }
         return imgBotaoRepetir;
     }
 
     public static ImageIcon getImgBotaoRepetirSelecionado() {
         if (imgBotaoRepetirSelecionado == null) {
-            imgBotaoRepetirSelecionado = new ImageIcon(getResource("repetir-selecionado.png"));
+            imgBotaoRepetirSelecionado = new ImageIcon(getResource("repetir-selecionado"));
         }
         return imgBotaoRepetirSelecionado;
     }
 
     public static ImageIcon getImgBotaoMenu() {
         if (imgBotaoMenu == null) {
-            imgBotaoMenu = new ImageIcon(getResource("menu.png"));
+            imgBotaoMenu = new ImageIcon(getResource("menu"));
         }
         return imgBotaoMenu;
     }
 
     public static ImageIcon getImgBotaoMenuSelecionado() {
         if (imgBotaoMenuSelecionado == null) {
-            imgBotaoMenuSelecionado = new ImageIcon(getResource("menu-selecionado.png"));
+            imgBotaoMenuSelecionado = new ImageIcon(getResource("menu-selecionado"));
         }
         return imgBotaoMenuSelecionado;
     }
 
     public static ImageIcon getImgBotaoFechar() {
         if (imgBotaoFechar == null) {
-            imgBotaoFechar = new ImageIcon(getResource("fechar.png"));
+            imgBotaoFechar = new ImageIcon(getResource("fechar"));
         }
         return imgBotaoFechar;
     }
 
     public static ImageIcon getImgBotaoAvancar() {
         if (imgBotaoAvancar == null) {
-            imgBotaoAvancar = new ImageIcon(getResource("avancar.png"));
+            imgBotaoAvancar = new ImageIcon(getResource("avancar"));
         }
         return imgBotaoAvancar;
     }
 
     public static ImageIcon getImgBotaoAvancarSelecionado() {
         if (imgBotaoAvancarSelecionado == null) {
-            imgBotaoAvancarSelecionado = new ImageIcon(getResource("avancar-selecionado.png"));
+            imgBotaoAvancarSelecionado = new ImageIcon(getResource("avancar-selecionado"));
         }
         return imgBotaoAvancarSelecionado;
     }
 
     public static ImageIcon getImgBotaoAvancarBloqueado() {
         if (imgBotaoAvancarBloqueado == null) {
-            imgBotaoAvancarBloqueado = new ImageIcon(getResource("avancar-bloqueado.png"));
+            imgBotaoAvancarBloqueado = new ImageIcon(getResource("avancar-bloqueado"));
         }
         return imgBotaoAvancarBloqueado;
     }

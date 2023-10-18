@@ -1,7 +1,5 @@
 package williamjss.controller;
 
-import java.net.URISyntaxException;
-
 import williamjss.model.Fontes;
 import williamjss.view.Ajuda;
 import williamjss.view.Cenario;
@@ -12,117 +10,113 @@ import williamjss.view.Sair;
 
 public class ControladorJumpBall {
 
-	private Frame frame;
+    private Frame frame;
 
-	private Menu menu;
-	private Cenario cenario;
-	private Fases fases;
-	private Sair sair;
-	private Ajuda ajuda;
+    private Menu menu;
+    private Cenario cenario;
+    private Fases fases;
+    private Sair sair;
+    private Ajuda ajuda;
 
-	private GerenciadorCenario gc;
-	private GerenciadorSom gs;
-	private ControladorMiniCenario gl;
+    private GerenciadorCenario gc;
+    private GerenciadorSom gs;
+    private ControladorMiniCenario gl;
 
-	private ControladorMenu controladorMenu;
-	private ControladorCenario controladorCenario;
-	private ControladorSair controladorSair;
-	private ControladorFases controladorFases;
-	private ControladorAjuda controladorAjuda;
+    private ControladorMenu controladorMenu;
+    private ControladorCenario controladorCenario;
+    private ControladorSair controladorSair;
+    private ControladorFases controladorFases;
+    private ControladorAjuda controladorAjuda;
 
-	private ThreadControlador tc;
+    private ThreadControlador tc;
 
-	public ControladorJumpBall() {
+    public ControladorJumpBall() {
 
-		try {
-            Fontes.carregarFontes();
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
+        Fontes.carregarFontes();
+
+        frame = new Frame();
+
+        menu = new Menu();
+        cenario = new Cenario();
+        fases = new Fases();
+        sair = new Sair();
+        ajuda = new Ajuda();
+
+        gc = new GerenciadorCenario(cenario);
+        gs = new GerenciadorSom();
+        gl = new ControladorMiniCenario(fases);
+
+        frame.setContentPane(menu);
+        frame.repaint();
+        frame.validate();
+
+        controladorCenario = new ControladorCenario(frame, menu, fases, cenario, gc, gs, gl);
+        controladorMenu = new ControladorMenu(frame, menu, ajuda, fases, sair, gs);
+        controladorSair = new ControladorSair(frame, menu, sair, gs);
+        controladorFases = new ControladorFases(frame, fases, controladorCenario, cenario, menu, gs);
+        controladorAjuda = new ControladorAjuda(frame, ajuda, menu, gs);
+
+        tc = new ThreadControlador();
+        tc.start();
+    }
+
+    public class ThreadControlador extends Thread {
+
+        public ThreadControlador() {
+            super("ThreadControlador");
         }
 
-		frame = new Frame();
+        @Override
+        public void run() {
 
-		menu = new Menu();
-		cenario = new Cenario();
-		fases = new Fases();
-		sair = new Sair();
-		ajuda = new Ajuda();
+            while (true) {
 
-		gc = new GerenciadorCenario(cenario);
-		gs = new GerenciadorSom();
-		gl = new ControladorMiniCenario(fases);
+                if (frame.getContentPane().equals(menu)) {
+                    controladorMenu.addEventos();
 
-		frame.setContentPane(menu);
-		frame.repaint();
-		frame.validate();
+                    while (frame.getContentPane().equals(menu))
+                        System.out.print("");
 
-		controladorCenario = new ControladorCenario(frame, menu, fases, cenario, gc, gs, gl);
-		controladorMenu = new ControladorMenu(frame, menu, ajuda, fases, sair, gs);
-		controladorSair = new ControladorSair(frame, menu, sair, gs);
-		controladorFases = new ControladorFases(frame, fases, controladorCenario, cenario, menu, gs);
-		controladorAjuda = new ControladorAjuda(frame, ajuda, menu, gs);
+                    controladorMenu.removeEventos();
+                }
 
-		tc = new ThreadControlador();
-		tc.start();
-	}
+                else if (frame.getContentPane().equals(cenario)) {
+                    controladorCenario.addEventos();
 
-	public class ThreadControlador extends Thread {
+                    while (frame.getContentPane().equals(cenario))
+                        System.out.print("");
 
-		public ThreadControlador() {
-			super("ThreadControlador");
-		}
+                    controladorCenario.removeEventos();
+                }
 
-		@Override
-		public void run() {
+                else if (frame.getContentPane().equals(sair)) {
+                    controladorSair.addEventos();
 
-			while (true) {
+                    while (frame.getContentPane().equals(sair))
+                        System.out.print("");
 
-				if (frame.getContentPane().equals(menu)) {
-					controladorMenu.addEventos();
+                    controladorSair.removeEventos();
+                }
 
-					while (frame.getContentPane().equals(menu))
-						System.out.print("");
+                else if (frame.getContentPane().equals(fases)) {
+                    controladorFases.addEventos();
 
-					controladorMenu.removeEventos();
-				}
+                    while (frame.getContentPane().equals(fases))
+                        System.out.print("");
 
-				else if (frame.getContentPane().equals(cenario)) {
-					controladorCenario.addEventos();
+                    controladorFases.removeEventos();
+                }
 
-					while (frame.getContentPane().equals(cenario))
-						System.out.print("");
+                else if (frame.getContentPane().equals(ajuda)) {
+                    controladorAjuda.addEventos();
 
-					controladorCenario.removeEventos();
-				}
+                    while (frame.getContentPane().equals(ajuda))
+                        System.out.print("");
 
-				else if (frame.getContentPane().equals(sair)) {
-					controladorSair.addEventos();
-
-					while (frame.getContentPane().equals(sair))
-						System.out.print("");
-
-					controladorSair.removeEventos();
-				}
-
-				else if (frame.getContentPane().equals(fases)) {
-					controladorFases.addEventos();
-
-					while (frame.getContentPane().equals(fases))
-						System.out.print("");
-
-					controladorFases.removeEventos();
-				}
-
-				else if (frame.getContentPane().equals(ajuda)) {
-					controladorAjuda.addEventos();
-
-					while (frame.getContentPane().equals(ajuda))
-						System.out.print("");
-
-					controladorAjuda.removeEventos();
-				}
-			}
-		}
-	}
+                    controladorAjuda.removeEventos();
+                }
+            }
+        }
+    }
 
 }

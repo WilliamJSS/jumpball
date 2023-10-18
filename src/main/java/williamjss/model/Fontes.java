@@ -5,7 +5,6 @@ import java.awt.FontFormatException;
 import java.awt.GraphicsEnvironment;
 import java.io.File;
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.net.URL;
 
 public class Fontes {
@@ -18,19 +17,19 @@ public class Fontes {
     private static Font titulo;
     private static Font tituloJogo;
 
-    public static void carregarFontes() throws URISyntaxException {
+    private static File getResource(String name) {
+        URL resource = Fontes.class.getResource("/font/" + name);
+        return new File(resource.toString());
+    }
+
+    public static void carregarFontes() {
 
         try {
 
-            URL resourceFonte1 = Fontes.class.getClassLoader().getResource("font/hemi head bd it.otf");
-            URL resourceFonte2 = Fontes.class.getClassLoader().getResource("font/Baloo-Regular.ttf");
-            URL resourceFonte3 = Fontes.class.getClassLoader().getResource("font/LuckiestGuy-Regular.ttf");
-            URL resourceFonte4 = Fontes.class.getClassLoader().getResource("font/Kids Magazine.ttf");
-
-            Font fonte1 = Font.createFont(Font.TRUETYPE_FONT, new File(resourceFonte1.toURI()));
-            Font fonte2 = Font.createFont(Font.TRUETYPE_FONT, new File(resourceFonte2.toURI()));
-            Font fonte3 = Font.createFont(Font.TRUETYPE_FONT, new File(resourceFonte3.toURI()));
-            Font fonte4 = Font.createFont(Font.TRUETYPE_FONT, new File(resourceFonte4.toURI()));
+            Font fonte1 = Font.createFont(Font.TRUETYPE_FONT, getResource("hemi_head_bd_it.otf"));
+            Font fonte2 = Font.createFont(Font.TRUETYPE_FONT, getResource("Baloo-Regular.ttf"));
+            Font fonte3 = Font.createFont(Font.TRUETYPE_FONT, getResource("LuckiestGuy-Regular.ttf"));
+            Font fonte4 = Font.createFont(Font.TRUETYPE_FONT, getResource("Kids-Magazine.ttf"));
 
             GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
 

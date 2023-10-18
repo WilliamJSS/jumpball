@@ -10,7 +10,7 @@ public class Music {
 
 	public static File getMusicaMenu() {
         if (musicaMenu == null) {
-            URL resource = Music.class.getClassLoader().getResource("audio/On The Go.wav");
+            URL resource = Music.class.getResource("/audio/On The Go.wav");
             try {
                 musicaMenu = new File(resource.toURI());
             } catch (URISyntaxException e) {
@@ -23,7 +23,7 @@ public class Music {
 
 	public static File getMusicaCenario() {
         if (musicaCenario == null) {
-            URL resource = Music.class.getClassLoader().getResource("audio/Saiko Music Fundo.wav");
+            URL resource = Music.class.getResource("/audio/Saiko Music Fundo.wav");
             try {
                 musicaCenario = new File(resource.toURI());
             } catch (URISyntaxException e) {
