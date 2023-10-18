@@ -10,7 +10,9 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import williamjss.model.Fontes;
-import williamjss.model.Imagens;
+import williamjss.model.image.ImageButton;
+import williamjss.model.image.ImageObject;
+import williamjss.model.image.ImageScene;
 
 public class Cenario extends JPanel {
 
@@ -94,19 +96,19 @@ public class Cenario extends JPanel {
     public void setBotaoSelecionado(int botaoSelecionado) {
         this.botaoSelecionado = botaoSelecionado;
 
-        getBotaoRepetir().setIcon(Imagens.getImgBotaoRepetir());
-        getBotaoMenu().setIcon(Imagens.getImgBotaoMenu());
+        getBotaoRepetir().setIcon(ImageButton.getImgBotaoRepetir());
+        getBotaoMenu().setIcon(ImageButton.getImgBotaoMenu());
 
         if (!isBotaoAvancarBloqueado()) {
-            getBotaoAvancar().setIcon(Imagens.getImgBotaoAvancar());
+            getBotaoAvancar().setIcon(ImageButton.getImgBotaoAvancar());
         }
 
         if (botaoSelecionado == Cenario.BOTAO_REPETIR) {
-            getBotaoRepetir().setIcon(Imagens.getImgBotaoRepetirSelecionado());
+            getBotaoRepetir().setIcon(ImageButton.getImgBotaoRepetirSelecionado());
         } else if (botaoSelecionado == Cenario.BOTAO_MENU) {
-            getBotaoMenu().setIcon(Imagens.getImgBotaoMenuSelecionado());
+            getBotaoMenu().setIcon(ImageButton.getImgBotaoMenuSelecionado());
         } else if (botaoSelecionado == Cenario.BOTAO_AVANCAR) {
-            getBotaoAvancar().setIcon(Imagens.getImgBotaoAvancarSelecionado());
+            getBotaoAvancar().setIcon(ImageButton.getImgBotaoAvancarSelecionado());
         }
 
     }
@@ -126,9 +128,9 @@ public class Cenario extends JPanel {
             getEstrelasGrandes().get(i).setVisible(true);
             if ((i + 1) * 30 <= pontuacao) {
                 if (vitoria) {
-                    getEstrelasGrandes().get(i).setIcon(Imagens.getImgEstrelaGrande());
+                    getEstrelasGrandes().get(i).setIcon(ImageObject.getImgEstrelaGrande());
                 } else {
-                    getEstrelasGrandes().get(i).setIcon(Imagens.getImgEstrelaVermelha());
+                    getEstrelasGrandes().get(i).setIcon(ImageObject.getImgEstrelaVermelha());
                 }
             }
         }
@@ -138,10 +140,10 @@ public class Cenario extends JPanel {
 
         if (vitoria) {
             getTitulo().setText("QUE CARA BOM");
-            getBotaoAvancar().setIcon(Imagens.getImgBotaoAvancar());
+            getBotaoAvancar().setIcon(ImageButton.getImgBotaoAvancar());
         } else {
             getTitulo().setText("NÃO CONSEGUE NÉ!?");
-            getBotaoAvancar().setIcon(Imagens.getImgBotaoAvancarBloqueado());
+            getBotaoAvancar().setIcon(ImageButton.getImgBotaoAvancarBloqueado());
         }
 
         getBotaoAvancar().setVisible(true);
@@ -158,13 +160,13 @@ public class Cenario extends JPanel {
 
         for (int i = 0; i < getEstrelasGrandes().size(); i++) {
             getEstrelasGrandes().get(i).setVisible(false);
-            getEstrelasGrandes().get(i).setIcon(Imagens.getImgEstrelaCinzaGrande());
+            getEstrelasGrandes().get(i).setIcon(ImageObject.getImgEstrelaCinzaGrande());
         }
     }
 
     public void exibirTelaInicial() {
         getContagem().setVisible(true);
-        getContagem().setIcon(Imagens.getContagemRegressiva().get(0));
+        getContagem().setIcon(ImageObject.getContagemRegressiva().get(0));
         getFundoTransparente().setVisible(true);
         // getTitulo().setText("PRESS SPACE BUTTON TO START!");
         getTitulo().setText("PRESSIONE ESPAÇO PARA COMEÇAR!");
@@ -180,9 +182,9 @@ public class Cenario extends JPanel {
     public JLabel getBotaoAvancar() {
         if (botaoAvancar == null) {
             botaoAvancar = new JLabel();
-            botaoAvancar.setIcon(Imagens.getImgBotaoAvancar());
-            botaoAvancar.setSize(Imagens.getImgBotaoAvancar().getIconWidth(),
-                    Imagens.getImgBotaoAvancar().getIconHeight());
+            botaoAvancar.setIcon(ImageButton.getImgBotaoAvancar());
+            botaoAvancar.setSize(ImageButton.getImgBotaoAvancar().getIconWidth(),
+                    ImageButton.getImgBotaoAvancar().getIconHeight());
             botaoAvancar.setLocation(getBotaoMenu().getX() + botaoAvancar.getWidth() + 25, getBotaoMenu().getY());
             botaoAvancar.setVisible(false);
         }
@@ -192,9 +194,9 @@ public class Cenario extends JPanel {
     public JLabel getBotaoRepetir() {
         if (botaoRepetir == null) {
             botaoRepetir = new JLabel();
-            botaoRepetir.setIcon(Imagens.getImgBotaoRepetir());
-            botaoRepetir.setSize(Imagens.getImgBotaoRepetir().getIconWidth(),
-                    Imagens.getImgBotaoRepetir().getIconHeight());
+            botaoRepetir.setIcon(ImageButton.getImgBotaoRepetir());
+            botaoRepetir.setSize(ImageButton.getImgBotaoRepetir().getIconWidth(),
+                    ImageButton.getImgBotaoRepetir().getIconHeight());
             botaoRepetir.setLocation(getBotaoMenu().getX() - botaoRepetir.getWidth() - 25, getBotaoMenu().getY());
             botaoRepetir.setVisible(false);
         }
@@ -204,8 +206,8 @@ public class Cenario extends JPanel {
     public JLabel getBotaoMenu() {
         if (botaoMenu == null) {
             botaoMenu = new JLabel();
-            botaoMenu.setIcon(Imagens.getImgBotaoMenu());
-            botaoMenu.setSize(Imagens.getImgBotaoMenu().getIconWidth(), Imagens.getImgBotaoMenu().getIconHeight());
+            botaoMenu.setIcon(ImageButton.getImgBotaoMenu());
+            botaoMenu.setSize(ImageButton.getImgBotaoMenu().getIconWidth(), ImageButton.getImgBotaoMenu().getIconHeight());
             botaoMenu.setLocation(getWidth() / 2 - botaoMenu.getWidth() / 2, 400);
             botaoMenu.setVisible(false);
         }
@@ -231,9 +233,9 @@ public class Cenario extends JPanel {
     public JLabel getContagem() {
         if (contagem == null) {
             contagem = new JLabel();
-            contagem.setIcon(Imagens.getContagemRegressiva().get(0));
-            contagem.setSize(Imagens.getContagemRegressiva().get(0).getIconWidth(),
-                    Imagens.getContagemRegressiva().get(0).getIconHeight());
+            contagem.setIcon(ImageObject.getContagemRegressiva().get(0));
+            contagem.setSize(ImageObject.getContagemRegressiva().get(0).getIconWidth(),
+                    ImageObject.getContagemRegressiva().get(0).getIconHeight());
             contagem.setLocation(getWidth() / 2 - contagem.getWidth() / 2, getHeight() / 2 - contagem.getHeight() / 2);
             contagem.setVisible(false);
         }
@@ -242,9 +244,9 @@ public class Cenario extends JPanel {
 
     public JLabel gerarEstrelaGrande() {
         JLabel estrelaGrande = new JLabel();
-        estrelaGrande.setIcon(Imagens.getImgEstrelaCinzaGrande());
-        int x = Imagens.getImgEstrelaCinzaGrande().getIconWidth();
-        int y = Imagens.getImgEstrelaCinzaGrande().getIconHeight();
+        estrelaGrande.setIcon(ImageObject.getImgEstrelaCinzaGrande());
+        int x = ImageObject.getImgEstrelaCinzaGrande().getIconWidth();
+        int y = ImageObject.getImgEstrelaCinzaGrande().getIconHeight();
         estrelaGrande.setSize(x, y);
         estrelaGrande.setLocation(getWidth() / 2 - estrelaGrande.getWidth() / 2,
                 getTitulo().getY() + getTitulo().getHeight() + 30);
@@ -255,7 +257,7 @@ public class Cenario extends JPanel {
     public JLabel getFundoTransparente() {
         if (fundoTransparente == null) {
             fundoTransparente = new JLabel();
-            fundoTransparente.setIcon(Imagens.getFundoCenario());
+            fundoTransparente.setIcon(ImageScene.getFundoCenario());
             fundoTransparente.setBounds(0, 0, getWidth(), getHeight());
             fundoTransparente.setVisible(false);
         }

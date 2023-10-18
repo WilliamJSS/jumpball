@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
-import williamjss.model.Imagens;
+import williamjss.model.image.ImageObject;
 
 public class Coin extends JLabel {
 
@@ -18,7 +18,7 @@ public class Coin extends JLabel {
 	private int largura, altura;
 
 	public Coin() {
-		sprite = Imagens.getSpriteMoeda();
+		sprite = ImageObject.getSpriteMoeda();
 
 		img = sprite.get(0);
 		largura = img.getIconWidth();

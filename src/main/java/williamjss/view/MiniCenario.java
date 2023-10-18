@@ -10,7 +10,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import williamjss.model.Imagens;
+import williamjss.model.image.ImageObject;
+import williamjss.model.image.ImageScene;
 
 public class MiniCenario extends JPanel {
 
@@ -31,7 +32,7 @@ public class MiniCenario extends JPanel {
     private JLabel fundoMiniCenario;
 
     public MiniCenario(int x, int y, Image img) {
-        setSize(Imagens.getMiniCenarioCampo().getIconWidth(), Imagens.getMiniCenarioCampo().getIconHeight());
+        setSize(ImageScene.getMiniCenarioCampo().getIconWidth(), ImageScene.getMiniCenarioCampo().getIconHeight());
         setLocation(x, y);
         setLayout(null);
 
@@ -79,9 +80,9 @@ public class MiniCenario extends JPanel {
         for (int i = 0; i < getEstrelas().size(); i++) {
             JLabel estrela = getEstrelas().get(i);
             if (i < getQntEstrelas()) {
-                estrela.setIcon(Imagens.getImgEstrela()); // Coloca estrela amarela
+                estrela.setIcon(ImageObject.getImgEstrela()); // Coloca estrela amarela
             } else {
-                estrela.setIcon(Imagens.getImgEstrelaCinza()); // Coloca estrela cinza
+                estrela.setIcon(ImageObject.getImgEstrelaCinza()); // Coloca estrela cinza
             }
         }
 
@@ -103,7 +104,7 @@ public class MiniCenario extends JPanel {
     public JLabel getFundoMiniCenario() {
         if (fundoMiniCenario == null) {
             fundoMiniCenario = new JLabel();
-            fundoMiniCenario.setIcon(Imagens.getFundoMiniCenario());
+            fundoMiniCenario.setIcon(ImageScene.getFundoMiniCenario());
             fundoMiniCenario.setBounds(0, 0, getWidth(), getHeight());
         }
         return fundoMiniCenario;
@@ -112,8 +113,8 @@ public class MiniCenario extends JPanel {
     public JLabel getIconeCadeado() {
         if (cadeado == null) {
             cadeado = new JLabel();
-            cadeado.setIcon(Imagens.getImgCadeado());
-            cadeado.setSize(Imagens.getImgCadeado().getIconWidth(), Imagens.getImgCadeado().getIconHeight());
+            cadeado.setIcon(ImageObject.getImgCadeado());
+            cadeado.setSize(ImageObject.getImgCadeado().getIconWidth(), ImageObject.getImgCadeado().getIconHeight());
             cadeado.setLocation(getWidth() / 2 - cadeado.getWidth() / 2,
                     getHeight() / 2 - cadeado.getHeight() / 2 + 10);
         }
@@ -125,9 +126,9 @@ public class MiniCenario extends JPanel {
             estrelaCont = new JLabel("    " + getEstrelasRestantes());
             estrelaCont.setFont(new Font("Hemi Head Rg", Font.PLAIN, 36));
             estrelaCont.setForeground(Color.WHITE);
-            estrelaCont.setIcon(Imagens.getImgEstrela());
-            estrelaCont.setSize(Imagens.getImgEstrela().getIconWidth() * 2 + 25,
-                    Imagens.getImgEstrela().getIconHeight());
+            estrelaCont.setIcon(ImageObject.getImgEstrela());
+            estrelaCont.setSize(ImageObject.getImgEstrela().getIconWidth() * 2 + 25,
+                    ImageObject.getImgEstrela().getIconHeight());
             estrelaCont.setLocation(getWidth() - estrelaCont.getWidth(), 10);
         }
         return estrelaCont;
@@ -137,7 +138,7 @@ public class MiniCenario extends JPanel {
         if (estrelas == null) {
             estrelas = new ArrayList<JLabel>();
 
-            ImageIcon imgEstrela = Imagens.getImgEstrela();
+            ImageIcon imgEstrela = ImageObject.getImgEstrela();
             int largura = imgEstrela.getIconWidth();
             int altura = imgEstrela.getIconHeight();
 

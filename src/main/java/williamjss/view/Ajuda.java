@@ -14,7 +14,9 @@ import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 
 import williamjss.model.Fontes;
-import williamjss.model.Imagens;
+import williamjss.model.image.ImageButton;
+import williamjss.model.image.ImageObject;
+import williamjss.model.image.ImageScene;
 
 public class Ajuda extends JPanel {
 
@@ -57,7 +59,7 @@ public class Ajuda extends JPanel {
 
     @Override
     public void paintComponent(Graphics g) {
-        g.drawImage(Imagens.getCenarioMenu(), 0, 0, null);
+        g.drawImage(ImageScene.getCenarioMenu(), 0, 0, null);
     }
 
     public void atualizarSelecao(int codPin) {
@@ -70,10 +72,10 @@ public class Ajuda extends JPanel {
         }
 
         for (int i = 0; i < getPins().size(); i++) {
-            getPins().get(i).setIcon(Imagens.getPinBranco());
+            getPins().get(i).setIcon(ImageObject.getPinBranco());
         }
 
-        getSelecao(codPin).setIcon(Imagens.getPinAzul());
+        getSelecao(codPin).setIcon(ImageObject.getPinAzul());
         getTituloAjuda(codPin);
         getTextPaneAjuda().setText(getTextoAjuda(codPin).toUpperCase());
         getTextPaneAjuda().setFont(Fontes.getMensagemMoedas());
@@ -163,8 +165,8 @@ public class Ajuda extends JPanel {
 
     public JLabel gerarPin() {
         JLabel pin = new JLabel();
-        pin.setIcon(Imagens.getPinBranco());
-        pin.setSize(Imagens.getPinBranco().getIconWidth(), Imagens.getPinBranco().getIconHeight());
+        pin.setIcon(ImageObject.getPinBranco());
+        pin.setSize(ImageObject.getPinBranco().getIconWidth(), ImageObject.getPinBranco().getIconHeight());
         pin.setLocation(getWidth() / 2 - pin.getWidth() / 2, getHeight() - pin.getHeight() - 50);
         return pin;
     }
@@ -190,7 +192,7 @@ public class Ajuda extends JPanel {
     public JLabel getIconeTeclas() {
         if (iconeTeclas == null) {
             iconeTeclas = new JLabel();
-            iconeTeclas.setIcon(Imagens.getSetasTeclado());
+            iconeTeclas.setIcon(ImageObject.getSetasTeclado());
             iconeTeclas.setVisible(false);
             iconeTeclas.setSize(152, 100);
             iconeTeclas.setLocation(getWidth() / 2 - iconeTeclas.getWidth() / 2, getHeight() / 2 + 30);
@@ -204,9 +206,9 @@ public class Ajuda extends JPanel {
             botaoVoltar = new JLabel("ESC");
             botaoVoltar.setFont(Fontes.getBaloo());
             botaoVoltar.setForeground(Color.WHITE);
-            botaoVoltar.setIcon(Imagens.getImgBotaoVoltar());
-            botaoVoltar.setSize(Imagens.getImgBotaoVoltar().getIconWidth() + 200,
-                    Imagens.getImgBotaoVoltar().getIconHeight());
+            botaoVoltar.setIcon(ImageButton.getImgBotaoVoltar());
+            botaoVoltar.setSize(ImageButton.getImgBotaoVoltar().getIconWidth() + 200,
+                    ImageButton.getImgBotaoVoltar().getIconHeight());
             botaoVoltar.setLocation(20, 15);
         }
         return botaoVoltar;
@@ -215,7 +217,7 @@ public class Ajuda extends JPanel {
     public JLabel getFundoCenario() {
         if (fundoCenario == null) {
             fundoCenario = new JLabel();
-            fundoCenario.setIcon(Imagens.getFundoCenario());
+            fundoCenario.setIcon(ImageScene.getFundoCenario());
             fundoCenario.setBounds(0, 0, getWidth(), getHeight());
             fundoCenario.setVisible(true);
         }

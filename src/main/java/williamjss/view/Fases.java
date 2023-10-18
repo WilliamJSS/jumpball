@@ -8,7 +8,9 @@ import javax.swing.SwingConstants;
 
 import williamjss.model.Cores;
 import williamjss.model.Fontes;
-import williamjss.model.Imagens;
+import williamjss.model.image.ImageBall;
+import williamjss.model.image.ImageButton;
+import williamjss.model.image.ImageScene;
 
 public class Fases extends JPanel {
 
@@ -51,7 +53,7 @@ public class Fases extends JPanel {
 
     @Override
     public void paintComponent(Graphics g) {
-        g.drawImage(Imagens.getCenarioMenu(), 0, 0, null);
+        g.drawImage(ImageScene.getCenarioMenu(), 0, 0, null);
     }
 
     public void atualizarSelecao(int codMiniCenario) {
@@ -66,62 +68,62 @@ public class Fases extends JPanel {
         switch (codMiniCenario) {
 
             case Cenario.TIPO_CAMPO:
-                getBolaDeSelecao().setIcon(Imagens.getSpriteBolaFutebol().get(0));
+                getBolaDeSelecao().setIcon(ImageBall.getSpriteBolaFutebol().get(0));
                 break;
 
             case Cenario.TIPO_MONTANHAS:
                 if (getMiniCenario(codMiniCenario).isBloqueado()) {
-                    getBolaDeSelecao().setIcon(Imagens.getBolaPadrao());
+                    getBolaDeSelecao().setIcon(ImageBall.getBolaPadrao());
                 } else {
-                    getBolaDeSelecao().setIcon(Imagens.getSpriteBolaEspinho().get(0));
+                    getBolaDeSelecao().setIcon(ImageBall.getSpriteBolaEspinho().get(0));
                 }
                 break;
 
             case Cenario.TIPO_NEVE:
                 if (getMiniCenario(codMiniCenario).isBloqueado()) {
-                    getBolaDeSelecao().setIcon(Imagens.getBolaPadrao());
+                    getBolaDeSelecao().setIcon(ImageBall.getBolaPadrao());
                 } else {
-                    getBolaDeSelecao().setIcon(Imagens.getSpriteBolaPedra().get(0));
+                    getBolaDeSelecao().setIcon(ImageBall.getSpriteBolaPedra().get(0));
                 }
                 break;
 
             case Cenario.TIPO_PRAIA:
                 if (getMiniCenario(codMiniCenario).isBloqueado()) {
-                    getBolaDeSelecao().setIcon(Imagens.getBolaPadrao());
+                    getBolaDeSelecao().setIcon(ImageBall.getBolaPadrao());
                 } else {
-                    getBolaDeSelecao().setIcon(Imagens.getSpriteBolaPraia().get(0));
+                    getBolaDeSelecao().setIcon(ImageBall.getSpriteBolaPraia().get(0));
                 }
                 break;
 
             case Cenario.TIPO_VULCAO:
                 if (getMiniCenario(codMiniCenario).isBloqueado()) {
-                    getBolaDeSelecao().setIcon(Imagens.getBolaPadrao());
+                    getBolaDeSelecao().setIcon(ImageBall.getBolaPadrao());
                 } else {
-                    getBolaDeSelecao().setIcon(Imagens.getSpriteBolaVulcao().get(0));
+                    getBolaDeSelecao().setIcon(ImageBall.getSpriteBolaVulcao().get(0));
                 }
                 break;
 
             case Cenario.TIPO_VOLEI:
                 if (getMiniCenario(codMiniCenario).isBloqueado()) {
-                    getBolaDeSelecao().setIcon(Imagens.getBolaPadrao());
+                    getBolaDeSelecao().setIcon(ImageBall.getBolaPadrao());
                 } else {
-                    getBolaDeSelecao().setIcon(Imagens.getSpriteBolaVolei().get(0));
+                    getBolaDeSelecao().setIcon(ImageBall.getSpriteBolaVolei().get(0));
                 }
                 break;
 
             case Cenario.TIPO_BASQUETE:
                 if (getMiniCenario(codMiniCenario).isBloqueado()) {
-                    getBolaDeSelecao().setIcon(Imagens.getBolaPadrao());
+                    getBolaDeSelecao().setIcon(ImageBall.getBolaPadrao());
                 } else {
-                    getBolaDeSelecao().setIcon(Imagens.getSpriteBolaBasquete().get(0));
+                    getBolaDeSelecao().setIcon(ImageBall.getSpriteBolaBasquete().get(0));
                 }
                 break;
 
             case Cenario.TIPO_GOLFE:
                 if (getMiniCenario(codMiniCenario).isBloqueado()) {
-                    getBolaDeSelecao().setIcon(Imagens.getBolaPadrao());
+                    getBolaDeSelecao().setIcon(ImageBall.getBolaPadrao());
                 } else {
-                    getBolaDeSelecao().setIcon(Imagens.getSpriteBolaGolfe().get(0));
+                    getBolaDeSelecao().setIcon(ImageBall.getSpriteBolaGolfe().get(0));
                 }
                 break;
         }
@@ -174,7 +176,7 @@ public class Fases extends JPanel {
         if (miniCenarioCampo == null) {
             posicaoX = 56;
             posicaoY = 140;
-            miniCenarioCampo = new MiniCenario(posicaoX, posicaoY, Imagens.getMiniCenarioCampo().getImage());
+            miniCenarioCampo = new MiniCenario(posicaoX, posicaoY, ImageScene.getMiniCenarioCampo().getImage());
             miniCenarioCampo.setEstrelasDesbloquear(0);
         }
         return miniCenarioCampo;
@@ -184,7 +186,7 @@ public class Fases extends JPanel {
         if (miniCenarioMontanhas == null) {
             posicaoX = getMiniCenarioCampo().getX() + getMiniCenarioCampo().getWidth() + 20;
             posicaoY = getMiniCenarioCampo().getY();
-            miniCenarioMontanhas = new MiniCenario(posicaoX, posicaoY, Imagens.getMiniCenarioMontanhas().getImage());
+            miniCenarioMontanhas = new MiniCenario(posicaoX, posicaoY, ImageScene.getMiniCenarioMontanhas().getImage());
             miniCenarioMontanhas.setEstrelasDesbloquear(2);
         }
         return miniCenarioMontanhas;
@@ -194,7 +196,7 @@ public class Fases extends JPanel {
         if (miniCenarioNeve == null) {
             posicaoX = getMiniCenarioMontanhas().getX() + getMiniCenarioMontanhas().getWidth() + 20;
             posicaoY = getMiniCenarioMontanhas().getY();
-            miniCenarioNeve = new MiniCenario(posicaoX, posicaoY, Imagens.getMiniCenarioNeve().getImage());
+            miniCenarioNeve = new MiniCenario(posicaoX, posicaoY, ImageScene.getMiniCenarioNeve().getImage());
             miniCenarioNeve.setEstrelasDesbloquear(5);
         }
         return miniCenarioNeve;
@@ -204,7 +206,7 @@ public class Fases extends JPanel {
         if (miniCenarioBasquete == null) {
             posicaoX = getMiniCenarioNeve().getX() + getMiniCenarioNeve().getWidth() + 20;
             posicaoY = getMiniCenarioNeve().getY();
-            miniCenarioBasquete = new MiniCenario(posicaoX, posicaoY, Imagens.getMiniCenarioBasquete().getImage());
+            miniCenarioBasquete = new MiniCenario(posicaoX, posicaoY, ImageScene.getMiniCenarioBasquete().getImage());
             miniCenarioBasquete.setEstrelasDesbloquear(7);
         }
         return miniCenarioBasquete;
@@ -214,7 +216,7 @@ public class Fases extends JPanel {
         if (miniCenarioPraia == null) {
             posicaoX = getMiniCenarioCampo().getX();
             posicaoY = getMiniCenarioCampo().getY() + getMiniCenarioCampo().getHeight() + 20;
-            miniCenarioPraia = new MiniCenario(posicaoX, posicaoY, Imagens.getMiniCenarioPraia().getImage());
+            miniCenarioPraia = new MiniCenario(posicaoX, posicaoY, ImageScene.getMiniCenarioPraia().getImage());
             miniCenarioPraia.setEstrelasDesbloquear(10);
         }
         return miniCenarioPraia;
@@ -224,7 +226,7 @@ public class Fases extends JPanel {
         if (miniCenarioVulcao == null) {
             posicaoX = getMiniCenarioPraia().getX() + getMiniCenarioPraia().getWidth() + 20;
             posicaoY = getMiniCenarioPraia().getY();
-            miniCenarioVulcao = new MiniCenario(posicaoX, posicaoY, Imagens.getMiniCenarioVulcao().getImage());
+            miniCenarioVulcao = new MiniCenario(posicaoX, posicaoY, ImageScene.getMiniCenarioVulcao().getImage());
             miniCenarioVulcao.setEstrelasDesbloquear(13);
         }
         return miniCenarioVulcao;
@@ -234,7 +236,7 @@ public class Fases extends JPanel {
         if (miniCenarioVolei == null) {
             posicaoX = getMiniCenarioVulcao().getX() + getMiniCenarioVulcao().getWidth() + 20;
             posicaoY = getMiniCenarioVulcao().getY();
-            miniCenarioVolei = new MiniCenario(posicaoX, posicaoY, Imagens.getMiniCenarioVolei().getImage());
+            miniCenarioVolei = new MiniCenario(posicaoX, posicaoY, ImageScene.getMiniCenarioVolei().getImage());
             miniCenarioVolei.setEstrelasDesbloquear(17);
         }
         return miniCenarioVolei;
@@ -244,7 +246,7 @@ public class Fases extends JPanel {
         if (miniCenarioGolfe == null) {
             posicaoX = getMiniCenarioVolei().getX() + getMiniCenarioVolei().getWidth() + 20;
             posicaoY = getMiniCenarioVolei().getY();
-            miniCenarioGolfe = new MiniCenario(posicaoX, posicaoY, Imagens.getMiniCenarioGolfe().getImage());
+            miniCenarioGolfe = new MiniCenario(posicaoX, posicaoY, ImageScene.getMiniCenarioGolfe().getImage());
             miniCenarioGolfe.setEstrelasDesbloquear(20);
         }
         return miniCenarioGolfe;
@@ -255,9 +257,9 @@ public class Fases extends JPanel {
             botaoVoltar = new JLabel("ESC");
             botaoVoltar.setFont(Fontes.getBaloo());
             botaoVoltar.setForeground(Cores.getAzulEscuro());
-            botaoVoltar.setIcon(Imagens.getImgBotaoVoltar());
-            botaoVoltar.setSize(Imagens.getImgBotaoVoltar().getIconWidth() + 200,
-                    Imagens.getImgBotaoVoltar().getIconHeight());
+            botaoVoltar.setIcon(ImageButton.getImgBotaoVoltar());
+            botaoVoltar.setSize(ImageButton.getImgBotaoVoltar().getIconWidth() + 200,
+                    ImageButton.getImgBotaoVoltar().getIconHeight());
             botaoVoltar.setLocation(20, 15);
         }
         return botaoVoltar;
@@ -266,8 +268,8 @@ public class Fases extends JPanel {
     public JLabel getBolaDeSelecao() {
         if (bolaDeSelecao == null) {
             bolaDeSelecao = new JLabel();
-            bolaDeSelecao.setIcon(Imagens.getBolaPadrao());
-            bolaDeSelecao.setSize(Imagens.getBolaPadrao().getIconWidth(), Imagens.getBolaPadrao().getIconHeight());
+            bolaDeSelecao.setIcon(ImageBall.getBolaPadrao());
+            bolaDeSelecao.setSize(ImageBall.getBolaPadrao().getIconWidth(), ImageBall.getBolaPadrao().getIconHeight());
         }
         return bolaDeSelecao;
     }

@@ -5,7 +5,7 @@ import java.awt.Point;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
-import williamjss.model.Imagens;
+import williamjss.model.image.ImageBall;
 
 public class Ball extends JLabel {
 
@@ -63,42 +63,42 @@ public class Ball extends JLabel {
 		switch (tipo) {
 
 			case Ball.TIPO_FUTEBOL:
-				setSprite(Imagens.getSpriteBolaFutebol());
+				setSprite(ImageBall.getSpriteBolaFutebol());
 				setIcon(getSprite().get(0));
 				break;
 
 			case Ball.TIPO_PRAIA:
-				setSprite(Imagens.getSpriteBolaPraia());
+				setSprite(ImageBall.getSpriteBolaPraia());
 				setIcon(getSprite().get(0));
 				break;
 
 			case Ball.TIPO_PEDRA:
-				setSprite(Imagens.getSpriteBolaPedra());
+				setSprite(ImageBall.getSpriteBolaPedra());
 				setIcon(getSprite().get(0));
 				break;
 
 			case Ball.TIPO_ESPINHO:
-				setSprite(Imagens.getSpriteBolaEspinho());
+				setSprite(ImageBall.getSpriteBolaEspinho());
 				setIcon(getSprite().get(0));
 				break;
 
 			case Ball.TIPO_VOLEI:
-				setSprite(Imagens.getSpriteBolaVolei());
+				setSprite(ImageBall.getSpriteBolaVolei());
 				setIcon(getSprite().get(0));
 				break;
 
 			case Ball.TIPO_GOLFE:
-				setSprite(Imagens.getSpriteBolaGolfe());
+				setSprite(ImageBall.getSpriteBolaGolfe());
 				setIcon(getSprite().get(0));
 				break;
 
 			case Ball.TIPO_BASQUETE:
-				setSprite(Imagens.getSpriteBolaBasquete());
+				setSprite(ImageBall.getSpriteBolaBasquete());
 				setIcon(getSprite().get(0));
 				break;
 
 			case Ball.TIPO_VULCAO:
-				setSprite(Imagens.getSpriteBolaVulcao());
+				setSprite(ImageBall.getSpriteBolaVulcao());
 				setIcon(getSprite().get(0));
 				break;
 

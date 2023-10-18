@@ -10,7 +10,7 @@ import williamjss.animations.platform.*;
 import williamjss.components.Block;
 import williamjss.components.Ball;
 import williamjss.components.Coin;
-import williamjss.model.Imagens;
+import williamjss.model.image.ImageObject;
 import williamjss.view.Cenario;
 import williamjss.view.Fases;
 import williamjss.view.Frame;
@@ -153,8 +153,8 @@ public class ControladorCenario implements KeyListener {
 				@Override
 				public void run() {
 
-					for (int i = 0; i < Imagens.getContagemRegressiva().size(); i++) {
-						cenario.getContagem().setIcon(Imagens.getContagemRegressiva().get(i));
+					for (int i = 0; i < ImageObject.getContagemRegressiva().size(); i++) {
+						cenario.getContagem().setIcon(ImageObject.getContagemRegressiva().get(i));
 						cenario.repaint();
 						try {
 							Thread.sleep(800);

@@ -9,7 +9,9 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import williamjss.model.Fontes;
-import williamjss.model.Imagens;
+import williamjss.model.image.ImageButton;
+import williamjss.model.image.ImageObject;
+import williamjss.model.image.ImageScene;
 
 public class Menu extends JPanel {
 
@@ -48,7 +50,7 @@ public class Menu extends JPanel {
 
     @Override
     public void paintComponent(Graphics g) {
-        g.drawImage(Imagens.getCenarioMenu(), 0, 0, null);
+        g.drawImage(ImageScene.getCenarioMenu(), 0, 0, null);
     }
 
     public JLabel getBotao(int codBotao) {
@@ -77,16 +79,16 @@ public class Menu extends JPanel {
     public void setBotaoSelecionado(int botaoSelecionado) {
         this.botaoSelecionado = botaoSelecionado;
 
-        getBotao(BOTAO_JOGAR).setIcon(Imagens.getImgBotao2());
-        getBotao(BOTAO_AJUDA).setIcon(Imagens.getImgBotao2());
-        getBotao(BOTAO_SAIR).setIcon(Imagens.getImgBotao2());
+        getBotao(BOTAO_JOGAR).setIcon(ImageButton.getImgBotao2());
+        getBotao(BOTAO_AJUDA).setIcon(ImageButton.getImgBotao2());
+        getBotao(BOTAO_SAIR).setIcon(ImageButton.getImgBotao2());
 
         if (botaoSelecionado == BOTAO_JOGAR) {
-            getBotao(botaoSelecionado).setIcon(Imagens.getImgBotao1Selecionado());
+            getBotao(botaoSelecionado).setIcon(ImageButton.getImgBotao1Selecionado());
         } else if (botaoSelecionado == BOTAO_AJUDA) {
-            getBotao(botaoSelecionado).setIcon(Imagens.getImgBotao1Selecionado());
+            getBotao(botaoSelecionado).setIcon(ImageButton.getImgBotao1Selecionado());
         } else {
-            getBotao(botaoSelecionado).setIcon(Imagens.getImgBotao1Selecionado());
+            getBotao(botaoSelecionado).setIcon(ImageButton.getImgBotao1Selecionado());
         }
     }
 
@@ -112,8 +114,8 @@ public class Menu extends JPanel {
         if (botaoJogar == null) {
             botaoJogar = new JLabel();
             ;
-            botaoJogar.setIcon(Imagens.getImgBotao1());
-            botaoJogar.setSize(Imagens.getImgBotao1().getIconWidth(), Imagens.getImgBotao1().getIconHeight());
+            botaoJogar.setIcon(ImageButton.getImgBotao1());
+            botaoJogar.setSize(ImageButton.getImgBotao1().getIconWidth(), ImageButton.getImgBotao1().getIconHeight());
             int y = getFundoMenu().getY() + (getFundoMenu().getHeight() / 3 - botaoJogar.getHeight());
             botaoJogar.setLocation(getWidth() / 2 - botaoJogar.getWidth() / 2, y);
         }
@@ -124,8 +126,8 @@ public class Menu extends JPanel {
     public JLabel getBotaoAjuda() {
         if (botaoAjuda == null) {
             botaoAjuda = new JLabel();
-            botaoAjuda.setIcon(Imagens.getImgBotao2());
-            botaoAjuda.setSize(Imagens.getImgBotao2().getIconWidth(), Imagens.getImgBotao2().getIconHeight());
+            botaoAjuda.setIcon(ImageButton.getImgBotao2());
+            botaoAjuda.setSize(ImageButton.getImgBotao2().getIconWidth(), ImageButton.getImgBotao2().getIconHeight());
             int y = getBotaoJogar().getY() + getBotaoJogar().getHeight()
                     + (getFundoMenu().getHeight() / 3 - getBotaoJogar().getHeight()) / 2;
             botaoAjuda.setLocation(getWidth() / 2 - botaoAjuda.getWidth() / 2, y);
@@ -137,8 +139,8 @@ public class Menu extends JPanel {
     public JLabel getBotaoSair() {
         if (botaoSair == null) {
             botaoSair = new JLabel();
-            botaoSair.setIcon(Imagens.getImgBotao1());
-            botaoSair.setSize(Imagens.getImgBotao1().getIconWidth(), Imagens.getImgBotao1().getIconHeight());
+            botaoSair.setIcon(ImageButton.getImgBotao1());
+            botaoSair.setSize(ImageButton.getImgBotao1().getIconWidth(), ImageButton.getImgBotao1().getIconHeight());
             int y = getBotaoAjuda().getY() + getBotaoAjuda().getHeight()
                     + (getFundoMenu().getHeight() / 3 - getBotaoJogar().getHeight()) / 2;
             botaoSair.setLocation(getWidth() / 2 - botaoSair.getWidth() / 2, y);
@@ -150,8 +152,8 @@ public class Menu extends JPanel {
     public JLabel getLogo() {
         if (logo == null) {
             logo = new JLabel();
-            logo.setIcon(Imagens.getLogoJumpBall());
-            logo.setSize(Imagens.getLogoJumpBall().getIconWidth(), Imagens.getLogoJumpBall().getIconHeight());
+            logo.setIcon(ImageObject.getLogoJumpBall());
+            logo.setSize(ImageObject.getLogoJumpBall().getIconWidth(), ImageObject.getLogoJumpBall().getIconHeight());
             logo.setLocation(getWidth() / 2 - logo.getWidth() / 2, 10);
         }
         return logo;
@@ -160,8 +162,8 @@ public class Menu extends JPanel {
     public JLabel getFundoMenu() {
         if (fundoMenu == null) {
             fundoMenu = new JLabel();
-            fundoMenu.setIcon(Imagens.getFundoMenu());
-            fundoMenu.setSize(Imagens.getFundoMenu().getIconWidth(), Imagens.getFundoMenu().getIconHeight());
+            fundoMenu.setIcon(ImageScene.getFundoMenu());
+            fundoMenu.setSize(ImageScene.getFundoMenu().getIconWidth(), ImageScene.getFundoMenu().getIconHeight());
             fundoMenu.setLocation(getWidth() / 2 - fundoMenu.getWidth() / 2, 260);
         }
         return fundoMenu;

@@ -12,7 +12,9 @@ import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 
 import williamjss.model.Fontes;
-import williamjss.model.Imagens;
+import williamjss.model.image.ImageButton;
+import williamjss.model.image.ImageObject;
+import williamjss.model.image.ImageScene;
 
 public class Sair extends JPanel {
 
@@ -51,7 +53,7 @@ public class Sair extends JPanel {
 
     @Override
     public void paintComponent(Graphics g) {
-        g.drawImage(Imagens.getCenarioMenu(), 0, 0, null);
+        g.drawImage(ImageScene.getCenarioMenu(), 0, 0, null);
     }
 
     public JLabel getBotao(int codBotao) {
@@ -70,23 +72,22 @@ public class Sair extends JPanel {
     public void setBotaoSelecionado(int botaoSelecionado) {
         this.botaoSelecionado = botaoSelecionado;
 
-        getBotao(BOTAO_SIM).setIcon(Imagens.getImgBotao1());
-        getBotao(BOTAO_NAO).setIcon(Imagens.getImgBotao2());
+        getBotao(BOTAO_SIM).setIcon(ImageButton.getImgBotao1());
+        getBotao(BOTAO_NAO).setIcon(ImageButton.getImgBotao2());
 
         if (botaoSelecionado == BOTAO_SIM) {
-            getBotao(botaoSelecionado).setIcon(Imagens.getImgBotao1Selecionado());
+            getBotao(botaoSelecionado).setIcon(ImageButton.getImgBotao1Selecionado());
         } else {
-            getBotao(botaoSelecionado).setIcon(Imagens.getImgBotao2Selecionado());
+            getBotao(botaoSelecionado).setIcon(ImageButton.getImgBotao2Selecionado());
         }
-
     }
 
     // Fundo Transparente
     public JLabel getFundoSair() {
         if (fundoSair == null) {
             fundoSair = new JLabel();
-            fundoSair.setIcon(Imagens.getFundoSair());
-            fundoSair.setSize(Imagens.getFundoSair().getIconWidth(), Imagens.getFundoSair().getIconHeight());
+            fundoSair.setIcon(ImageScene.getFundoSair());
+            fundoSair.setSize(ImageScene.getFundoSair().getIconWidth(), ImageScene.getFundoSair().getIconHeight());
             fundoSair.setLocation(getWidth() / 2 - fundoSair.getWidth() / 2,
                     getHeight() / 2 - fundoSair.getHeight() / 2 + 90);
         }
@@ -136,8 +137,8 @@ public class Sair extends JPanel {
     public JLabel getBotaoSim() {
         if (botaoSim == null) {
             botaoSim = new JLabel();
-            botaoSim.setIcon(Imagens.getImgBotao1());
-            botaoSim.setSize(Imagens.getImgBotao1().getIconWidth(), Imagens.getImgBotao1().getIconHeight());
+            botaoSim.setIcon(ImageButton.getImgBotao1());
+            botaoSim.setSize(ImageButton.getImgBotao1().getIconWidth(), ImageButton.getImgBotao1().getIconHeight());
             botaoSim.setLocation(getWidth() / 2 - botaoSim.getWidth() - 20,
                     getFundoSair().getY() + getFundoSair().getHeight() / 2 + 10);
         }
@@ -148,8 +149,8 @@ public class Sair extends JPanel {
     public JLabel getBotaoNao() {
         if (botaoNao == null) {
             botaoNao = new JLabel();
-            botaoNao.setIcon(Imagens.getImgBotao2());
-            botaoNao.setSize(Imagens.getImgBotao2().getIconWidth(), Imagens.getImgBotao2().getIconHeight());
+            botaoNao.setIcon(ImageButton.getImgBotao2());
+            botaoNao.setSize(ImageButton.getImgBotao2().getIconWidth(), ImageButton.getImgBotao2().getIconHeight());
             botaoNao.setLocation(getWidth() / 2 + 20, getFundoSair().getY() + getFundoSair().getHeight() / 2 + 10);
         }
         return botaoNao;
@@ -159,9 +160,9 @@ public class Sair extends JPanel {
     public JLabel getBotaoFechar() {
         if (botaoFechar == null) {
             botaoFechar = new JLabel();
-            botaoFechar.setIcon(Imagens.getImgBotaoFechar());
-            botaoFechar.setSize(Imagens.getImgBotaoFechar().getIconWidth(),
-                    Imagens.getImgBotaoFechar().getIconHeight());
+            botaoFechar.setIcon(ImageButton.getImgBotaoFechar());
+            botaoFechar.setSize(ImageButton.getImgBotaoFechar().getIconWidth(),
+                    ImageButton.getImgBotaoFechar().getIconHeight());
             int x = getFundoSair().getX() + getFundoSair().getWidth() - botaoFechar.getWidth() / 2 - 10;
             int y = getFundoSair().getY() - botaoFechar.getHeight() / 2 + 10;
             botaoFechar.setLocation(x, y);
@@ -173,8 +174,8 @@ public class Sair extends JPanel {
     public JLabel getLogo() {
         if (logo == null) {
             logo = new JLabel();
-            logo.setIcon(Imagens.getLogoJumpBall());
-            logo.setSize(Imagens.getLogoJumpBall().getIconWidth(), Imagens.getLogoJumpBall().getIconHeight());
+            logo.setIcon(ImageObject.getLogoJumpBall());
+            logo.setSize(ImageObject.getLogoJumpBall().getIconWidth(), ImageObject.getLogoJumpBall().getIconHeight());
             logo.setLocation(getWidth() / 2 - logo.getWidth() / 2, 10);
         }
         return logo;

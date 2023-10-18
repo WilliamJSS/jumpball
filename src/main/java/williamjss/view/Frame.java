@@ -2,7 +2,7 @@ package williamjss.view;
 
 import javax.swing.JFrame;
 
-import williamjss.model.Imagens;
+import williamjss.model.image.ImageObject;
 
 public class Frame extends JFrame {
 
@@ -10,7 +10,7 @@ public class Frame extends JFrame {
 
     public Frame() {
         setTitle("JumpBall 2D");
-        setIconImage(Imagens.getIconeJumpBall());
+        setIconImage(ImageObject.getIconeJumpBall());
         setSize(960, 640); // (-16, -39)
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);

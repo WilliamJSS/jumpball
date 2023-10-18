@@ -6,7 +6,8 @@ import williamjss.components.Block;
 import williamjss.components.Ball;
 import williamjss.components.Coin;
 import williamjss.components.Platform;
-import williamjss.model.Imagens;
+import williamjss.model.image.ImageObject;
+import williamjss.model.image.ImageScene;
 import williamjss.view.Cenario;
 
 public class GerenciadorCenario {
@@ -32,7 +33,7 @@ public class GerenciadorCenario {
 
 	public void gerarBandeira() {
 		Block bandeira = new Block();
-		bandeira.atualizarBloco(Block.TIPO_BANDEIRA, Imagens.getImgBandeira());
+		bandeira.atualizarBloco(Block.TIPO_BANDEIRA, ImageObject.getImgBandeira());
 
 		Block ultimoBloco = getPlataformas().get(getPlataformas().size() - 1);
 		bandeira.setLocation(ultimoBloco.getX() - 3, ultimoBloco.getY() - bandeira.getHeight());
@@ -74,7 +75,7 @@ public class GerenciadorCenario {
 				setPlataformas(gerarPlataformas(fase, Block.TIPO_GRAMA));
 				setPlataformaInferior(gerarPlataformaInferior(Block.TIPO_AGUA));
 
-				cenario.setImgCenario(Imagens.getCenarioCampo());
+				cenario.setImgCenario(ImageScene.getCenarioCampo());
 
 				break;
 
@@ -85,7 +86,7 @@ public class GerenciadorCenario {
 				setPlataformas(gerarPlataformas(fase, Block.TIPO_PEDRA));
 				setPlataformaInferior(gerarPlataformaInferior(Block.TIPO_AGUA));
 
-				cenario.setImgCenario(Imagens.getCenarioMontanhas());
+				cenario.setImgCenario(ImageScene.getCenarioMontanhas());
 
 				break;
 
@@ -96,7 +97,7 @@ public class GerenciadorCenario {
 				setPlataformas(gerarPlataformas(fase, Block.TIPO_GELO));
 				setPlataformaInferior(gerarPlataformaInferior(Block.TIPO_NEVE));
 
-				cenario.setImgCenario(Imagens.getCenarioNeve());
+				cenario.setImgCenario(ImageScene.getCenarioNeve());
 
 				break;
 
@@ -107,7 +108,7 @@ public class GerenciadorCenario {
 				setPlataformas(gerarPlataformas(fase, Block.TIPO_AREIA));
 				setPlataformaInferior(gerarPlataformaInferior(Block.TIPO_AGUA));
 
-				cenario.setImgCenario(Imagens.getCenarioPraia());
+				cenario.setImgCenario(ImageScene.getCenarioPraia());
 
 				break;
 
@@ -118,7 +119,7 @@ public class GerenciadorCenario {
 				setPlataformas(gerarPlataformas(fase, Block.TIPO_PEDRA));
 				setPlataformaInferior(gerarPlataformaInferior(Block.TIPO_LAVA));
 
-				cenario.setImgCenario(Imagens.getCenarioVulcao());
+				cenario.setImgCenario(ImageScene.getCenarioVulcao());
 
 				break;
 
@@ -129,7 +130,7 @@ public class GerenciadorCenario {
 				setPlataformas(gerarPlataformas(fase, Block.TIPO_AGUA));
 				setPlataformaInferior(gerarPlataformaInferior(Block.TIPO_AREIA));
 
-				cenario.setImgCenario(Imagens.getCenarioVolei());
+				cenario.setImgCenario(ImageScene.getCenarioVolei());
 
 				break;
 
@@ -140,7 +141,7 @@ public class GerenciadorCenario {
 				setPlataformas(gerarPlataformas(fase, Block.TIPO_BASQUETE));
 				setPlataformaInferior(gerarPlataformaInferior(Block.TIPO_ESPINHO));
 
-				cenario.setImgCenario(Imagens.getCenarioBasquete());
+				cenario.setImgCenario(ImageScene.getCenarioBasquete());
 
 				break;
 
@@ -151,7 +152,7 @@ public class GerenciadorCenario {
 				setPlataformas(gerarPlataformas(fase, Block.TIPO_GRAMADO));
 				setPlataformaInferior(gerarPlataformaInferior(Block.TIPO_AGUA));
 
-				cenario.setImgCenario(Imagens.getCenarioGolfe());
+				cenario.setImgCenario(ImageScene.getCenarioGolfe());
 
 				break;
 		}
