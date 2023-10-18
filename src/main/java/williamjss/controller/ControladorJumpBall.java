@@ -1,5 +1,7 @@
 package williamjss.controller;
 
+import java.net.URISyntaxException;
+
 import williamjss.model.Fontes;
 import williamjss.view.Ajuda;
 import williamjss.view.Cenario;
@@ -32,7 +34,11 @@ public class ControladorJumpBall {
 
 	public ControladorJumpBall() {
 
-		Fontes.carregarFontes();
+		try {
+            Fontes.carregarFontes();
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
 
 		frame = new Frame();
 
