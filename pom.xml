@@ -15,8 +15,8 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>1.8</maven.compiler.source>
-    <maven.compiler.target>1.8</maven.compiler.target>
+    <maven.compiler.source>17</maven.compiler.source>
+    <maven.compiler.target>17</maven.compiler.target>
   </properties>
 
   <dependencies>
@@ -28,8 +28,7 @@
   </dependencies>
 
   <build>
-    <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be
-            moved to parent pom) -->
+    <pluginManagement>
       <plugins>
         <!-- clean lifecycle, see
                 https://maven.apache.org/ref/current/maven-core/lifecycles.html#clean_Lifecycle -->
@@ -72,6 +71,19 @@
         <plugin>
           <artifactId>maven-project-info-reports-plugin</artifactId>
           <version>3.0.0</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-jlink-plugin</artifactId>
+          <version>3.1.0</version>
+          <configuration>
+            <!-- configure as you please -->
+            <noManPages>true</noManPages>
+            <noHeaderFiles>true</noHeaderFiles>
+            <stripDebug>true</stripDebug>
+            <compress>2</compress>
+            <verbose>true</verbose>
+          </configuration>
         </plugin>
       </plugins>
     </pluginManagement>
