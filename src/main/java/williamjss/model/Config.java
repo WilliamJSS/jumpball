@@ -5,14 +5,17 @@ import java.io.File;
 import java.io.FileReader;
 
 import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 public class Config {
 
     private static File scenesFile;
     private static File defaultScenesFile;
+    private static File soundFile;
     private static JsonArray scenes;
     private static JsonArray defaultScenes;
+    private static JsonObject sound;
 
     private static File getFile(String name) {
         return new File("src/main/resources/config/" + name);
@@ -30,6 +33,13 @@ public class Config {
             defaultScenesFile = getFile("scenes.default.json");
         }
         return defaultScenesFile;
+    }
+
+    public static File getSoundFile() {
+        if (soundFile == null) {
+            soundFile = getFile("sound.json");
+        }
+        return soundFile;
     }
 
     public static JsonArray getScenes() {
@@ -68,5 +78,24 @@ public class Config {
         }
 
         return defaultScenes;
+    }
+
+    public static JsonObject getSound() {
+        if (sound == null) {
+            try {
+                FileReader fr = new FileReader(getSoundFile());
+                BufferedReader br = new BufferedReader(fr);
+
+                sound = JsonParser.parseReader(br).getAsJsonObject();
+
+                br.close();
+                fr.close();
+
+            } catch (Exception e) {
+                return null;
+            }
+        }
+
+        return sound;
     }
 }

@@ -35,18 +35,25 @@ public class GerenciadorSom {
                     -15, // 6 - Efeito pulo
                     -20 // 7 - Efeito pegar moeda
             };
-            // volume = new float[] {
-            // -50, // 0 - Musica do menu
-            // -50, // 1 - Musica durante a partida
-            // -50, // 2 - Toque de vitoria // -20
-            // -50, // 3 - Toque de derrota
-            // -50, // 4 - Navegar menu
-            // -50, // 5 - Selecionar botao
-            // -50, // 6 - Efeito pulo
-            // -50 // 7 - Efeito pegar moeda
-            // };
         }
         return volume;
+    }
+
+    public void setVolume(float[] volume) {
+        this.volume = volume;
+    }
+
+    public void enableSounds(boolean music, boolean effects) {
+        setVolume(new float[] {
+                music ? -10 : -50, // 0 - Musica do menu
+                music ? +05 : -50, // 1 - Musica durante a partida
+                music ? -20 : -50, // 2 - Toque de vitoria
+                music ? -20 : -50, // 3 - Toque de derrota
+                effects ? -20 : -50, // 4 - Navegar menu
+                effects ? -10 : -50, // 5 - Selecionar botao
+                effects ? -15 : -50, // 6 - Efeito pulo
+                effects ? -20 : -50 // 7 - Efeito pegar moeda
+        });
     }
 
     // Musica menu

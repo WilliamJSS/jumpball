@@ -3,6 +3,9 @@ package williamjss.controller;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import com.google.gson.JsonObject;
+
+import williamjss.model.Config;
 import williamjss.view.Ajuda;
 import williamjss.view.Fases;
 import williamjss.view.Frame;
@@ -20,8 +23,10 @@ public class ControladorMenu implements KeyListener {
     private Options opcoes;
     private GerenciadorSom gs;
     private boolean selecting;
+    private JsonObject sound;
 
-    public ControladorMenu(Frame frame, Menu menu, Ajuda ajuda, Options opcoes, Fases fases, Sair sair, GerenciadorSom gs) {
+    public ControladorMenu(Frame frame, Menu menu, Ajuda ajuda, Options opcoes, Fases fases, Sair sair,
+            GerenciadorSom gs) {
         this.frame = frame;
         this.menu = menu;
         this.fases = fases;
@@ -30,7 +35,9 @@ public class ControladorMenu implements KeyListener {
         this.opcoes = opcoes;
         this.gs = gs;
         this.selecting = false;
+        this.sound = Config.getSound();
 
+        loadSoundConfig();
         gs.playMusicaMenu();
     }
 
@@ -40,6 +47,10 @@ public class ControladorMenu implements KeyListener {
 
     public void removeEventos() {
         frame.removeKeyListener(this);
+    }
+
+    public void loadSoundConfig() {
+        gs.enableSounds(sound.get("music").getAsBoolean(), sound.get("effects").getAsBoolean());
     }
 
     @Override

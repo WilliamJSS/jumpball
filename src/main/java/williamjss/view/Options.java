@@ -8,6 +8,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import com.google.gson.JsonObject;
+
+import williamjss.model.Config;
 import williamjss.model.Fontes;
 import williamjss.model.image.ImageButton;
 import williamjss.model.image.ImageScene;
@@ -33,6 +36,10 @@ public class Options extends JPanel {
     private JLabel descriptionEnableEffects;
 
     private int botaoSelecionado;
+
+    private JsonObject sound;
+    private boolean effectsEnabled;
+    private boolean musicEnabled;
 
     public static final int BOTAO_REINICIAR = 0;
     public static final int BOTAO_MUSICA = 1;
@@ -61,6 +68,10 @@ public class Options extends JPanel {
         add(getFundoCenario());
 
         setBotaoSelecionado(BOTAO_REINICIAR);
+
+        this.sound = Config.getSound();
+        setEffectsEnabled(sound.get("effects").getAsBoolean());
+        setMusicEnabled(sound.get("music").getAsBoolean());
     }
 
     @Override
@@ -91,6 +102,24 @@ public class Options extends JPanel {
         getBotao(BOTAO_EFEITOS).setIcon(ImageButton.getImgBotao2());
 
         getBotao(botaoSelecionado).setIcon(ImageButton.getImgBotao1Selecionado());
+    }
+
+    public boolean isEffectsEnabled() {
+        return effectsEnabled;
+    }
+
+    public void setEffectsEnabled(boolean effectsEnabled) {
+        getTextButtonEnableEffects().setText(effectsEnabled ? "DESATIVAR" : "ATIVAR");
+        this.effectsEnabled = effectsEnabled;
+    }
+
+    public boolean isMusicEnabled() {
+        return musicEnabled;
+    }
+
+    public void setMusicEnabled(boolean musicEnabled) {
+        getTextButtonEnableMusic().setText(musicEnabled ? "DESATIVAR" : "ATIVAR");
+        this.musicEnabled = musicEnabled;
     }
 
     public JLabel getTituloOpcoes() {
