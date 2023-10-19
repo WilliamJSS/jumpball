@@ -1,6 +1,5 @@
 package williamjss.model.image;
 
-import java.net.URL;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -17,13 +16,13 @@ public class ImageBall {
     private static ArrayList<ImageIcon> spriteBolaBasquete;
     private static ArrayList<ImageIcon> spriteBolaVulcao;
 
-    private static URL getResource(String name) {
-        return ImageBall.class.getResource("/img/bola/" + name + ".png");
+    private static ImageIcon getResource(String name) {
+        return new ImageIcon("src/main/resources/img/bola/" + name + ".png");
     }
 
     public static ImageIcon getBolaPadrao() {
         if (bolaPadrao == null) {
-            bolaPadrao = new ImageIcon(getResource("bola-padrao"));
+            bolaPadrao = getResource("bola-padrao");
         }
         return bolaPadrao;
     }
@@ -32,7 +31,7 @@ public class ImageBall {
         if (spriteBolaVulcao == null) {
             spriteBolaVulcao = new ArrayList<ImageIcon>();
             for (int i = 1; i <= 8; i++) {
-                spriteBolaVulcao.add(new ImageIcon(getResource("vulcao/bola-vulcao-" + i)));
+                spriteBolaVulcao.add(getResource("vulcao/bola-vulcao-" + i));
             }
         }
         return spriteBolaVulcao;
@@ -42,7 +41,7 @@ public class ImageBall {
         if (spriteBolaBasquete == null) {
             spriteBolaBasquete = new ArrayList<ImageIcon>();
             for (int i = 1; i <= 8; i++) {
-                spriteBolaBasquete.add(new ImageIcon(getResource("basquete/bola-basquete-" + i)));
+                spriteBolaBasquete.add(getResource("basquete/bola-basquete-" + i));
             }
         }
         return spriteBolaBasquete;
@@ -52,7 +51,7 @@ public class ImageBall {
         if (spriteBolaPedra == null) {
             spriteBolaPedra = new ArrayList<ImageIcon>();
             for (int i = 1; i <= 8; i++) {
-                spriteBolaPedra.add(new ImageIcon(getResource("pedra/bola-pedra-" + i)));
+                spriteBolaPedra.add(getResource("pedra/bola-pedra-" + i));
             }
         }
         return spriteBolaPedra;
@@ -62,7 +61,7 @@ public class ImageBall {
         if (spriteBolaFutebol == null) {
             spriteBolaFutebol = new ArrayList<ImageIcon>();
             for (int i = 1; i <= 8; i++) {
-                spriteBolaFutebol.add(new ImageIcon(getResource("futebol/bola-futebol-" + i)));
+                spriteBolaFutebol.add(getResource("futebol/bola-futebol-" + i));
             }
         }
         return spriteBolaFutebol;
@@ -72,7 +71,7 @@ public class ImageBall {
         if (spriteBolaPraia == null) {
             spriteBolaPraia = new ArrayList<ImageIcon>();
             for (int i = 1; i <= 8; i++) {
-                spriteBolaPraia.add(new ImageIcon(getResource("praia/bola-praia-" + i)));
+                spriteBolaPraia.add(getResource("praia/bola-praia-" + i));
             }
         }
         return spriteBolaPraia;
@@ -82,7 +81,7 @@ public class ImageBall {
         if (spriteBolaEspinho == null) {
             spriteBolaEspinho = new ArrayList<ImageIcon>();
             for (int i = 1; i <= 16; i++) {
-                spriteBolaEspinho.add(new ImageIcon(getResource("espinho/bola-espinho-" + i)));
+                spriteBolaEspinho.add(getResource("espinho/bola-espinho-" + i));
             }
         }
         return spriteBolaEspinho;
@@ -92,7 +91,7 @@ public class ImageBall {
         if (spriteBolaVolei == null) {
             spriteBolaVolei = new ArrayList<ImageIcon>();
             for (int i = 1; i <= 8; i++) {
-                spriteBolaVolei.add(new ImageIcon(getResource("volei/bola-volei-" + i)));
+                spriteBolaVolei.add(getResource("volei/bola-volei-" + i));
             }
         }
         return spriteBolaVolei;
@@ -102,7 +101,7 @@ public class ImageBall {
         if (spriteBolaGolfe == null) {
             spriteBolaGolfe = new ArrayList<ImageIcon>();
             for (int i = 1; i <= 8; i++) {
-                spriteBolaGolfe.add(new ImageIcon(getResource("golfe/bolinha-de-golfe-" + i)));
+                spriteBolaGolfe.add(getResource("golfe/bolinha-de-golfe-" + i));
             }
         }
         return spriteBolaGolfe;

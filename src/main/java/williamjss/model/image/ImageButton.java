@@ -1,7 +1,5 @@
 package williamjss.model.image;
 
-import java.net.URL;
-
 import javax.swing.ImageIcon;
 
 public class ImageButton {
@@ -20,97 +18,97 @@ public class ImageButton {
     private static ImageIcon imgBotaoAvancarSelecionado;
     private static ImageIcon imgBotaoAvancarBloqueado;
 
-    private static URL getResource(String name) {
-        return ImageButton.class.getResource("/img/botao/botao-" + name + ".png");
+    private static ImageIcon getResource(String name) {
+        return new ImageIcon("src/main/resources/img/botao/botao-" + name + ".png");
     }
 
     public static ImageIcon getImgBotao1() {
         if (imgBotao1 == null) {
-            imgBotao1 = new ImageIcon(getResource("1"));
+            imgBotao1 = getResource("1");
         }
         return imgBotao1;
     }
 
     public static ImageIcon getImgBotao2() {
         if (imgBotao2 == null) {
-            imgBotao2 = new ImageIcon(getResource("2"));
+            imgBotao2 = getResource("2");
         }
         return imgBotao2;
     }
 
     public static ImageIcon getImgBotao1Selecionado() {
         if (imgBotao1Selecionado == null) {
-            imgBotao1Selecionado = new ImageIcon(getResource("1-selecionado"));
+            imgBotao1Selecionado = getResource("1-selecionado");
         }
         return imgBotao1Selecionado;
     }
 
     public static ImageIcon getImgBotao2Selecionado() {
         if (imgBotao2Selecionado == null) {
-            imgBotao2Selecionado = new ImageIcon(getResource("2-selecionado"));
+            imgBotao2Selecionado = getResource("2-selecionado");
         }
         return imgBotao2Selecionado;
     }
 
     public static ImageIcon getImgBotaoVoltar() {
         if (imgBotaoVoltar == null) {
-            imgBotaoVoltar = new ImageIcon(getResource("voltar"));
+            imgBotaoVoltar = getResource("voltar");
         }
         return imgBotaoVoltar;
     }
 
     public static ImageIcon getImgBotaoRepetir() {
         if (imgBotaoRepetir == null) {
-            imgBotaoRepetir = new ImageIcon(getResource("repetir"));
+            imgBotaoRepetir = getResource("repetir");
         }
         return imgBotaoRepetir;
     }
 
     public static ImageIcon getImgBotaoRepetirSelecionado() {
         if (imgBotaoRepetirSelecionado == null) {
-            imgBotaoRepetirSelecionado = new ImageIcon(getResource("repetir-selecionado"));
+            imgBotaoRepetirSelecionado = getResource("repetir-selecionado");
         }
         return imgBotaoRepetirSelecionado;
     }
 
     public static ImageIcon getImgBotaoMenu() {
         if (imgBotaoMenu == null) {
-            imgBotaoMenu = new ImageIcon(getResource("menu"));
+            imgBotaoMenu = getResource("menu");
         }
         return imgBotaoMenu;
     }
 
     public static ImageIcon getImgBotaoMenuSelecionado() {
         if (imgBotaoMenuSelecionado == null) {
-            imgBotaoMenuSelecionado = new ImageIcon(getResource("menu-selecionado"));
+            imgBotaoMenuSelecionado = getResource("menu-selecionado");
         }
         return imgBotaoMenuSelecionado;
     }
 
     public static ImageIcon getImgBotaoFechar() {
         if (imgBotaoFechar == null) {
-            imgBotaoFechar = new ImageIcon(getResource("fechar"));
+            imgBotaoFechar = getResource("fechar");
         }
         return imgBotaoFechar;
     }
 
     public static ImageIcon getImgBotaoAvancar() {
         if (imgBotaoAvancar == null) {
-            imgBotaoAvancar = new ImageIcon(getResource("avancar"));
+            imgBotaoAvancar = getResource("avancar");
         }
         return imgBotaoAvancar;
     }
 
     public static ImageIcon getImgBotaoAvancarSelecionado() {
         if (imgBotaoAvancarSelecionado == null) {
-            imgBotaoAvancarSelecionado = new ImageIcon(getResource("avancar-selecionado"));
+            imgBotaoAvancarSelecionado = getResource("avancar-selecionado");
         }
         return imgBotaoAvancarSelecionado;
     }
 
     public static ImageIcon getImgBotaoAvancarBloqueado() {
         if (imgBotaoAvancarBloqueado == null) {
-            imgBotaoAvancarBloqueado = new ImageIcon(getResource("avancar-bloqueado"));
+            imgBotaoAvancarBloqueado = getResource("avancar-bloqueado");
         }
         return imgBotaoAvancarBloqueado;
     }

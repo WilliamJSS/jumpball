@@ -1,36 +1,26 @@
 package williamjss.model.audio;
 
 import java.io.File;
-import java.net.URISyntaxException;
-import java.net.URL;
 
 public class Music {
     private static File musicaMenu;
-	private static File musicaCenario;
+    private static File musicaCenario;
 
-	public static File getMusicaMenu() {
+    private static File getFile(String name) {
+        return new File("src/main/resources/audio/" + name);
+    }
+
+    public static File getMusicaMenu() {
         if (musicaMenu == null) {
-            URL resource = Music.class.getResource("/audio/On The Go.wav");
-            try {
-                musicaMenu = new File(resource.toURI());
-            } catch (URISyntaxException e) {
-                e.printStackTrace();
-                return null;
-            }
+            musicaMenu = getFile("On The Go.wav");
         }
-		return musicaMenu;
-	}
+        return musicaMenu;
+    }
 
-	public static File getMusicaCenario() {
+    public static File getMusicaCenario() {
         if (musicaCenario == null) {
-            URL resource = Music.class.getResource("/audio/Saiko Music Fundo.wav");
-            try {
-                musicaCenario = new File(resource.toURI());
-            } catch (URISyntaxException e) {
-                e.printStackTrace();
-                return null;
-            }
+            musicaCenario = getFile("Saiko Music Fundo.wav");
         }
-		return musicaCenario;
-	}
+        return musicaCenario;
+    }
 }

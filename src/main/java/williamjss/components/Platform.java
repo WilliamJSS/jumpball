@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 
+import williamjss.model.image.ImageBlock;
+
 public class Platform extends ArrayList<Block> {
 
     private ArrayList<int[]> padroes;
@@ -111,53 +113,53 @@ public class Platform extends ArrayList<Block> {
         switch (type) {
 
             case Block.TIPO_AGUA:
-                imgBloco1 = williamjss.model.image.ImageBlock.getBlocoAgua();
-                imgBloco2 = williamjss.model.image.ImageBlock.getBlocoAgua();
+                imgBloco1 = ImageBlock.getBlocoAgua();
+                imgBloco2 = ImageBlock.getBlocoAgua();
                 break;
 
             case Block.TIPO_GELO:
-                imgBloco1 = williamjss.model.image.ImageBlock.getBlocoGelo();
-                imgBloco2 = williamjss.model.image.ImageBlock.getBlocoGelo();
+                imgBloco1 = ImageBlock.getBlocoGelo();
+                imgBloco2 = ImageBlock.getBlocoGelo();
                 break;
 
             case Block.TIPO_GRAMA:
-                imgBloco1 = williamjss.model.image.ImageBlock.getBlocoGrama1();
-                imgBloco2 = williamjss.model.image.ImageBlock.getBlocoGrama2();
+                imgBloco1 = ImageBlock.getBlocoGrama1();
+                imgBloco2 = ImageBlock.getBlocoGrama2();
                 break;
 
             case Block.TIPO_GRAMADO:
-                imgBloco1 = williamjss.model.image.ImageBlock.getBlocoGrama();
-                imgBloco2 = williamjss.model.image.ImageBlock.getBlocoGrama();
+                imgBloco1 = ImageBlock.getBlocoGrama();
+                imgBloco2 = ImageBlock.getBlocoGrama();
                 break;
 
             case Block.TIPO_LAVA:
-                imgBloco1 = williamjss.model.image.ImageBlock.getBlocoLava();
-                imgBloco2 = williamjss.model.image.ImageBlock.getBlocoLava();
+                imgBloco1 = ImageBlock.getBlocoLava();
+                imgBloco2 = ImageBlock.getBlocoLava();
                 break;
 
             case Block.TIPO_PEDRA:
-                imgBloco1 = williamjss.model.image.ImageBlock.getBlocoPedra();
-                imgBloco2 = williamjss.model.image.ImageBlock.getBlocoPedra();
+                imgBloco1 = ImageBlock.getBlocoPedra();
+                imgBloco2 = ImageBlock.getBlocoPedra();
                 break;
 
             case Block.TIPO_AREIA:
-                imgBloco1 = williamjss.model.image.ImageBlock.getBlocoAreia();
-                imgBloco2 = williamjss.model.image.ImageBlock.getBlocoAreia();
+                imgBloco1 = ImageBlock.getBlocoAreia();
+                imgBloco2 = ImageBlock.getBlocoAreia();
                 break;
 
             case Block.TIPO_ESPINHO:
-                imgBloco1 = williamjss.model.image.ImageBlock.getBlocoEspinho();
-                imgBloco2 = williamjss.model.image.ImageBlock.getBlocoEspinho();
+                imgBloco1 = ImageBlock.getBlocoEspinho();
+                imgBloco2 = ImageBlock.getBlocoEspinho();
                 break;
 
             case Block.TIPO_NEVE:
-                imgBloco1 = williamjss.model.image.ImageBlock.getBlocoNeve();
-                imgBloco2 = williamjss.model.image.ImageBlock.getBlocoNeve();
+                imgBloco1 = ImageBlock.getBlocoNeve();
+                imgBloco2 = ImageBlock.getBlocoNeve();
                 break;
 
             case Block.TIPO_BASQUETE:
-                imgBloco1 = williamjss.model.image.ImageBlock.getBlocoBasquete();
-                imgBloco2 = williamjss.model.image.ImageBlock.getBlocoBasquete();
+                imgBloco1 = ImageBlock.getBlocoBasquete();
+                imgBloco2 = ImageBlock.getBlocoBasquete();
                 break;
 
             default:

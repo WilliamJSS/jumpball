@@ -1,8 +1,6 @@
 package williamjss.model.audio;
 
 import java.io.File;
-import java.net.URISyntaxException;
-import java.net.URL;
 
 public class Ringtone {
 
@@ -11,54 +9,34 @@ public class Ringtone {
     private static File navegarMenu;
     private static File selecionarBotao;
 
+    private static File getFile(String name) {
+        return new File("src/main/resources/audio/" + name);
+    }
+
     public static File getToqueDerrota() {
         if (toqueDerrota == null) {
-            URL resource = Ringtone.class.getResource("/audio/toque-derrota.wav");
-            try {
-                toqueDerrota = new File(resource.toURI());
-            } catch (URISyntaxException e) {
-                e.printStackTrace();
-                return null;
-            }
+            toqueDerrota = getFile("toque-derrota.wav");
         }
         return toqueDerrota;
     }
 
     public static File getToqueVitoria() {
         if (toqueVitoria == null) {
-            URL resource = Ringtone.class.getResource("/audio/toque-vitoria.wav");
-            try {
-                toqueVitoria = new File(resource.toURI());
-            } catch (URISyntaxException e) {
-                e.printStackTrace();
-                return null;
-            }
+            toqueVitoria = getFile("toque-vitoria.wav");
         }
         return toqueVitoria;
     }
 
     public static File getToqueNavegarMenu() {
         if (navegarMenu == null) {
-            URL resource = Ringtone.class.getResource("/audio/navegar-menu.wav");
-            try {
-                navegarMenu = new File(resource.toURI());
-            } catch (URISyntaxException e) {
-                e.printStackTrace();
-                return null;
-            }
+            navegarMenu = getFile("navegar-menu.wav");
         }
         return navegarMenu;
     }
 
     public static File getToqueSelecionarBotao() {
         if (selecionarBotao == null) {
-            URL resource = Ringtone.class.getResource("/audio/selecionar-botao.wav");
-            try {
-                selecionarBotao = new File(resource.toURI());
-            } catch (URISyntaxException e) {
-                e.printStackTrace();
-                return null;
-            }
+            selecionarBotao = getFile("selecionar-botao.wav");
         }
         return selecionarBotao;
     }

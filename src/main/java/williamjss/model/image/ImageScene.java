@@ -1,7 +1,6 @@
 package williamjss.model.image;
 
 import java.awt.Image;
-import java.net.URL;
 
 import javax.swing.ImageIcon;
 
@@ -29,153 +28,153 @@ public class ImageScene {
     private static ImageIcon miniCenarioVolei;
     private static ImageIcon miniCenarioVulcao;
 
-    private static URL getResource(String name) {
-        return ImageScene.class.getResource("/img/cenario/" + name + ".png");
+    private static ImageIcon getResource(String name) {
+        return new ImageIcon("src/main/resources/img/cenario/" + name + ".png");
     }
 
     public static Image getCenarioBasquete() {
         if (cenarioBasquete == null) {
-            cenarioBasquete = new ImageIcon(getResource("cenario-basquete")).getImage();
+            cenarioBasquete = getResource("cenario-basquete").getImage();
         }
         return cenarioBasquete;
     }
 
     public static Image getCenarioCampo() {
         if (cenarioCampo == null) {
-            cenarioCampo = new ImageIcon(getResource("cenario-campo")).getImage();
+            cenarioCampo = getResource("cenario-campo").getImage();
         }
         return cenarioCampo;
     }
 
     public static Image getCenarioGolfe() {
         if (cenarioGolfe == null) {
-            cenarioGolfe = new ImageIcon(getResource("cenario-golfe")).getImage();
+            cenarioGolfe = getResource("cenario-golfe").getImage();
         }
         return cenarioGolfe;
     }
 
     public static Image getCenarioMenu() {
         if (cenarioMenu == null) {
-            cenarioMenu = new ImageIcon(getResource("cenario-menu")).getImage();
+            cenarioMenu = getResource("cenario-menu").getImage();
         }
         return cenarioMenu;
     }
 
     public static Image getCenarioMontanhas() {
         if (cenarioMontanhas == null) {
-            cenarioMontanhas = new ImageIcon(getResource("cenario-montanhas")).getImage();
+            cenarioMontanhas = getResource("cenario-montanhas").getImage();
         }
         return cenarioMontanhas;
     }
 
     public static Image getCenarioNeve() {
         if (cenarioNeve == null) {
-            cenarioNeve = new ImageIcon(getResource("cenario-neve")).getImage();
+            cenarioNeve = getResource("cenario-neve").getImage();
         }
         return cenarioNeve;
     }
 
     public static Image getCenarioPraia() {
         if (cenarioPraia == null) {
-            cenarioPraia = new ImageIcon(getResource("cenario-praia")).getImage();
+            cenarioPraia = getResource("cenario-praia").getImage();
         }
         return cenarioPraia;
     }
 
     public static Image getCenarioVolei() {
         if (cenarioVolei == null) {
-            cenarioVolei = new ImageIcon(getResource("cenario-volei")).getImage();
+            cenarioVolei = getResource("cenario-volei").getImage();
         }
         return cenarioVolei;
     }
 
     public static Image getCenarioVulcao() {
         if (cenarioVulcao == null) {
-            cenarioVulcao = new ImageIcon(getResource("cenario-vulcao")).getImage();
+            cenarioVulcao = getResource("cenario-vulcao").getImage();
         }
         return cenarioVulcao;
     }
 
     public static ImageIcon getFundoCenario() {
         if (fundoCenario == null) {
-            fundoCenario = new ImageIcon(getResource("fundo-cenario"));
+            fundoCenario = getResource("fundo-cenario");
         }
         return fundoCenario;
     }
 
     public static ImageIcon getFundoMenu() {
         if (fundoMenu == null) {
-            fundoMenu = new ImageIcon(getResource("fundo-menu"));
+            fundoMenu = getResource("fundo-menu");
         }
         return fundoMenu;
     }
 
     public static ImageIcon getFundoMiniCenario() {
         if (fundoMiniCenario == null) {
-            fundoMiniCenario = new ImageIcon(getResource("fundo-minicenario"));
+            fundoMiniCenario = getResource("fundo-minicenario");
         }
         return fundoMiniCenario;
     }
 
     public static ImageIcon getFundoSair() {
         if (fundoSair == null) {
-            fundoSair = new ImageIcon(getResource("fundo-sair"));
+            fundoSair = getResource("fundo-sair");
         }
         return fundoSair;
     }
 
     public static ImageIcon getMiniCenarioBasquete() {
         if (miniCenarioBasquete == null) {
-            miniCenarioBasquete = new ImageIcon(getResource("minicenario-basquete"));
+            miniCenarioBasquete = getResource("minicenario-basquete");
         }
         return miniCenarioBasquete;
     }
 
     public static ImageIcon getMiniCenarioCampo() {
         if (miniCenarioCampo == null) {
-            miniCenarioCampo = new ImageIcon(getResource("minicenario-campo"));
+            miniCenarioCampo = getResource("minicenario-campo");
         }
         return miniCenarioCampo;
     }
 
     public static ImageIcon getMiniCenarioGolfe() {
         if (miniCenarioGolfe == null) {
-            miniCenarioGolfe = new ImageIcon(getResource("minicenario-golfe"));
+            miniCenarioGolfe = getResource("minicenario-golfe");
         }
         return miniCenarioGolfe;
     }
 
     public static ImageIcon getMiniCenarioMontanhas() {
         if (miniCenarioMontanhas == null) {
-            miniCenarioMontanhas = new ImageIcon(getResource("minicenario-montanhas"));
+            miniCenarioMontanhas = getResource("minicenario-montanhas");
         }
         return miniCenarioMontanhas;
     }
 
     public static ImageIcon getMiniCenarioNeve() {
         if (miniCenarioNeve == null) {
-            miniCenarioNeve = new ImageIcon(getResource("minicenario-neve"));
+            miniCenarioNeve = getResource("minicenario-neve");
         }
         return miniCenarioNeve;
     }
 
     public static ImageIcon getMiniCenarioPraia() {
         if (miniCenarioPraia == null) {
-            miniCenarioPraia = new ImageIcon(getResource("minicenario-praia"));
+            miniCenarioPraia = getResource("minicenario-praia");
         }
         return miniCenarioPraia;
     }
 
     public static ImageIcon getMiniCenarioVolei() {
         if (miniCenarioVolei == null) {
-            miniCenarioVolei = new ImageIcon(getResource("minicenario-volei"));
+            miniCenarioVolei = getResource("minicenario-volei");
         }
         return miniCenarioVolei;
     }
 
     public static ImageIcon getMiniCenarioVulcao() {
         if (miniCenarioVulcao == null) {
-            miniCenarioVulcao = new ImageIcon(getResource("minicenario-vulcao"));
+            miniCenarioVulcao = getResource("minicenario-vulcao");
         }
         return miniCenarioVulcao;
     }

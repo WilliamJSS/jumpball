@@ -5,7 +5,6 @@ import java.awt.FontFormatException;
 import java.awt.GraphicsEnvironment;
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 
 public class Fontes {
 
@@ -18,8 +17,7 @@ public class Fontes {
     private static Font tituloJogo;
 
     private static File getResource(String name) {
-        URL resource = Fontes.class.getResource("/font/" + name);
-        return new File(resource.getFile());
+        return new File("src/main/resources/font/" + name);
     }
 
     public static void carregarFontes() {

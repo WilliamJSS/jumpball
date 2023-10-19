@@ -3,7 +3,6 @@ package williamjss.model;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.net.URL;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonParser;
@@ -16,8 +15,7 @@ public class Config {
     private static JsonArray defaultScenes;
 
     private static File getFile(String name) {
-        URL resource = Config.class.getResource("/config/" + name);
-        return new File(resource.getFile());
+        return new File("src/main/resources/config/" + name);
     }
 
     public static File getScenesFile() {
