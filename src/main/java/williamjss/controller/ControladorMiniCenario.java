@@ -28,7 +28,7 @@ public class ControladorMiniCenario {
         this.scenes = Config.getScenes();
         this.scenesFile = Config.getScenesFile();
 
-        loadMiniCenariosConfig();
+        loadMiniCenariosConfig(this.scenes);
         updateMiniCenarios();
     }
 
@@ -43,7 +43,7 @@ public class ControladorMiniCenario {
         }
     }
 
-    public void loadMiniCenariosConfig() {
+    public void loadMiniCenariosConfig(JsonArray scenes) {
 
         boolean bloqueado;
         int qntEstrelas, sceneId;

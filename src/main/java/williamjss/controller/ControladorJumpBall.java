@@ -59,7 +59,7 @@ public class ControladorJumpBall {
         controladorSair = new ControladorSair(frame, menu, sair, gs);
         controladorFases = new ControladorFases(frame, fases, controladorCenario, cenario, menu, gs);
         controladorAjuda = new ControladorAjuda(frame, ajuda, menu, gs);
-        controladorOpcoes = new ControladorOpcoes(frame, opcoes, menu, gs);
+        controladorOpcoes = new ControladorOpcoes(frame, opcoes, menu, gs, gl);
 
         tc = new ThreadControlador();
         tc.start();

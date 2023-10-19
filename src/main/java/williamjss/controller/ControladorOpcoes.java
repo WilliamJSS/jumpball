@@ -8,6 +8,7 @@ import java.io.FileWriter;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 import williamjss.model.Config;
@@ -23,16 +24,22 @@ public class ControladorOpcoes implements KeyListener {
     private GerenciadorSom gs;
     private boolean selecting;
     private File soundFile;
+    private File scenesFile;
     private JsonObject sound;
+    private JsonArray defaultScenes;
+    private ControladorMiniCenario gl;
 
-    public ControladorOpcoes(Frame frame, Options options, Menu menu, GerenciadorSom gs) {
+    public ControladorOpcoes(Frame frame, Options options, Menu menu, GerenciadorSom gs, ControladorMiniCenario gl) {
         this.frame = frame;
         this.menu = menu;
         this.options = options;
         this.gs = gs;
+        this.gl = gl;
         this.selecting = false;
         this.soundFile = Config.getSoundFile();
+        this.scenesFile = Config.getScenesFile();
         this.sound = Config.getSound();
+        this.defaultScenes = Config.getDefaultScenes();
     }
 
     public void addEventos() {
@@ -56,6 +63,26 @@ public class ControladorOpcoes implements KeyListener {
             gson.toJson(sound, bw);
 
             gs.enableSounds(sound.get("music").getAsBoolean(), sound.get("effects").getAsBoolean());
+
+            bw.close();
+            fw.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void resetGameProgression() {
+        try {
+
+            FileWriter fw = new FileWriter(scenesFile, false);
+            BufferedWriter bw = new BufferedWriter(fw);
+
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            gson.toJson(defaultScenes, bw);
+
+            gl.loadMiniCenariosConfig(defaultScenes);
+            gl.updateMiniCenarios();
 
             bw.close();
             fw.close();
@@ -129,12 +156,17 @@ public class ControladorOpcoes implements KeyListener {
             switch (options.getBotaoSelecionado()) {
 
                 case Options.BOTAO_REINICIAR:
+                    resetGameProgression();
+                    menu.setBotaoSelecionado(Menu.BOTAO_JOGAR);
+                    frame.setContentPane(menu);
+                    frame.repaint();
+                    frame.validate();
                     break;
 
                 case Options.BOTAO_MUSICA:
                     options.setMusicEnabled(!options.isMusicEnabled());
                     updateSoundConfig();
-                    if (!options.isMusicEnabled()){
+                    if (!options.isMusicEnabled()) {
                         gs.stopMusicaMenu();
                     } else {
                         gs.stopMusicaMenu();
