@@ -19,7 +19,7 @@ public class Fontes {
 
     private static File getResource(String name) {
         URL resource = Fontes.class.getResource("/font/" + name);
-        return new File(resource.toString());
+        return new File(resource.getFile());
     }
 
     public static void carregarFontes() {
