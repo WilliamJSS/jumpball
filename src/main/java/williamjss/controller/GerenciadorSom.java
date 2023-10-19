@@ -25,16 +25,7 @@ public class GerenciadorSom {
     // Volumes
     public float[] getVolume() {
         if (volume == null) {
-            volume = new float[] {
-                    -10, // 0 - Musica do menu
-                    +05, // 1 - Musica durante a partida
-                    -20, // 2 - Toque de vitoria
-                    -20, // 3 - Toque de derrota
-                    -20, // 4 - Navegar menu
-                    -10, // 5 - Selecionar botao
-                    -15, // 6 - Efeito pulo
-                    -20 // 7 - Efeito pegar moeda
-            };
+            enableSounds(true, true);
         }
         return volume;
     }
@@ -45,12 +36,12 @@ public class GerenciadorSom {
 
     public void enableSounds(boolean music, boolean effects) {
         setVolume(new float[] {
-                music ? -10 : -50, // 0 - Musica do menu
-                music ? +05 : -50, // 1 - Musica durante a partida
+                music ? -15 : -50, // 0 - Musica do menu
+                music ? 0 : -50, // 1 - Musica durante a partida
                 music ? -20 : -50, // 2 - Toque de vitoria
                 music ? -20 : -50, // 3 - Toque de derrota
                 effects ? -20 : -50, // 4 - Navegar menu
-                effects ? -10 : -50, // 5 - Selecionar botao
+                effects ? -20 : -50, // 5 - Selecionar botao
                 effects ? -15 : -50, // 6 - Efeito pulo
                 effects ? -20 : -50 // 7 - Efeito pegar moeda
         });
