@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
+import javax.swing.Icon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
@@ -18,17 +19,19 @@ public class Menu extends JPanel {
     private static final long serialVersionUID = 1L;
 
     private JLabel logo;
-    private JLabel botaoJogar;
-    private JLabel botaoAjuda;
-    private JLabel botaoSair;
+    private JLabel buttonTop;
+    private JLabel buttonMid;
+    private JLabel buttonBot;
     private JLabel fundoMenu;
 
     private int botaoSelecionado;
     private ArrayList<JLabel> textoBotao;
+    private ArrayList<JLabel> buttons;
 
     public static final int BOTAO_JOGAR = 0;
     public static final int BOTAO_AJUDA = 1;
-    public static final int BOTAO_SAIR = 2;
+    public static final int BOTAO_OPCOES = 2;
+    public static final int BOTAO_SAIR = 3;
 
     public Menu() {
         super();
@@ -37,11 +40,9 @@ public class Menu extends JPanel {
 
         for (int i = 0; i < getTextoBotao().size(); i++) {
             add(getTextoBotao().get(i));
+            add(getButtons().get(i));
         }
 
-        add(getBotaoJogar());
-        add(getBotaoAjuda());
-        add(getBotaoSair());
         add(getLogo());
         add(getFundoMenu());
 
@@ -53,25 +54,6 @@ public class Menu extends JPanel {
         g.drawImage(ImageScene.getCenarioMenu(), 0, 0, null);
     }
 
-    public JLabel getBotao(int codBotao) {
-
-        switch (codBotao) {
-
-            case BOTAO_JOGAR:
-                return getBotaoJogar();
-
-            case BOTAO_AJUDA:
-                return getBotaoAjuda();
-
-            case BOTAO_SAIR:
-                return getBotaoSair();
-
-            default:
-                System.out.println("Erro ao tentar capturar o botao: o botao '" + codBotao + "' nao existe");
-                return null;
-        }
-    }
-
     public int getBotaoSelecionado() {
         return botaoSelecionado;
     }
@@ -79,73 +61,93 @@ public class Menu extends JPanel {
     public void setBotaoSelecionado(int botaoSelecionado) {
         this.botaoSelecionado = botaoSelecionado;
 
-        getBotao(BOTAO_JOGAR).setIcon(ImageButton.getImgBotao2());
-        getBotao(BOTAO_AJUDA).setIcon(ImageButton.getImgBotao2());
-        getBotao(BOTAO_SAIR).setIcon(ImageButton.getImgBotao2());
+        String[] txt = { "JOGAR", "AJUDA", "OPÇÕES", "SAIR" };
 
-        if (botaoSelecionado == BOTAO_JOGAR) {
-            getBotao(botaoSelecionado).setIcon(ImageButton.getImgBotao1Selecionado());
-        } else if (botaoSelecionado == BOTAO_AJUDA) {
-            getBotao(botaoSelecionado).setIcon(ImageButton.getImgBotao1Selecionado());
-        } else {
-            getBotao(botaoSelecionado).setIcon(ImageButton.getImgBotao1Selecionado());
+        int txtButtonTop = botaoSelecionado == BOTAO_JOGAR ? BOTAO_SAIR : botaoSelecionado - 1;
+        int txtButtonBot = botaoSelecionado == BOTAO_SAIR ? BOTAO_JOGAR : botaoSelecionado + 1;
+
+        getTextoBotao().get(0).setText(txt[txtButtonTop]);
+        getTextoBotao().get(1).setText(txt[botaoSelecionado]);
+        getTextoBotao().get(2).setText(txt[txtButtonBot]);
+
+        Icon buttonMidIcon = getButtonMid().getIcon().equals(ImageButton.getImgBotao2Selecionado())
+                ? ImageButton.getImgBotao1Selecionado()
+                : ImageButton.getImgBotao2Selecionado();
+
+        Icon buttonCorner = getButtonTop().getIcon().equals(ImageButton.getImgBotao2())
+                ? ImageButton.getImgBotao1()
+                : ImageButton.getImgBotao2();
+
+        getButtonTop().setIcon(buttonCorner);
+        getButtonMid().setIcon(buttonMidIcon);
+        getButtonBot().setIcon(buttonCorner);
+    }
+
+    // Botoes
+    public ArrayList<JLabel> getButtons() {
+        if (buttons == null) {
+            buttons = new ArrayList<JLabel>();
+            buttons.add(getButtonTop());
+            buttons.add(getButtonMid());
+            buttons.add(getButtonBot());
         }
+        return buttons;
     }
 
     // Texto botoes
     public ArrayList<JLabel> getTextoBotao() {
         if (textoBotao == null) {
             textoBotao = new ArrayList<JLabel>();
-            String[] txt = { "JOGAR", "AJUDA", "SAIR" };
+            String[] txt = { "SAIR", "JOGAR", "AJUDA" };
             for (int i = 0; i < 3; i++) {
                 JLabel texto = new JLabel(txt[i]);
                 texto.setHorizontalAlignment(SwingConstants.CENTER);
                 texto.setForeground(Color.WHITE);
                 texto.setFont(Fontes.getBotao());
-                texto.setBounds(getBotao(i).getBounds());
+                texto.setBounds(getButtons().get(i).getBounds());
                 textoBotao.add(texto);
             }
         }
         return textoBotao;
     }
 
-    // Botao jogar
-    public JLabel getBotaoJogar() {
-        if (botaoJogar == null) {
-            botaoJogar = new JLabel();
-            ;
-            botaoJogar.setIcon(ImageButton.getImgBotao1());
-            botaoJogar.setSize(ImageButton.getImgBotao1().getIconWidth(), ImageButton.getImgBotao1().getIconHeight());
-            int y = getFundoMenu().getY() + (getFundoMenu().getHeight() / 3 - botaoJogar.getHeight());
-            botaoJogar.setLocation(getWidth() / 2 - botaoJogar.getWidth() / 2, y);
+    // Botao de cima
+    public JLabel getButtonTop() {
+        if (buttonTop == null) {
+            buttonTop = new JLabel();
+            buttonTop.setIcon(ImageButton.getImgBotao2());
+            buttonTop.setSize(ImageButton.getImgBotao2().getIconWidth(), ImageButton.getImgBotao2().getIconHeight());
+            int y = getFundoMenu().getY() + (getFundoMenu().getHeight() / 3 - buttonTop.getHeight());
+            buttonTop.setLocation(getWidth() / 2 - buttonTop.getWidth() / 2, y);
         }
-        return botaoJogar;
+        return buttonTop;
     }
 
-    // Botao ajuda
-    public JLabel getBotaoAjuda() {
-        if (botaoAjuda == null) {
-            botaoAjuda = new JLabel();
-            botaoAjuda.setIcon(ImageButton.getImgBotao2());
-            botaoAjuda.setSize(ImageButton.getImgBotao2().getIconWidth(), ImageButton.getImgBotao2().getIconHeight());
-            int y = getBotaoJogar().getY() + getBotaoJogar().getHeight()
-                    + (getFundoMenu().getHeight() / 3 - getBotaoJogar().getHeight()) / 2;
-            botaoAjuda.setLocation(getWidth() / 2 - botaoAjuda.getWidth() / 2, y);
+    // Botao do meio
+    public JLabel getButtonMid() {
+        if (buttonMid == null) {
+            buttonMid = new JLabel();
+            buttonMid.setIcon(ImageButton.getImgBotao1Selecionado());
+            buttonMid.setSize(ImageButton.getImgBotao1Selecionado().getIconWidth(),
+                    ImageButton.getImgBotao1Selecionado().getIconHeight());
+            int y = getButtonTop().getY() + getButtonTop().getHeight()
+                    + (getFundoMenu().getHeight() / 3 - getButtonTop().getHeight()) / 2;
+            buttonMid.setLocation(getWidth() / 2 - buttonMid.getWidth() / 2, y);
         }
-        return botaoAjuda;
+        return buttonMid;
     }
 
-    // Botao sair
-    public JLabel getBotaoSair() {
-        if (botaoSair == null) {
-            botaoSair = new JLabel();
-            botaoSair.setIcon(ImageButton.getImgBotao1());
-            botaoSair.setSize(ImageButton.getImgBotao1().getIconWidth(), ImageButton.getImgBotao1().getIconHeight());
-            int y = getBotaoAjuda().getY() + getBotaoAjuda().getHeight()
-                    + (getFundoMenu().getHeight() / 3 - getBotaoJogar().getHeight()) / 2;
-            botaoSair.setLocation(getWidth() / 2 - botaoSair.getWidth() / 2, y);
+    // Botao de baixo
+    public JLabel getButtonBot() {
+        if (buttonBot == null) {
+            buttonBot = new JLabel();
+            buttonBot.setIcon(ImageButton.getImgBotao2());
+            buttonBot.setSize(ImageButton.getImgBotao2().getIconWidth(), ImageButton.getImgBotao2().getIconHeight());
+            int y = getButtonMid().getY() + getButtonMid().getHeight()
+                    + (getFundoMenu().getHeight() / 3 - getButtonTop().getHeight()) / 2;
+            buttonBot.setLocation(getWidth() / 2 - buttonBot.getWidth() / 2, y);
         }
-        return botaoSair;
+        return buttonBot;
     }
 
     // Logo
