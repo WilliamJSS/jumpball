@@ -22,16 +22,16 @@
   {
     "id": 4,
     "lock": false,
-    "stars": 0
+    "stars": 3
   },
   {
     "id": 5,
-    "lock": true,
-    "stars": 0
+    "lock": false,
+    "stars": 3
   },
   {
     "id": 6,
-    "lock": true,
+    "lock": false,
     "stars": 0
   },
   {

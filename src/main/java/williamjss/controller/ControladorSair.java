@@ -9,84 +9,125 @@ import williamjss.view.Sair;
 
 public class ControladorSair implements KeyListener {
 
-	private Frame frame;
-	private Menu menu;
-	private Sair sair;
-	private GerenciadorSom gs;
+    private Frame frame;
+    private Menu menu;
+    private Sair sair;
+    private GerenciadorSom gs;
+    private boolean selecting;
 
-	public ControladorSair(Frame frame, Menu menu, Sair sair, GerenciadorSom gs) {
-		this.frame = frame;
-		this.menu = menu;
-		this.sair = sair;
-		this.gs = gs;
-	}
+    public ControladorSair(Frame frame, Menu menu, Sair sair, GerenciadorSom gs) {
+        this.frame = frame;
+        this.menu = menu;
+        this.sair = sair;
+        this.gs = gs;
+        this.selecting = false;
+    }
 
-	public void addEventos() {
-		frame.addKeyListener(this);
-	}
+    public void addEventos() {
+        frame.addKeyListener(this);
+    }
 
-	public void removeEventos() {
-		frame.removeKeyListener(this);
-	}
+    public void removeEventos() {
+        frame.removeKeyListener(this);
+    }
 
-	@Override
-	public void keyPressed(KeyEvent e) {
+    @Override
+    public void keyPressed(KeyEvent e) {
 
-		// Mover entre os botoes
-		if(e.getKeyCode() == KeyEvent.VK_RIGHT && sair.getBotaoSelecionado() == Sair.BOTAO_SIM) {
+        // Mover entre os botoes
+        if (e.getKeyCode() == KeyEvent.VK_RIGHT && sair.getBotaoSelecionado() == Sair.BOTAO_SIM && !isSelecting()) {
+            new Thread(new Runnable() {
 
-			sair.setBotaoSelecionado(Sair.BOTAO_NAO);
-			gs.playToqueNavegarMenu();
-		}
+                @Override
+                public void run() {
 
-		// Mover entre os botoes
-		if(e.getKeyCode() == KeyEvent.VK_LEFT && sair.getBotaoSelecionado() == Sair.BOTAO_NAO) {
+                    setSelecting(true);
 
-			sair.setBotaoSelecionado(Sair.BOTAO_SIM);
-			gs.playToqueNavegarMenu();
-		}
+                    sair.setBotaoSelecionado(Sair.BOTAO_NAO);
+                    gs.playToqueNavegarMenu();
 
-		// Voltar para o menu
-		if(e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                    try {
+                        Thread.sleep(150);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
 
-			frame.setContentPane(menu);
-			frame.repaint();
-			frame.validate();
-		}
+                    setSelecting(false);
+                }
+            }).start();
+        }
 
-		// Selecionar botao
-		if(e.getKeyCode() == KeyEvent.VK_SPACE || e.getKeyCode() == KeyEvent.VK_ENTER) {
+        // Mover entre os botoes
+        if (e.getKeyCode() == KeyEvent.VK_LEFT && sair.getBotaoSelecionado() == Sair.BOTAO_NAO && !isSelecting()) {
+            new Thread(new Runnable() {
 
-			gs.playToqueSelecionarBotao();
+                @Override
+                public void run() {
 
-			// Verificar qual botao estava selecionado quando o usuario pressionou espaco
-			switch(sair.getBotaoSelecionado()) {
+                    setSelecting(true);
 
-			case Sair.BOTAO_SIM:
+                    sair.setBotaoSelecionado(Sair.BOTAO_SIM);
+                    gs.playToqueNavegarMenu();
 
-				System.exit(0);
-				break;
+                    try {
+                        Thread.sleep(150);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
 
-			case Sair.BOTAO_NAO:
+                    setSelecting(false);
+                }
+            }).start();
+        }
 
-				frame.setContentPane(menu);
-				frame.repaint();
-				frame.validate();
+        // Voltar para o menu
+        if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
 
-			}
-		}
-	}
+            frame.setContentPane(menu);
+            frame.repaint();
+            frame.validate();
+        }
 
-	// Metodos nao utilizados
+        // Selecionar botao
+        if ((e.getKeyCode() == KeyEvent.VK_SPACE || e.getKeyCode() == KeyEvent.VK_ENTER) && !isSelecting()) {
 
-	@Override
-	public void keyTyped(KeyEvent e) {
+            gs.playToqueSelecionarBotao();
 
-	}
+            // Verificar qual botao estava selecionado quando o usuario pressionou espaco
+            switch (sair.getBotaoSelecionado()) {
 
-	@Override
-	public void keyReleased(KeyEvent e) {
+                case Sair.BOTAO_SIM:
 
-	}
+                    System.exit(0);
+                    break;
+
+                case Sair.BOTAO_NAO:
+
+                    frame.setContentPane(menu);
+                    frame.repaint();
+                    frame.validate();
+
+            }
+        }
+    }
+
+    public boolean isSelecting() {
+        return selecting;
+    }
+
+    public void setSelecting(boolean selecting) {
+        this.selecting = selecting;
+    }
+
+    // Metodos nao utilizados
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+
+    }
 
 }
