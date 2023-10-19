@@ -63,6 +63,7 @@ public class Menu extends JPanel {
 
         String[] txt = { "JOGAR", "AJUDA", "OPÇÕES", "SAIR" };
 
+        // Define o texto de cada botao
         int txtButtonTop = botaoSelecionado == BOTAO_JOGAR ? BOTAO_SAIR : botaoSelecionado - 1;
         int txtButtonBot = botaoSelecionado == BOTAO_SAIR ? BOTAO_JOGAR : botaoSelecionado + 1;
 
@@ -70,6 +71,27 @@ public class Menu extends JPanel {
         getTextoBotao().get(1).setText(txt[botaoSelecionado]);
         getTextoBotao().get(2).setText(txt[txtButtonBot]);
 
+        // Esconde o botao do top
+        if (botaoSelecionado == BOTAO_JOGAR){
+            getTextoBotao().get(0).setVisible(false);
+            getButtonTop().setVisible(false);
+        }
+
+        // Esconde o botao do bot
+        else if (botaoSelecionado == BOTAO_SAIR){
+            getTextoBotao().get(2).setVisible(false);
+            getButtonBot().setVisible(false);
+        }
+
+        // Exibe todos os botoes
+        else {
+            getTextoBotao().get(0).setVisible(true);
+            getTextoBotao().get(2).setVisible(true);
+            getButtonTop().setVisible(true);
+            getButtonBot().setVisible(true);
+        }
+
+        // Define os icones dos botoes
         Icon buttonMidIcon = getButtonMid().getIcon().equals(ImageButton.getImgBotao2Selecionado())
                 ? ImageButton.getImgBotao1Selecionado()
                 : ImageButton.getImgBotao2Selecionado();

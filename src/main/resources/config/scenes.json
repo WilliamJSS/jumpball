@@ -2,36 +2,36 @@
   {
     "id": 0,
     "lock": false,
-    "stars": 3
+    "stars": 0
   },
   {
     "id": 1,
-    "lock": false,
-    "stars": 2
+    "lock": true,
+    "stars": 0
   },
   {
     "id": 2,
-    "lock": false,
-    "stars": 3
+    "lock": true,
+    "stars": 0
   },
   {
     "id": 3,
-    "lock": false,
-    "stars": 3
+    "lock": true,
+    "stars": 0
   },
   {
     "id": 4,
-    "lock": false,
-    "stars": 3
+    "lock": true,
+    "stars": 0
   },
   {
     "id": 5,
-    "lock": false,
-    "stars": 3
+    "lock": true,
+    "stars": 0
   },
   {
     "id": 6,
-    "lock": false,
+    "lock": true,
     "stars": 0
   },
   {

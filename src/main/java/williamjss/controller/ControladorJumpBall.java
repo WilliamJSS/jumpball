@@ -6,6 +6,7 @@ import williamjss.view.Cenario;
 import williamjss.view.Fases;
 import williamjss.view.Frame;
 import williamjss.view.Menu;
+import williamjss.view.Options;
 import williamjss.view.Sair;
 
 public class ControladorJumpBall {
@@ -17,6 +18,7 @@ public class ControladorJumpBall {
     private Fases fases;
     private Sair sair;
     private Ajuda ajuda;
+    private Options opcoes;
 
     private GerenciadorCenario gc;
     private GerenciadorSom gs;
@@ -27,6 +29,7 @@ public class ControladorJumpBall {
     private ControladorSair controladorSair;
     private ControladorFases controladorFases;
     private ControladorAjuda controladorAjuda;
+    private ControladorOpcoes controladorOpcoes;
 
     private ThreadControlador tc;
 
@@ -41,6 +44,7 @@ public class ControladorJumpBall {
         fases = new Fases();
         sair = new Sair();
         ajuda = new Ajuda();
+        opcoes = new Options();
 
         gc = new GerenciadorCenario(cenario);
         gs = new GerenciadorSom();
@@ -51,10 +55,11 @@ public class ControladorJumpBall {
         frame.validate();
 
         controladorCenario = new ControladorCenario(frame, menu, fases, cenario, gc, gs, gl);
-        controladorMenu = new ControladorMenu(frame, menu, ajuda, fases, sair, gs);
+        controladorMenu = new ControladorMenu(frame, menu, ajuda, opcoes, fases, sair, gs);
         controladorSair = new ControladorSair(frame, menu, sair, gs);
         controladorFases = new ControladorFases(frame, fases, controladorCenario, cenario, menu, gs);
         controladorAjuda = new ControladorAjuda(frame, ajuda, menu, gs);
+        controladorOpcoes = new ControladorOpcoes(frame, opcoes, menu, gs);
 
         tc = new ThreadControlador();
         tc.start();
@@ -114,6 +119,15 @@ public class ControladorJumpBall {
                         System.out.print("");
 
                     controladorAjuda.removeEventos();
+                }
+
+                else if (frame.getContentPane().equals(opcoes)) {
+                    controladorOpcoes.addEventos();
+
+                    while (frame.getContentPane().equals(opcoes))
+                        System.out.print("");
+
+                    controladorOpcoes.removeEventos();
                 }
             }
         }

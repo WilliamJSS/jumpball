@@ -7,6 +7,7 @@ import williamjss.view.Ajuda;
 import williamjss.view.Fases;
 import williamjss.view.Frame;
 import williamjss.view.Menu;
+import williamjss.view.Options;
 import williamjss.view.Sair;
 
 public class ControladorMenu implements KeyListener {
@@ -16,15 +17,17 @@ public class ControladorMenu implements KeyListener {
     private Fases fases;
     private Sair sair;
     private Ajuda ajuda;
+    private Options opcoes;
     private GerenciadorSom gs;
     private boolean selecting;
 
-    public ControladorMenu(Frame frame, Menu menu, Ajuda ajuda, Fases fases, Sair sair, GerenciadorSom gs) {
+    public ControladorMenu(Frame frame, Menu menu, Ajuda ajuda, Options opcoes, Fases fases, Sair sair, GerenciadorSom gs) {
         this.frame = frame;
         this.menu = menu;
         this.fases = fases;
         this.sair = sair;
         this.ajuda = ajuda;
+        this.opcoes = opcoes;
         this.gs = gs;
         this.selecting = false;
 
@@ -43,7 +46,7 @@ public class ControladorMenu implements KeyListener {
     public void keyPressed(KeyEvent e) {
 
         // Mover entre os botoes
-        if (e.getKeyCode() == KeyEvent.VK_UP && !isSelecting()) {
+        if (e.getKeyCode() == KeyEvent.VK_UP && !isSelecting() && menu.getBotaoSelecionado() != Menu.BOTAO_JOGAR) {
 
             new Thread(new Runnable() {
 
@@ -54,11 +57,7 @@ public class ControladorMenu implements KeyListener {
 
                     gs.playToqueNavegarMenu();
 
-                    if (menu.getBotaoSelecionado() == Menu.BOTAO_JOGAR) {
-                        menu.setBotaoSelecionado(Menu.BOTAO_SAIR);
-                    } else {
-                        menu.setBotaoSelecionado(menu.getBotaoSelecionado() - 1);
-                    }
+                    menu.setBotaoSelecionado(menu.getBotaoSelecionado() - 1);
 
                     try {
                         Thread.sleep(150);
@@ -72,7 +71,7 @@ public class ControladorMenu implements KeyListener {
         }
 
         // Mover entre os botoes
-        if (e.getKeyCode() == KeyEvent.VK_DOWN && !isSelecting()) {
+        if (e.getKeyCode() == KeyEvent.VK_DOWN && !isSelecting() && menu.getBotaoSelecionado() != Menu.BOTAO_SAIR) {
 
             new Thread(new Runnable() {
 
@@ -83,11 +82,7 @@ public class ControladorMenu implements KeyListener {
 
                     gs.playToqueNavegarMenu();
 
-                    if (menu.getBotaoSelecionado() == Menu.BOTAO_SAIR) {
-                        menu.setBotaoSelecionado(Menu.BOTAO_JOGAR);
-                    } else {
-                        menu.setBotaoSelecionado(menu.getBotaoSelecionado() + 1);
-                    }
+                    menu.setBotaoSelecionado(menu.getBotaoSelecionado() + 1);
 
                     try {
                         Thread.sleep(150);
@@ -114,6 +109,10 @@ public class ControladorMenu implements KeyListener {
 
                 case Menu.BOTAO_AJUDA:
                     frame.setContentPane(ajuda);
+                    break;
+
+                case Menu.BOTAO_OPCOES:
+                    frame.setContentPane(opcoes);
                     break;
 
                 case Menu.BOTAO_SAIR:
