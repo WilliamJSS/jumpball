@@ -49,6 +49,10 @@ public class GerenciadorCenario {
         ArrayList<Coin> moedas = new ArrayList<Coin>();
         int dx = Block.SIZE + Block.SIZE / 2;
         for (int i = 0; i < getPosicaoMoedas().length; i++) {
+            // Espero que um dia alguem tire esse armengue daqui
+            if (i == 6 || i == 12 || i == 18 || i == 23) {
+                dx += Block.SIZE;
+            }
             Coin moeda = new Coin();
             Block bloco = getPlataformas().get(getPosicaoMoedas()[i] * 4);
             moeda.setLocation(dx + bloco.getX(), bloco.getY() - moeda.getHeight() - 10);
