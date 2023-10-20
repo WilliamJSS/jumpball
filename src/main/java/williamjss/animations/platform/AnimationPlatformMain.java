@@ -80,7 +80,7 @@ public class AnimationPlatformMain extends Thread {
 
             // Delay para movimentar as plataformas
             try {
-                sleep(Block.SPEED);
+                sleep(gc.getSpeed());
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

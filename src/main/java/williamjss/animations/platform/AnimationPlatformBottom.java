@@ -10,10 +10,12 @@ public class AnimationPlatformBottom extends Thread {
 
     private Ball bola;
     private ArrayList<Block> plataformaInferior;
+    private GerenciadorCenario gc;
 
     public AnimationPlatformBottom(Ball bola, GerenciadorCenario gc) {
         super("AnimationPlatformBottom");
         this.bola = bola;
+        this.gc = gc;
         this.plataformaInferior = gc.getPlataformaInferior();
     }
 
@@ -40,7 +42,7 @@ public class AnimationPlatformBottom extends Thread {
 
             // Delay para movimentar a plataforma
             try {
-                sleep(Block.SPEED);
+                sleep(gc.getSpeed());
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

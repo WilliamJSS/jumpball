@@ -35,15 +35,21 @@ public class Options extends JPanel {
     private JLabel textButtonEnableEffects;
     private JLabel descriptionEnableEffects;
 
+    private JLabel buttonDifficult;
+    private JLabel textButtonDifficult;
+    private JLabel descriptionDifficult;
+
     private int botaoSelecionado;
 
     private JsonObject optionsObject;
     private boolean effectsEnabled;
     private boolean musicEnabled;
+    private String difficult;
 
     public static final int BOTAO_REINICIAR = 0;
     public static final int BOTAO_MUSICA = 1;
     public static final int BOTAO_EFEITOS = 2;
+    public static final int BOTAO_DIFICULDADE = 3;
 
     public Options() {
         super();
@@ -65,6 +71,10 @@ public class Options extends JPanel {
         add(getButtonEnableEffects());
         add(getDescriptionEnableEffects());
 
+        add(getTextButtonDifficult());
+        add(getButtonDifficult());
+        add(getDescriptionDifficult());
+
         add(getFundoCenario());
 
         setBotaoSelecionado(BOTAO_REINICIAR);
@@ -73,6 +83,7 @@ public class Options extends JPanel {
         JsonObject sound = optionsObject.get("sound").getAsJsonObject();
         setEffectsEnabled(sound.get("effects").getAsBoolean());
         setMusicEnabled(sound.get("music").getAsBoolean());
+        setDifficult(optionsObject.get("difficult").getAsString());
     }
 
     @Override
@@ -87,6 +98,8 @@ public class Options extends JPanel {
             return getButtonEnableMusic();
         } else if (codBotao == BOTAO_EFEITOS) {
             return getButtonEnableEffects();
+        } else if (codBotao == BOTAO_DIFICULDADE) {
+            return getButtonDifficult();
         }
         return null;
     }
@@ -101,6 +114,7 @@ public class Options extends JPanel {
         getBotao(BOTAO_REINICIAR).setIcon(ImageButton.getImgBotao2());
         getBotao(BOTAO_MUSICA).setIcon(ImageButton.getImgBotao2());
         getBotao(BOTAO_EFEITOS).setIcon(ImageButton.getImgBotao2());
+        getBotao(BOTAO_DIFICULDADE).setIcon(ImageButton.getImgBotao2());
 
         getBotao(botaoSelecionado).setIcon(ImageButton.getImgBotao1Selecionado());
     }
@@ -112,6 +126,15 @@ public class Options extends JPanel {
     public void setEffectsEnabled(boolean effectsEnabled) {
         getTextButtonEnableEffects().setText(effectsEnabled ? "DESATIVAR" : "ATIVAR");
         this.effectsEnabled = effectsEnabled;
+    }
+
+    public String getDifficult() {
+        return difficult;
+    }
+
+    public void setDifficult(String difficult) {
+        getTextButtonDifficult().setText(difficult);
+        this.difficult = difficult;
     }
 
     public boolean isMusicEnabled() {
@@ -263,6 +286,42 @@ public class Options extends JPanel {
             descriptionEnableEffects.setLocation(50, getButtonEnableEffects().getY());
         }
         return descriptionEnableEffects;
+    }
+
+    // LINHA 4 - Dificuldade
+    public JLabel getButtonDifficult() {
+        if (buttonDifficult == null) {
+            buttonDifficult = new JLabel();
+            buttonDifficult.setIcon(ImageButton.getImgBotao2());
+            buttonDifficult.setSize(ImageButton.getImgBotao2().getIconWidth(),
+                    ImageButton.getImgBotao2().getIconHeight());
+            buttonDifficult.setLocation(getWidth() - buttonDifficult.getWidth() - 50,
+                    getButtonEnableEffects().getY() + getButtonEnableEffects().getHeight() + 25);
+        }
+        return buttonDifficult;
+    }
+
+    public JLabel getTextButtonDifficult() {
+        if (textButtonDifficult == null) {
+            textButtonDifficult = new JLabel("NORMAL");
+            textButtonDifficult.setHorizontalAlignment(SwingConstants.CENTER);
+            textButtonDifficult.setForeground(Color.WHITE);
+            textButtonDifficult.setFont(Fontes.getBotao());
+            textButtonDifficult.setBounds(getButtonDifficult().getBounds());
+        }
+        return textButtonDifficult;
+    }
+
+    public JLabel getDescriptionDifficult() {
+        if (descriptionDifficult == null) {
+            descriptionDifficult = new JLabel("Dificuldade:");
+            descriptionDifficult.setForeground(Color.WHITE);
+            descriptionDifficult.setFont(Fontes.getBaloo());
+            descriptionDifficult.setSize(getWidth() - getButtonDifficult().getWidth() - 110,
+                    getButtonDifficult().getHeight());
+            descriptionDifficult.setLocation(50, getButtonDifficult().getY());
+        }
+        return descriptionDifficult;
     }
 
 }

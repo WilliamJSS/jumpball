@@ -96,6 +96,25 @@ public class ControladorOpcoes implements KeyListener {
         }
     }
 
+    public void updateDifficultConfig(){
+        try {
+
+            FileWriter fw = new FileWriter(optionsFile, false);
+            BufferedWriter bw = new BufferedWriter(fw);
+
+            optionsObject.addProperty("difficult", options.getDifficult());
+
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            gson.toJson(optionsObject, bw);
+
+            bw.close();
+            fw.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     @Override
     public void keyPressed(KeyEvent e) {
 
@@ -127,7 +146,7 @@ public class ControladorOpcoes implements KeyListener {
 
         // Mover entre os botoes
         if (e.getKeyCode() == KeyEvent.VK_DOWN && !isSelecting()
-                && options.getBotaoSelecionado() != Options.BOTAO_EFEITOS) {
+                && options.getBotaoSelecionado() != Options.BOTAO_DIFICULDADE) {
 
             new Thread(new Runnable() {
 
@@ -183,6 +202,19 @@ public class ControladorOpcoes implements KeyListener {
                     updateSoundConfig();
                     break;
 
+                case Options.BOTAO_DIFICULDADE:
+                    switch (options.getDifficult()) {
+                        case "FACIL":
+                            options.setDifficult("NORMAL");
+                            break;
+                        case "NORMAL":
+                            options.setDifficult("DIFICIL");
+                            break;
+                        case "DIFICIL":
+                            options.setDifficult("FACIL");
+                            break;
+                    }
+                    updateDifficultConfig();
             }
         }
 

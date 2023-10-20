@@ -29,10 +29,12 @@ public class GerenciadorCenario {
     private ArrayList<Coin> moedas;
     private int[] posicaoMoedas;
     private JsonArray levels;
+    private JsonObject optionsObject;
 
     public GerenciadorCenario(Cenario cenario) {
         this.cenario = cenario;
         this.levels = Config.getLevels();
+        this.optionsObject = Config.getOptions();
     }
 
     public void gerarBandeira() {
@@ -200,6 +202,22 @@ public class GerenciadorCenario {
 
         return new Platform(tipo, platforms);
     }
+
+    public int getSpeed(){
+		int speed = 18;
+        String difficult = optionsObject.get("difficult").getAsString();
+
+		switch (difficult) {
+			case "FACIL":
+				return 25;
+			case "NORMAL":
+				return 18;
+			case "DIFICIL":
+				return 13;
+		}
+        
+		return speed;
+	}
 
     public int[] getPosicaoMoedas() {
         return posicaoMoedas;

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import williamjss.components.Block;
 import williamjss.components.Ball;
 import williamjss.components.Coin;
+import williamjss.controller.GerenciadorCenario;
 import williamjss.controller.GerenciadorSom;
 import williamjss.view.Cenario;
 
@@ -14,13 +15,15 @@ public class AnimationCoinMove extends Thread {
     private Ball bola;
     private ArrayList<Coin> moedas;
     private GerenciadorSom gs;
+    private GerenciadorCenario gc;
 
-    public AnimationCoinMove(Cenario cenario, Ball bola, ArrayList<Coin> moedas, GerenciadorSom gs) {
+    public AnimationCoinMove(Cenario cenario, Ball bola, ArrayList<Coin> moedas, GerenciadorSom gs, GerenciadorCenario gc) {
         super("AnimationCoinMove");
         this.cenario = cenario;
         this.bola = bola;
         this.moedas = moedas;
         this.gs = gs;
+        this.gc = gc;
     }
 
     @Override
@@ -48,7 +51,7 @@ public class AnimationCoinMove extends Thread {
 
             // Delay para mover as moedas
             try {
-                sleep(Block.SPEED);
+                sleep(gc.getSpeed());
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

@@ -120,7 +120,7 @@ public class ControladorCenario implements KeyListener {
         animationPlatformBottom.start();
 
         // Movimenta as moedas
-        AnimationCoinMove animationCoinMove = new AnimationCoinMove(cenario, bola, moedas, gs);
+        AnimationCoinMove animationCoinMove = new AnimationCoinMove(cenario, bola, moedas, gs, gc);
         animationCoinMove.start();
 
         cenario.setInicioDeJogo(false);

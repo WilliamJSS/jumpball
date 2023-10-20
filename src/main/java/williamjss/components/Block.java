@@ -30,7 +30,6 @@ public class Block extends JLabel {
 	public static final int NIVEL_FLOOR = 571;
 
 	// Constante da velocidade / Locomocao do bloco
-	public static final int SPEED = 18; // default = 18
     public static final int TICK = 5; // default = 5
 
     // Tamanho padrao do Bloco

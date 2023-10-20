@@ -1,7 +1,7 @@
 {
-  "sound":{
+  "sound": {
     "music": true,
     "effects": true
   },
-  "difficult": 10
+  "difficult": "DIFICIL"
 }
