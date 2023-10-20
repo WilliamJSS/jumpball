@@ -7,9 +7,10 @@ import java.util.ArrayList;
 import williamjss.animations.ball.*;
 import williamjss.animations.coin.*;
 import williamjss.animations.platform.*;
-import williamjss.components.Block;
 import williamjss.components.Ball;
+import williamjss.components.Block;
 import williamjss.components.Coin;
+import williamjss.components.Platform;
 import williamjss.model.image.ImageObject;
 import williamjss.view.Cenario;
 import williamjss.view.Fases;
@@ -22,8 +23,8 @@ public class ControladorCenario implements KeyListener {
     private Cenario cenario;
     private GerenciadorCenario gc;
     private Ball bola;
-    private ArrayList<Block> plataformaInferior;
-    private ArrayList<Block> plataformas;
+    private Platform plataformaInferior;
+    private Platform plataformas;
     private ArrayList<Coin> moedas;
     private Menu menu;
     private Fases fases;
@@ -76,23 +77,23 @@ public class ControladorCenario implements KeyListener {
 
         // Carregar plataforma inferior no cenario
         plataformaInferior = gc.getPlataformaInferior();
-        for (int i = 0; i < plataformaInferior.size(); i++) {
-            cenario.add(plataformaInferior.get(i));
+        for (Block bloco : plataformaInferior) {
+            cenario.add(bloco);
         }
 
         // Carregar plataformas restantes
         plataformas = gc.getPlataformas();
-        for (int i = 0; i < plataformas.size(); i++) {
-            if (plataformas.get(i).isVisible()) {
-                cenario.add(plataformas.get(i));
+        for (Block bloco : plataformas) {
+            if (bloco.isVisible()) {
+                cenario.add(bloco);
             }
         }
 
         // Carregar as moedas
         gc.gerarMoedas();
         moedas = gc.getMoedas();
-        for (int i = 0; i < moedas.size(); i++) {
-            cenario.add(moedas.get(i));
+        for (Coin moeda : moedas) {
+            cenario.add(moeda);
         }
 
         // Girar as moedas
@@ -295,7 +296,7 @@ public class ControladorCenario implements KeyListener {
             // Selecionar botao no menu de fim de jogo
             if ((e.getKeyCode() == KeyEvent.VK_SPACE || e.getKeyCode() == KeyEvent.VK_ENTER) && !isSelecting()) {
 
-                int qntEstrelas = (bola.getQntMoedas() * 100 / 15) / 30;
+                int qntEstrelas = (bola.getQntMoedas() * 100 / Coin.QNT_TOTAL) / 30;
                 boolean vitoria = !bola.isDead();
 
                 finalizarJogo();

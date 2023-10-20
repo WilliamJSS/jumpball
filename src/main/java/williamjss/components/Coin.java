@@ -13,6 +13,8 @@ public class Coin extends JLabel {
 
 	public static final long DELAY_GIRO = 85;
 
+	public static final int QNT_TOTAL = 30;
+
 	private ArrayList<ImageIcon> sprite;
 	private ImageIcon img;
 	private int largura, altura;

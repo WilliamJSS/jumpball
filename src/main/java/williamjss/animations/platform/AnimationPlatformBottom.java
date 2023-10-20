@@ -24,7 +24,7 @@ public class AnimationPlatformBottom extends Thread {
 
             for (int i = 0; i < plataformaInferior.size(); i++) {
                 Block blocoTemp = plataformaInferior.get(i);
-                blocoTemp.setLocation(blocoTemp.getX() - 5, blocoTemp.getY());
+                blocoTemp.setLocation(blocoTemp.getX() - Block.TICK, blocoTemp.getY());
 
                 // Caso a plataforma va para fora do cenario, envia ela para o final do
                 // arrayList

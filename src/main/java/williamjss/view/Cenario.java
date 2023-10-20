@@ -9,6 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import williamjss.components.Coin;
 import williamjss.model.Fontes;
 import williamjss.model.image.ImageButton;
 import williamjss.model.image.ImageObject;
@@ -117,12 +118,12 @@ public class Cenario extends JPanel {
         setBotaoAvancarBloqueado(!vitoria);
 
         getFundoTransparente().setVisible(true);
-        getMensagem().setText("MOEDAS: " + qntMoedas + "/15");
+        getMensagem().setText("MOEDAS: " + qntMoedas + "/" + Coin.QNT_TOTAL);
         getMensagem().setVisible(true);
         setBotaoSelecionado(BOTAO_MENU);
 
         // Calcular pontuacao para determinar a quantidade de estrelas
-        int pontuacao = qntMoedas * 100 / 15;
+        int pontuacao = qntMoedas * 100 / Coin.QNT_TOTAL;
 
         for (int i = 0; i < getEstrelasGrandes().size(); i++) {
             getEstrelasGrandes().get(i).setVisible(true);

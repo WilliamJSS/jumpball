@@ -29,8 +29,12 @@ public class Block extends JLabel {
 	public static final int NIVEL_BOTTOM = 440;
 	public static final int NIVEL_FLOOR = 571;
 
-	// Constante da velocidade
-	public static final int SPEED = 18; // Padrao eh 18, quanto menor, mais rapido
+	// Constante da velocidade / Locomocao do bloco
+	public static final int SPEED = 18; // default = 18
+    public static final int TICK = 5; // default = 5
+
+    // Tamanho padrao do Bloco
+    public static final int SIZE = 30;
 
 	public Block() {
 		super();

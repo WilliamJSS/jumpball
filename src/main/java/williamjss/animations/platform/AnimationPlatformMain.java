@@ -69,7 +69,7 @@ public class AnimationPlatformMain extends Thread {
             // Movimentar as plataformas
             for (int i = 0; i < plataformas.size(); i++) {
                 Block bloco = plataformas.get(i);
-                bloco.setLocation(bloco.getX() - 5, bloco.getY());
+                bloco.setLocation(bloco.getX() - Block.TICK, bloco.getY());
 
                 // Caso o bloco va para fora do cenario, ele eh apagado da existencia
                 if (bloco.getX() + bloco.getWidth() < 0) {

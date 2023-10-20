@@ -27,8 +27,7 @@ public class AnimationCoinMove extends Thread {
     public void run() {
 
         while (bola.isRodando()) {
-            for (int i = 0; i < moedas.size(); i++) {
-                Coin moeda = moedas.get(i);
+            for (Coin moeda : moedas) {
 
                 // Verificar colisao com a bola
                 if (bola.verificaColisao(moeda) && moeda.isVisible()) {
@@ -38,7 +37,7 @@ public class AnimationCoinMove extends Thread {
                     gs.playEfeitoPegarMoeda();
                 }
 
-                moeda.setLocation(moeda.getX() - 5, moeda.getY());
+                moeda.setLocation(moeda.getX() - Block.TICK, moeda.getY());
 
                 // Caso a moeda va para fora do cenario, ela eh apagada da existencia
                 if (moeda.getX() + moeda.getWidth() < 0) {

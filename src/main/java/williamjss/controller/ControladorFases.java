@@ -162,6 +162,10 @@ public class ControladorFases implements KeyListener {
                     controladorCenario.iniciarObjetosCenario(Cenario.TIPO_NEVE, GerenciadorCenario.FASE_3);
                     break;
 
+                case Cenario.TIPO_BASQUETE:
+                    controladorCenario.iniciarObjetosCenario(Cenario.TIPO_BASQUETE, GerenciadorCenario.FASE_4);
+                    break;
+
                 case Cenario.TIPO_PRAIA:
                     controladorCenario.iniciarObjetosCenario(Cenario.TIPO_PRAIA, GerenciadorCenario.FASE_1);
                     break;
@@ -171,11 +175,7 @@ public class ControladorFases implements KeyListener {
                     break;
 
                 case Cenario.TIPO_VOLEI:
-                    controladorCenario.iniciarObjetosCenario(Cenario.TIPO_VOLEI, GerenciadorCenario.FASE_5);
-                    break;
-
-                case Cenario.TIPO_BASQUETE:
-                    controladorCenario.iniciarObjetosCenario(Cenario.TIPO_BASQUETE, GerenciadorCenario.FASE_3);
+                    controladorCenario.iniciarObjetosCenario(Cenario.TIPO_VOLEI, GerenciadorCenario.FASE_3);
                     break;
 
                 case Cenario.TIPO_GOLFE:

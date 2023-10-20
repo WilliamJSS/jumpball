@@ -24,16 +24,15 @@ public class AnimationCoinSpin extends Thread {
     public void run() {
 
         while (!cenario.isFimDeJogo()) {
-            for (int i = 0; i < sprite.size(); i++) {
+            for (ImageIcon spriteIcon : sprite) {
                 try {
                     sleep(Coin.DELAY_GIRO);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
 
-                for (int j = 0; j < moedas.size(); j++) {
-                    Coin moeda = moedas.get(j);
-                    moeda.setIcon(sprite.get(i));
+                for (Coin moeda : moedas) {
+                    moeda.setIcon(spriteIcon);
                 }
             }
         }
