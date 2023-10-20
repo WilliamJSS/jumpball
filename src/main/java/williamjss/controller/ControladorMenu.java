@@ -23,7 +23,7 @@ public class ControladorMenu implements KeyListener {
     private Options opcoes;
     private GerenciadorSom gs;
     private boolean selecting;
-    private JsonObject sound;
+    private JsonObject optionsObject;
 
     public ControladorMenu(Frame frame, Menu menu, Ajuda ajuda, Options opcoes, Fases fases, Sair sair,
             GerenciadorSom gs) {
@@ -35,9 +35,9 @@ public class ControladorMenu implements KeyListener {
         this.opcoes = opcoes;
         this.gs = gs;
         this.selecting = false;
-        this.sound = Config.getSound();
+        this.optionsObject = Config.getOptions();
 
-        loadSoundConfig();
+        loadOptionsConfig();
         gs.playMusicaMenu();
     }
 
@@ -49,7 +49,8 @@ public class ControladorMenu implements KeyListener {
         frame.removeKeyListener(this);
     }
 
-    public void loadSoundConfig() {
+    public void loadOptionsConfig() {
+        JsonObject sound = optionsObject.get("sound").getAsJsonObject();
         gs.enableSounds(sound.get("music").getAsBoolean(), sound.get("effects").getAsBoolean());
     }
 

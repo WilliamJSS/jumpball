@@ -23,9 +23,9 @@ public class ControladorOpcoes implements KeyListener {
     private Menu menu;
     private GerenciadorSom gs;
     private boolean selecting;
-    private File soundFile;
+    private File optionsFile;
     private File scenesFile;
-    private JsonObject sound;
+    private JsonObject optionsObject;
     private JsonArray defaultScenes;
     private ControladorMiniCenario gl;
 
@@ -36,9 +36,9 @@ public class ControladorOpcoes implements KeyListener {
         this.gs = gs;
         this.gl = gl;
         this.selecting = false;
-        this.soundFile = Config.getSoundFile();
+        this.optionsFile = Config.getOptionsFile();
         this.scenesFile = Config.getScenesFile();
-        this.sound = Config.getSound();
+        this.optionsObject = Config.getOptions();
         this.defaultScenes = Config.getDefaultScenes();
     }
 
@@ -53,14 +53,18 @@ public class ControladorOpcoes implements KeyListener {
     public void updateSoundConfig() {
         try {
 
-            FileWriter fw = new FileWriter(soundFile, false);
+            FileWriter fw = new FileWriter(optionsFile, false);
             BufferedWriter bw = new BufferedWriter(fw);
+
+            JsonObject sound = optionsObject.get("sound").getAsJsonObject();
 
             sound.addProperty("music", options.isMusicEnabled());
             sound.addProperty("effects", options.isEffectsEnabled());
 
+            optionsObject.add("sound", sound);
+
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
-            gson.toJson(sound, bw);
+            gson.toJson(optionsObject, bw);
 
             gs.enableSounds(sound.get("music").getAsBoolean(), sound.get("effects").getAsBoolean());
 

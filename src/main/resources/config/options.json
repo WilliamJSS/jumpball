@@ -1,0 +1,7 @@
+{
+  "sound":{
+    "music": true,
+    "effects": true
+  },
+  "difficult": 10
+}

@@ -12,11 +12,11 @@ public class Config {
 
     private static File scenesFile;
     private static File defaultScenesFile;
-    private static File soundFile;
+    private static File optionsFile;
     private static File levelsFile;
     private static JsonArray scenes;
     private static JsonArray defaultScenes;
-    private static JsonObject sound;
+    private static JsonObject options;
     private static JsonArray levels;
 
     private static File getFile(String name) {
@@ -37,11 +37,11 @@ public class Config {
         return defaultScenesFile;
     }
 
-    public static File getSoundFile() {
-        if (soundFile == null) {
-            soundFile = getFile("sound.json");
+    public static File getOptionsFile() {
+        if (optionsFile == null) {
+            optionsFile = getFile("options.json");
         }
-        return soundFile;
+        return optionsFile;
     }
 
     public static File getLevelsFile() {
@@ -89,13 +89,13 @@ public class Config {
         return defaultScenes;
     }
 
-    public static JsonObject getSound() {
-        if (sound == null) {
+    public static JsonObject getOptions() {
+        if (options == null) {
             try {
-                FileReader fr = new FileReader(getSoundFile());
+                FileReader fr = new FileReader(getOptionsFile());
                 BufferedReader br = new BufferedReader(fr);
 
-                sound = JsonParser.parseReader(br).getAsJsonObject();
+                options = JsonParser.parseReader(br).getAsJsonObject();
 
                 br.close();
                 fr.close();
@@ -105,7 +105,7 @@ public class Config {
             }
         }
 
-        return sound;
+        return options;
     }
 
     public static JsonArray getLevels() {

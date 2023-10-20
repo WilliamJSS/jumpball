@@ -37,7 +37,7 @@ public class Options extends JPanel {
 
     private int botaoSelecionado;
 
-    private JsonObject sound;
+    private JsonObject optionsObject;
     private boolean effectsEnabled;
     private boolean musicEnabled;
 
@@ -69,7 +69,8 @@ public class Options extends JPanel {
 
         setBotaoSelecionado(BOTAO_REINICIAR);
 
-        this.sound = Config.getSound();
+        this.optionsObject = Config.getOptions();
+        JsonObject sound = optionsObject.get("sound").getAsJsonObject();
         setEffectsEnabled(sound.get("effects").getAsBoolean());
         setMusicEnabled(sound.get("music").getAsBoolean());
     }
